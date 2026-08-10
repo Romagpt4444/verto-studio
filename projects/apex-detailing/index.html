@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="APEX Detailing — премиальная автодетейлинг-студия. Демонстрационный проект Verto Studio.">
+  <meta name="theme-color" content="#070809">
+  <title>APEX Detailing — Verto Studio Demo</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://images.pexels.com">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="loader" aria-hidden="true"><div class="loader__line"></div><div class="loader__brand"><i></i> APEX / DETAILING</div><span>01 — 100</span></div>
+
+  <header class="header">
+    <a class="brand" href="#top" aria-label="APEX Detailing — на главную"><b>A</b><span>APEX<small>DETAILING</small></span></a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#services">Услуги</a><a href="#works">Работы</a><a href="#about">О студии</a><a href="#contacts">Контакты</a>
+      <button class="nav__cta js-book">Записаться <span>↗</span></button>
+    </nav>
+    <button class="menu" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero__photo"></div><div class="hero__shade"></div><div class="hero__light"></div>
+      <div class="hero__content">
+        <p class="eyebrow"><i></i> Moscow · Private detailing studio</p>
+        <h1>Точность.<br><em>В отражении.</em></h1>
+        <p class="hero__text">Возвращаем автомобилю глубину цвета, безупречный блеск и защиту, которая работает каждый день.</p>
+        <div class="hero__actions"><button class="button button--light js-book">Записаться <span>↗</span></button><a class="button button--ghost" href="#services">Смотреть услуги <span>↓</span></a></div>
+      </div>
+      <div class="hero__scroll"><i></i> Scroll to explore</div><div class="hero__coords"><span>55°45'20.8"N</span><span>37°37'03.5"E</span></div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="section-label reveal"><span>01</span> Подход</div>
+      <div class="about__heading reveal"><p class="eyebrow">Не просто чисто. Безупречно.</p><h2>Видим автомобиль<br>как <em>систему деталей.</em></h2></div>
+      <div class="about__grid">
+        <figure class="about__photo reveal"><img src="https://images.pexels.com/photos/35149468/pexels-photo-35149468/free-photo-of-auto-detailing-with-power-polisher-in-workshop.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Мастер выполняет полировку кузова" loading="lazy"><figcaption>CRAFT / 001</figcaption></figure>
+        <div class="about__copy reveal"><p>APEX — камерная студия для тех, кто замечает разницу. Работаем вручную, подбираем составы под конкретный лак и материал, а результат проверяем под профессиональным светом.</p><div class="stats"><div><b>8+</b><span>лет опыта</span></div><div><b>1 400</b><span>автомобилей</span></div><div><b>4.9</b><span>средняя оценка</span></div></div></div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="section-label reveal"><span>02</span> Услуги</div>
+      <div class="section-heading reveal"><h2>Уход без<br><em>компромиссов.</em></h2><p>От деликатной мойки до полной защиты кузова. Собираем программу под состояние автомобиля и ваши задачи.</p></div>
+      <div class="services-grid">
+        <article class="service service--wide reveal" style="--image:url('https://images.unsplash.com/photo-1698491973400-65c0cc1fb0ce?auto=format&fit=crop&q=86&w=1800')"><span class="service__num">01</span><div><small>Detailing wash</small><h3>Детейлинг-мойка</h3><p>От 4 500 ₽</p></div><button class="js-book" aria-label="Записаться на детейлинг-мойку">↗</button></article>
+        <article class="service service--tall reveal" style="--image:url('https://images.pexels.com/photos/11139244/pexels-photo-11139244.jpeg?auto=compress&cs=tinysrgb&w=1800')"><span class="service__num">02</span><div><small>Paint correction</small><h3>Полировка кузова</h3><p>От 22 000 ₽</p></div><button class="js-book" aria-label="Записаться на полировку">↗</button></article>
+        <article class="service reveal" style="--image:url('https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?auto=format&fit=crop&q=86&w=1800')"><span class="service__num">03</span><div><small>Ceramic shield</small><h3>Керамическое покрытие</h3><p>От 18 000 ₽</p></div><button class="js-book" aria-label="Записаться на керамику">↗</button></article>
+        <article class="service reveal" style="--image:url('https://images.unsplash.com/photo-1694716193891-b8ee3a976b23?auto=format&fit=crop&q=86&w=1800')"><span class="service__num">04</span><div><small>PPF protection</small><h3>Защитная плёнка</h3><p>От 75 000 ₽</p></div><button class="js-book" aria-label="Записаться на оклейку">↗</button></article>
+        <article class="service service--wide reveal" style="--image:url('https://images.unsplash.com/photo-1771284848877-f37b8aa40419?auto=format&fit=crop&q=86&w=1800')"><span class="service__num">05</span><div><small>Interior reset</small><h3>Химчистка салона</h3><p>От 16 000 ₽</p></div><button class="js-book" aria-label="Записаться на химчистку">↗</button></article>
+        <article class="service reveal" style="--image:url('https://images.unsplash.com/photo-1782009064607-9facb439f328?auto=format&fit=crop&q=86&w=1800')"><span class="service__num">06</span><div><small>Leather care</small><h3>Уход за кожей</h3><p>От 9 000 ₽</p></div><button class="js-book" aria-label="Записаться на уход за кожей">↗</button></article>
+      </div>
+    </section>
+
+    <div class="marquee"><div><span>DIAGNOSIS</span><i></i><span>PREPARATION</span><i></i><span>CRAFT</span><i></i><span>PROTECTION</span><i></i><span>CONTROL</span><i></i><span>DIAGNOSIS</span><i></i><span>PREPARATION</span><i></i><span>CRAFT</span><i></i></div></div>
+
+    <section class="section comparison">
+      <div class="section-label reveal"><span>03</span> Результат</div>
+      <div class="comparison__head reveal"><h2>Разницу не нужно<br><em>объяснять.</em></h2><p>Проведите ползунок и сравните глубину цвета, читаемость отражения и чистоту поверхности после двухэтапной полировки.</p></div>
+      <div class="compare reveal" style="--pos:58%">
+        <div class="compare__before"><img src="https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?auto=format&fit=crop&q=88&w=2200" alt="Автомобиль до полировки" loading="lazy"><span>До</span></div>
+        <div class="compare__after"><img src="https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?auto=format&fit=crop&q=88&w=2200" alt="Автомобиль после полировки" loading="lazy"><span>После</span></div>
+        <div class="compare__handle"><b>‹ ›</b></div><input type="range" min="5" max="95" value="58" aria-label="Сравнить автомобиль до и после детейлинга">
+      </div>
+      <div class="compare-meta reveal"><span>Paint correction / 18 hours</span><span>Defect removal / 92%</span><span>Ceramic protection / 24 months</span></div>
+    </section>
+
+    <section class="section works" id="works">
+      <div class="section-label reveal"><span>04</span> Избранные работы</div>
+      <div class="works__head reveal"><h2>Автомобиль<br>как <em>объект.</em></h2><p>Каждый проект — отдельная история света, формы и фактуры.</p></div>
+      <div class="gallery">
+        <figure class="gallery__main reveal"><img src="https://images.unsplash.com/photo-1698491973400-65c0cc1fb0ce?auto=format&fit=crop&q=86&w=1900" alt="Спортивный автомобиль в студии" loading="lazy"><figcaption><span>01 / Full detail</span><b>Graphite R</b></figcaption></figure>
+        <figure class="gallery__wheel reveal"><img src="https://images.unsplash.com/photo-1649955413184-c76c16a4f402?auto=format&fit=crop&q=86&w=1400" alt="Деталь колеса" loading="lazy"><figcaption><span>02 / Wheel care</span><b>Precision</b></figcaption></figure>
+        <figure class="gallery__interior reveal"><img src="https://images.unsplash.com/photo-1771284848877-f37b8aa40419?auto=format&fit=crop&q=86&w=1400" alt="Премиальный салон" loading="lazy"><figcaption><span>03 / Interior</span><b>Private space</b></figcaption></figure>
+        <figure class="gallery__polish reveal"><img src="https://images.pexels.com/photos/11139244/pexels-photo-11139244.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Полировка кузова" loading="lazy"><figcaption><span>04 / Correction</span><b>Mirror state</b></figcaption></figure>
+        <figure class="gallery__leather reveal"><img src="https://images.unsplash.com/photo-1782009064607-9facb439f328?auto=format&fit=crop&q=86&w=1400" alt="Кожаный интерьер" loading="lazy"><figcaption><span>05 / Leather</span><b>Soft touch</b></figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section benefits">
+      <div class="section-label reveal"><span>05</span> Почему APEX</div>
+      <div class="benefits__grid">
+        <div class="benefits__title reveal"><p class="eyebrow">Стандарт студии</p><h2>Контроль<br>в каждой <em>точке.</em></h2><div class="seal">APEX<small>QUALITY CONTROL</small></div></div>
+        <div class="benefit-list">
+          <article class="benefit reveal"><span>01</span><h3>Ручная работа</h3><p>Каждый этап выполняет мастер, а не потоковая линия.</p><i>+</i></article>
+          <article class="benefit reveal"><span>02</span><h3>Премиальные составы</h3><p>Gyeon, Koch Chemie и CarPro под конкретный материал.</p><i>+</i></article>
+          <article class="benefit reveal"><span>03</span><h3>8 лет опыта</h3><p>Работаем со сложными лаками, кожей и деликатными поверхностями.</p><i>+</i></article>
+          <article class="benefit reveal"><span>04</span><h3>Гарантия результата</h3><p>Фиксируем состояние авто и отвечаем за качество покрытия.</p><i>+</i></article>
+          <article class="benefit reveal"><span>05</span><h3>Бережное хранение</h3><p>Закрытый бокс, видеонаблюдение и контроль доступа 24/7.</p><i>+</i></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <div class="section-label reveal"><span>06</span> Отзывы клиентов</div>
+      <div class="reviews__head reveal"><h2>Говорят владельцы.</h2><div><b>4.9</b><span>★★★★★<small>на основе 186 оценок</small></span></div></div>
+      <div class="review-grid">
+        <article class="review reveal"><header><span>01</span><i>“</i></header><blockquote>После полировки цвет наконец раскрылся — машина выглядит глубже и дороже, чем при выдаче из салона. Отдельно ценю честный совет не делать лишние работы.</blockquote><footer><b>АМ</b><p><strong>Алексей М.</strong><span>Porsche Cayenne</span></p></footer></article>
+        <article class="review reveal"><header><span>02</span><i>“</i></header><blockquote>Оставляла автомобиль на комплекс с химчисткой. Вернули без запаха химии, кожа матовая, каждая строчка чистая. Очень спокойный и профессиональный сервис.</blockquote><footer><b>ЕК</b><p><strong>Елена К.</strong><span>Mercedes-Benz GLE</span></p></footer></article>
+        <article class="review reveal"><header><span>03</span><i>“</i></header><blockquote>Заклеили переднюю часть и сделали керамику. Все кромки аккуратно спрятаны, никаких пузырей. Через полгода кузов всё ещё моется заметно легче.</blockquote><footer><b>ИР</b><p><strong>Илья Р.</strong><span>BMW M4</span></p></footer></article>
+      </div>
+    </section>
+
+    <section class="final-cta"><div class="final-cta__photo"></div><div class="final-cta__content reveal"><p class="eyebrow"><i></i> Your car. Renewed.</p><h2>Верните автомобилю<br><em>состояние нового.</em></h2><p>Оставьте заявку — мастер оценит задачу, предложит программу ухода и рассчитает точную стоимость.</p><button class="button button--light js-book">Записаться в студию <span>↗</span></button></div></section>
+
+    <section class="section contacts" id="contacts">
+      <div class="section-label reveal"><span>07</span> Контакты</div>
+      <div class="contacts__grid">
+        <div class="contacts__copy reveal"><h2>Обсудим<br><em>ваш автомобиль.</em></h2>
+          <div class="contact"><span>Адрес</span><p>Москва, 2-й Магистральный тупик, 7А<small>Демонстрационный адрес</small></p></div>
+          <div class="contact"><span>Телефон</span><p><a href="tel:+74950000000">+7 (495) 000-00-00</a><small>Демонстрационный номер</small></p></div>
+          <div class="contact"><span>Режим работы</span><p>Пн — Вс&nbsp;&nbsp; 09:00 — 21:00<small>Только по предварительной записи</small></p></div>
+          <div class="socials"><a href="#" aria-label="Демонстрационная ссылка Telegram">Telegram <span>↗</span></a><a href="#" aria-label="Демонстрационная ссылка WhatsApp">WhatsApp <span>↗</span></a></div>
+        </div>
+        <div class="map reveal" aria-label="Демонстрационная схема расположения студии"><div class="map__grid"></div><div class="road road--1"></div><div class="road road--2"></div><div class="pin"><b>A</b><span>APEX<small>DETAILING STUDIO</small></span></div><span class="district">ХОРОШЁВСКИЙ</span><span class="river">МОСКВА-РЕКА</span><div class="map__zoom"><button aria-label="Увеличить карту">+</button><button aria-label="Уменьшить карту">−</button></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-word">APEX</div><div class="footer-bottom"><span>© 2026 APEX DETAILING</span><span>DEMO PROJECT BY <b>VERTO STUDIO</b></span><a href="#top">Наверх ↑</a></div></footer>
+
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal__panel"><button class="modal__close" aria-label="Закрыть">×</button>
+      <div class="modal__form"><p class="eyebrow">Private appointment</p><h2 id="modal-title">Запись в APEX</h2><p class="modal__hint">Это демонстрационная форма — данные никуда не отправляются.</p>
+        <form><label>Ваше имя<input required placeholder="Алексей"></label><label>Телефон<input required type="tel" placeholder="+7 (___) ___-__-__"></label><label>Автомобиль<input placeholder="Марка и модель"></label><button class="button button--light" type="submit">Отправить заявку <span>↗</span></button></form>
+      </div>
+      <div class="modal__success" hidden><i>✓</i><p class="eyebrow">Demo mode</p><h2>Заявка оформлена</h2><p>В реальном проекте здесь подключается Telegram, CRM или другой канал клиента.</p><button class="button button--light modal__done">Готово</button></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

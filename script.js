@@ -99,6 +99,19 @@ if (menuButton && navigation) {
         }
 
     });
+
+
+    document.addEventListener("keydown", (event) => {
+
+        if (
+            event.key === "Escape" &&
+            navigation.classList.contains("is-open")
+        ) {
+            closeMenu();
+            menuButton.focus();
+        }
+
+    });
 }
 
 
@@ -179,6 +192,34 @@ faqItems.forEach((item) => {
 
                 otherItem.open = false;
 
+            }
+
+        });
+
+    });
+
+});
+
+
+// =========================
+// ПОДРОБНЫЕ КЕЙСЫ
+// =========================
+
+const caseDetails =
+    document.querySelectorAll(".case-details");
+
+
+caseDetails.forEach((item) => {
+
+    item.addEventListener("toggle", () => {
+
+        if (!item.open) return;
+
+
+        caseDetails.forEach((otherItem) => {
+
+            if (otherItem !== item) {
+                otherItem.open = false;
             }
 
         });

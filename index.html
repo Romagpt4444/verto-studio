@@ -1,13 +1,12 @@
-```html
 <!DOCTYPE html>
 <html lang="ru" class="no-js">
 <head>
     <meta charset="UTF-8">
     <script>document.documentElement.classList.replace("no-js", "js");</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Verto — разработка современных сайтов для малого бизнеса, экспертов и локальных компаний.">
+    <meta name="description" content="Verto Studio — разработка коммерческих сайтов с выразительным дизайном, продуманной структурой и полноценным адаптивом.">
     <meta name="theme-color" content="#090d18">
-    <title>Verto — сайты для бизнеса</title>
+    <title>Verto Studio — сайты для бизнеса</title>
     <link rel="stylesheet" href="./main.css">
 </head>
 <body>
@@ -20,7 +19,7 @@
 
             <nav class="navigation" id="navigation" aria-label="Основная навигация">
                 <a href="#services">Услуги</a>
-                <a href="#portfolio">Работы</a>
+                <a href="#portfolio">Портфолио</a>
                 <a href="#process">Процесс</a>
                 <a href="#contacts">Контакты</a>
             </nav>
@@ -239,80 +238,125 @@
             </div>
         </section>
 
-        <section class="portfolio section" id="portfolio">
+        <section class="portfolio section" id="portfolio" aria-labelledby="portfolio-title">
             <div class="container">
-                <div class="section-heading reveal">
+                <div class="portfolio-heading reveal">
                     <div>
-                        <p class="section-label">02 / Работы</p>
-                        <h2>Концепты для разных ниш.</h2>
+                        <p class="section-label">02 / Избранные проекты</p>
+                        <h2 id="portfolio-title">Проекты, которые<br>помогают бизнесу<br><span>выглядеть сильнее.</span></h2>
                     </div>
-
-                    <p class="section-intro">
-                        Показываем направление дизайна и подход к структуре. Эти проекты обозначены как концепты — без выдуманных клиентов и результатов.
-                    </p>
+                    <div class="portfolio-heading-copy">
+                        <p>Разрабатываем сайты с продуманной структурой, выразительным дизайном и полноценной адаптацией под мобильные устройства.</p>
+                        <p>Ниже — три демонстрационных проекта Verto Studio для разных направлений бизнеса.</p>
+                    </div>
                 </div>
 
-                <div class="portfolio-list">
-                    <article class="portfolio-card portfolio-card-large reveal">
-                        <div class="portfolio-preview portfolio-coffee">
-                            <div class="mockup mockup-coffee">
-                                <span class="mockup-kicker">coffee / slow mornings</span>
-                                <strong>ROAST.</strong>
-                                <p>specialty coffee & bakery</p>
-                                <i></i>
+                <div class="project-list">
+                    <article class="project-case project-case--morrow reveal" aria-labelledby="project-morrow-title">
+                        <a class="project-media" href="https://morrow-coffee.q85pqyz4dr.chatgpt.site" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт Morrow Coffee в новой вкладке">
+                            <img src="./assets/portfolio/morrow-coffee.webp" alt="Первый экран сайта кофейни Morrow Coffee с чашкой кофе" width="1672" height="941" loading="lazy">
+                            <span class="project-media-shade"></span>
+                            <span class="project-screen-brand">MORROW <i>COFFEE</i></span>
+                            <span class="project-screen-copy">Тёплые утра<br>начинаются здесь.</span>
+                            <span class="project-media-arrow" aria-hidden="true">↗</span>
+                            <span class="project-signature">DESIGNED &amp; DEVELOPED BY VERTO STUDIO</span>
+                        </a>
+
+                        <div class="project-info">
+                            <div class="project-meta"><span>01</span><p>Кофейня / HoReCa</p></div>
+                            <h3 id="project-morrow-title">MORROW<br>COFFEE</h3>
+                            <p class="project-description">Тёплый одностраничный сайт для современной кофейни. Атмосферная визуальная подача, меню с ценами, информация о заведении, отзывы, адрес и контакты.</p>
+                            <ul class="project-tags" aria-label="Особенности проекта">
+                                <li>Премиальный дизайн</li><li>Адаптивная версия</li><li>Меню и цены</li><li>Анимации</li><li>Коммерческая структура</li>
+                            </ul>
+                            <div class="project-actions">
+                                <a class="project-button" href="https://morrow-coffee.q85pqyz4dr.chatgpt.site" target="_blank" rel="noopener noreferrer">Смотреть проект <span aria-hidden="true">↗</span></a>
                             </div>
-                        </div>
-
-                        <div class="portfolio-content">
-                            <div>
-                                <p class="portfolio-type">Концепт / HoReCa</p>
-                                <h3>Кофейня Roast</h3>
-                            </div>
-
-                            <p>
-                                Лендинг с меню, атмосферой бренда, преимуществами и быстрым переходом к заказу.
-                            </p>
-                        </div>
-                    </article>
-
-                    <article class="portfolio-card reveal">
-                        <div class="portfolio-preview portfolio-building">
-                            <div class="mockup mockup-building">
-                                <span>ARCH / 24</span>
-                                <strong>Строим<br>на результат.</strong>
-                                <i></i>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-content">
-                            <div>
-                                <p class="portfolio-type">Концепт / Строительство</p>
-                                <h3>Строительная компания</h3>
-                            </div>
-
-                            <p>Услуги, этапы, объекты и форма предварительного расчёта.</p>
+                            <details class="case-details">
+                                <summary>Подробнее о проекте <span aria-hidden="true">+</span></summary>
+                                <div class="case-details-body">
+                                    <div><b>Задача</b><p>Передать атмосферу современной кофейни и быстро привести гостя к меню, адресу и контактам.</p></div>
+                                    <div><b>Решение</b><p>Тёплая шоколадная палитра, крупная фотография, понятная структура, карточки напитков и спокойные анимации.</p></div>
+                                    <div><b>Адаптив</b><p>Меню, карточки и CTA отдельно перестроены для планшетов и смартфонов.</p></div>
+                                    <div><b>Результат</b><p>Готовый демонстрационный сайт, показывающий подход Verto Studio к проектам для HoReCa.</p></div>
+                                </div>
+                            </details>
                         </div>
                     </article>
 
-                    <article class="portfolio-card reveal">
-                        <div class="portfolio-preview portfolio-shop">
-                            <div class="mockup mockup-shop">
-                                <span>NEW DROP</span>
-                                <strong>FORM</strong>
-                                <p>essential wear / 2026</p>
-                                <i></i>
+                    <!-- APEX_URL: после публикации замените два адреса ./projects/apex-detailing/index.html на рабочий публичный URL. -->
+                    <article class="project-case project-case--reverse project-case--apex reveal" aria-labelledby="project-apex-title">
+                        <div class="project-info">
+                            <div class="project-meta"><span>02</span><p>Автодетейлинг / Автомобильный бизнес</p></div>
+                            <h3 id="project-apex-title">APEX<br>DETAILING</h3>
+                            <p class="project-description">Технологичный сайт премиальной детейлинг-студии. Тёмная визуальная система, выразительная автомобильная фотография, понятная презентация услуг и коммерческие призывы к действию.</p>
+                            <ul class="project-tags" aria-label="Особенности проекта">
+                                <li>Премиальный тёмный дизайн</li><li>Презентация услуг</li><li>Интерактивные элементы</li><li>Адаптивная версия</li><li>Форма обращения</li>
+                            </ul>
+                            <div class="project-actions">
+                                <a class="project-button" href="./projects/apex-detailing/index.html" target="_blank" rel="noopener noreferrer">Смотреть проект <span aria-hidden="true">↗</span></a>
                             </div>
+                            <details class="case-details">
+                                <summary>Подробнее о проекте <span aria-hidden="true">+</span></summary>
+                                <div class="case-details-body">
+                                    <div><b>Задача</b><p>Сформировать премиальное впечатление о студии и сделать выбор услуг понятным владельцу автомобиля.</p></div>
+                                    <div><b>Решение</b><p>Графитовая визуальная система, автомобильная фотография, каталог услуг, сравнение «до / после» и заметные точки записи.</p></div>
+                                    <div><b>Адаптив</b><p>Сетки услуг, галерея, сравнение и форма сохраняют удобный сценарий на мобильных экранах.</p></div>
+                                    <div><b>Результат</b><p>Готовый локальный демо-проект, показывающий возможности Verto Studio в автомобильной нише.</p></div>
+                                </div>
+                            </details>
                         </div>
 
-                        <div class="portfolio-content">
-                            <div>
-                                <p class="portfolio-type">Концепт / Fashion</p>
-                                <h3>Магазин одежды</h3>
-                            </div>
+                        <a class="project-media" href="./projects/apex-detailing/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт APEX Detailing в новой вкладке">
+                            <img src="./assets/portfolio/apex-detailing.webp" alt="Тёмный автомобиль в студии — визуальная концепция сайта APEX Detailing" width="1800" height="1400" loading="lazy">
+                            <span class="project-media-shade"></span>
+                            <span class="project-screen-brand">APEX <i>DETAILING</i></span>
+                            <span class="project-screen-copy">Точность<br>в отражении.</span>
+                            <span class="project-media-arrow" aria-hidden="true">↗</span>
+                            <span class="project-signature">DESIGNED &amp; DEVELOPED BY VERTO STUDIO</span>
+                        </a>
+                    </article>
 
-                            <p>Каталог, карточки товаров, фильтры и понятный путь к покупке.</p>
+                    <article class="project-case project-case--forma reveal" aria-labelledby="project-forma-title">
+                        <a class="project-media" href="https://forma-estate.q85pqyz4dr.chatgpt.site" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт FORMA ESTATE в новой вкладке">
+                            <img src="./assets/portfolio/forma-estate.webp" alt="Светлый архитектурный интерьер — первый экран сайта FORMA ESTATE" width="1800" height="1200" loading="lazy">
+                            <span class="project-media-shade"></span>
+                            <span class="project-screen-brand">FORMA <i>ESTATE</i></span>
+                            <span class="project-screen-copy">Пространства,<br>созданные для жизни.</span>
+                            <span class="project-media-arrow" aria-hidden="true">↗</span>
+                            <span class="project-signature">DESIGNED &amp; DEVELOPED BY VERTO STUDIO</span>
+                        </a>
+
+                        <div class="project-info">
+                            <div class="project-meta"><span>03</span><p>Элитная недвижимость</p></div>
+                            <h3 id="project-forma-title">FORMA<br>ESTATE</h3>
+                            <p class="project-description">Архитектурный сайт агентства премиальной недвижимости Москвы. Молочно-бежевая палитра, editorial-композиция, каталог объектов, работающий фильтр и форма персонального подбора.</p>
+                            <ul class="project-tags" aria-label="Особенности проекта">
+                                <li>Каталог недвижимости</li><li>Работающий фильтр</li><li>Интерактивная форма</li><li>Editorial-дизайн</li><li>Полноценный адаптив</li>
+                            </ul>
+                            <div class="project-actions">
+                                <a class="project-button" href="https://forma-estate.q85pqyz4dr.chatgpt.site" target="_blank" rel="noopener noreferrer">Смотреть проект <span aria-hidden="true">↗</span></a>
+                            </div>
+                            <details class="case-details">
+                                <summary>Подробнее о проекте <span aria-hidden="true">+</span></summary>
+                                <div class="case-details-body">
+                                    <div><b>Задача</b><p>Создать сайт, который передаёт уровень элитной недвижимости и помогает перейти от просмотра к персональному подбору.</p></div>
+                                    <div><b>Решение</b><p>Молочно-бежевая палитра, архитектурная типографика, каталог с фильтром и интерактивная форма подбора.</p></div>
+                                    <div><b>Адаптив</b><p>Каталог, фильтры, editorial-галерея и форма спроектированы как отдельный мобильный сценарий.</p></div>
+                                    <div><b>Результат</b><p>Готовый демонстрационный сайт, показывающий возможности Verto Studio для премиального рынка недвижимости.</p></div>
+                                </div>
+                            </details>
                         </div>
                     </article>
+                </div>
+
+                <div class="portfolio-cta reveal">
+                    <p class="section-label">Ваш проект / Следующий</p>
+                    <div>
+                        <h3>Хотите сайт такого же уровня<br>для своего бизнеса?</h3>
+                        <p>Расскажите о проекте — Verto Studio предложит структуру, визуальное направление и формат разработки под вашу задачу.</p>
+                        <a class="button button-primary" href="#contacts">Обсудить проект <span aria-hidden="true">↗</span></a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -485,7 +529,7 @@
 
             <div class="footer-links">
                 <a href="#services">Услуги</a>
-                <a href="#portfolio">Работы</a>
+                <a href="#portfolio">Портфолио</a>
                 <a href="#process">Процесс</a>
                 <a href="#contacts">Контакты</a>
             </div>
@@ -500,4 +544,3 @@
     <script src="./script.js"></script>
 </body>
 </html>
-```
