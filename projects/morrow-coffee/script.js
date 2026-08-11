@@ -8,9 +8,9 @@
 
   const closeMenu = () => {
     if (!toggle || !navigation) return;
-    navigation.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Открыть меню");
+    navigation.classList.remove("is-open");
     body.classList.remove("menu-open");
   };
 
@@ -31,7 +31,7 @@
   }
 
   const updateHeader = () =>
-    header && header.classList.toggle("is-scrolled", window.scrollY > 40);
+    header && header.classList.toggle("is-scrolled", window.scrollY > 36);
   updateHeader();
   window.addEventListener("scroll", updateHeader, { passive: true });
 
