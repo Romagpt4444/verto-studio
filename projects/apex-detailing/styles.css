@@ -427,8 +427,50 @@ em {
   padding: 24px;
   transition:
     transform 0.25s,
-    border-color 0.25s,
-    background 0.25s;
+    border-color 0.25s;
+}
+
+.service-card::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 9, 11, 0.08),
+    rgba(7, 9, 11, 0.3) 38%,
+    rgba(7, 9, 11, 0.97) 72%
+  );
+  pointer-events: none;
+}
+
+.service-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% center;
+  filter: brightness(0.62) saturate(0.72) contrast(1.08);
+  transition:
+    transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 0.3s;
+}
+
+.service-card:nth-child(2) .service-card-image {
+  object-position: 28% center;
+}
+
+.service-card:nth-child(3) .service-card-image {
+  object-position: 72% center;
+}
+
+.service-card:nth-child(4) .service-card-image {
+  object-position: 88% center;
+}
+
+.service-card:nth-child(5) .service-card-image {
+  object-position: 38% center;
 }
 .service-card-wide {
   grid-column: span 3;
@@ -436,14 +478,29 @@ em {
 .service-card:hover {
   transform: translateY(-5px);
   border-color: rgba(199, 255, 62, 0.5);
-  background: linear-gradient(145deg, #192023, #0e1214);
 }
+
+.service-card:hover .service-card-image {
+  transform: scale(1.045);
+  filter: brightness(0.7) saturate(0.86) contrast(1.08);
+}
+
+.service-card > span,
+.service-card small,
+.service-card h3,
+.service-card p,
+.service-card > i {
+  position: relative;
+  z-index: 2;
+}
+
 .service-card > span {
   color: var(--lime);
   font: 9px monospace;
 }
 .service-card small {
   position: absolute;
+  z-index: 2;
   top: 24px;
   right: 24px;
   color: #737a7d;
@@ -467,6 +524,7 @@ em {
 }
 .service-card > i {
   position: absolute;
+  z-index: 2;
   right: 22px;
   bottom: 22px;
   display: grid;
