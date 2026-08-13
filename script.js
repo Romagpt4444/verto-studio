@@ -6,6 +6,11 @@
   const header = document.querySelector("[data-header]");
   const menuToggle = document.querySelector("[data-menu-toggle]");
   const navigation = document.querySelector("[data-navigation]");
+  const yearNodes = document.querySelectorAll("[data-year]");
+
+  yearNodes.forEach((node) => {
+    node.textContent = String(new Date().getFullYear());
+  });
 
   const closeMenu = () => {
     if (!menuToggle || !navigation) return;

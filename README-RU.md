@@ -1,10 +1,14 @@
 # Verto Studio — production-сайт
 
-Статический сайт Verto Studio и три демонстрационных проекта:
+Статический сайт Verto Studio, отдельная страница услуг и три демонстрационных проекта:
 
 - Morrow Coffee;
 - APEX Detailing;
 - FORMA ESTATE.
+
+Основные файлы сайта: `index.html`, `services.html`, `main.css` и `script.js`.
+CTA используют Telegram start-параметры `order`, `audit`, `redesign` и
+`contact`, чтобы бот мог определить сценарий входа.
 
 ## Локальный запуск
 
