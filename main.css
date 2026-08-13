@@ -1331,6 +1331,7 @@ section[id] {
 .legal-document {
   width: min(840px, calc(100% - 40px));
   margin-inline: auto;
+  overflow-wrap: anywhere;
 }
 
 .legal-document h1 {

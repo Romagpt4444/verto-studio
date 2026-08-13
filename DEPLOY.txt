@@ -1,3 +1,0 @@
-Verto Studio BLUE FINAL
-Blue theme is locked both in verto-blue-final.css and inline critical CSS.
-Morrow Coffee images remain local inside projects/morrow-coffee/.
