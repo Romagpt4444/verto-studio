@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#27150e" />
+    <meta
+      name="description"
+      content="Morrow Coffee — премиальная концепция сайта кофейни от Verto Studio."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Morrow Coffee — Verto Studio Demo" />
+    <meta
+      property="og:description"
+      content="Тёплая премиальная концепция сайта кофейни от Verto Studio."
+    />
+    <meta
+      property="og:url"
+      content="https://vertostudio.ru/projects/morrow-coffee/"
+    />
+    <meta
+      property="og:image"
+      content="https://vertostudio.ru/projects/morrow-coffee/assets/images/hero-coffee-v2.jpg"
+    />
+    <link
+      rel="canonical"
+      href="https://vertostudio.ru/projects/morrow-coffee/"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./style.css?v=20260813-production-final" />
+    <script src="./script.js?v=20260813-production-final" defer></script>
+    <title>Morrow Coffee — Verto Studio Demo</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Перейти к содержанию</a>
+
+    <header class="coffee-header" data-header>
+      <a
+        class="coffee-brand"
+        href="#top"
+        aria-label="Morrow Coffee — на главную"
+        ><span>M</span><b>MORROW</b></a
+      >
+      <nav
+        class="coffee-nav"
+        id="coffee-navigation"
+        aria-label="Навигация Morrow Coffee"
+        data-navigation
+      >
+        <a href="#about">О кофейне</a>
+        <a href="#menu">Меню</a>
+        <a href="#atmosphere">Атмосфера</a>
+        <a href="#visit">Контакты</a>
+      </nav>
+      <a class="open-note" href="#visit"
+        ><i aria-hidden="true"></i> Открыты до 22:00</a
+      >
+      <button
+        class="coffee-menu"
+        type="button"
+        aria-label="Открыть меню"
+        aria-expanded="false"
+        aria-controls="coffee-navigation"
+        data-menu-toggle
+      >
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <main id="content">
+      <section class="coffee-hero" id="top" aria-labelledby="coffee-title">
+        <img
+          class="coffee-hero-image"
+          src="./assets/images/hero-coffee-v2.jpg"
+          width="1500"
+          height="844"
+          alt="Чашка кофе на деревянном столе в тёплом свете"
+          fetchpriority="high"
+        />
+        <div class="coffee-hero-shade" aria-hidden="true"></div>
+        <div class="coffee-hero-copy reveal">
+          <p class="coffee-eyebrow">Кофе · тишина · ваше утро</p>
+          <h1 id="coffee-title">Тёплые утра<br />начинаются <em>здесь.</em></h1>
+          <p>
+            Спешелти-кофе, свежая выпечка и спокойное место, в котором хочется
+            задержаться.
+          </p>
+          <div class="coffee-actions">
+            <a class="coffee-button coffee-button-light" href="#menu"
+              >Посмотреть меню <span aria-hidden="true">↗</span></a
+            >
+            <a class="coffee-text-link" href="#visit"
+              >Как нас найти <span aria-hidden="true">↓</span></a
+            >
+          </div>
+        </div>
+        <p class="coffee-side-note">MORROW · COFFEE HOUSE · DEMO</p>
+      </section>
+
+      <section
+        class="coffee-section coffee-about"
+        id="about"
+        aria-labelledby="about-title"
+      >
+        <div class="coffee-container">
+          <p class="section-kicker reveal"><span>01</span> О кофейне</p>
+          <div class="about-grid">
+            <h2 id="about-title" class="reveal">
+              Кофе с характером.<br />Сервис <em>без спешки.</em>
+            </h2>
+            <div class="about-copy reveal">
+              <p>
+                Morrow — городская кофейня, где вкус настраивают каждое утро, а
+                гостю не нужно разбираться в сложных терминах, чтобы получить
+                хорошую чашку.
+              </p>
+              <p>
+                Мы выбираем свежую обжарку, работаем с классическими и сезонными
+                сочетаниями и создаём пространство для встреч, работы и короткой
+                паузы посреди дня.
+              </p>
+              <ul>
+                <li><b>100% арабика</b><span>зерно свежей обжарки</span></li>
+                <li><b>С 7:30</b><span>кофе перед рабочим днём</span></li>
+                <li>
+                  <b>Каждый день</b><span>выпечка из утренней поставки</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="coffee-section coffee-menu-section"
+        id="menu"
+        aria-labelledby="menu-title"
+      >
+        <div class="coffee-container">
+          <div class="menu-heading reveal">
+            <p class="section-kicker section-kicker-light">
+              <span>02</span> Популярное
+            </p>
+            <h2 id="menu-title">
+              Три вкуса,<br />с которых стоит <em>начать.</em>
+            </h2>
+            <p>
+              Понятное меню без перегруза: классика, мягкий авторский напиток и
+              яркое холодное сочетание.
+            </p>
+          </div>
+
+          <div class="drink-grid">
+            <article class="drink-card reveal">
+              <div class="drink-photo">
+                <img
+                  src="./assets/images/honey-raf-v2.jpg"
+                  width="750"
+                  height="1000"
+                  alt="Медовый раф в прозрачном стакане"
+                  loading="lazy"
+                /><span>Хит</span>
+              </div>
+              <div class="drink-info">
+                <div>
+                  <h3>Медовый раф</h3>
+                  <p>Эспрессо, сливки, цветочный мёд</p>
+                </div>
+                <b>390 ₽</b>
+              </div>
+            </article>
+            <article class="drink-card reveal">
+              <div class="drink-photo">
+                <img
+                  src="./assets/images/flat-white-v2.jpg"
+                  width="900"
+                  height="600"
+                  alt="Флэт уайт с аккуратным латте-артом"
+                  loading="lazy"
+                /><span>Классика</span>
+              </div>
+              <div class="drink-info">
+                <div>
+                  <h3>Флэт уайт</h3>
+                  <p>Двойной эспрессо, шелковистое молоко</p>
+                </div>
+                <b>340 ₽</b>
+              </div>
+            </article>
+            <article class="drink-card reveal">
+              <div class="drink-photo">
+                <img
+                  src="./assets/images/signature-drink-v2.jpg"
+                  width="1067"
+                  height="1600"
+                  alt="Холодный авторский кофейный напиток"
+                  loading="lazy"
+                /><span>Signature</span>
+              </div>
+              <div class="drink-info">
+                <div>
+                  <h3>Эспрессо-тоник</h3>
+                  <p>Цитрус, тоник, яркий эспрессо</p>
+                </div>
+                <b>420 ₽</b>
+              </div>
+            </article>
+          </div>
+
+          <div class="compact-menu reveal">
+            <div><span>Эспрессо</span><i></i><b>220 ₽</b></div>
+            <div><span>Капучино</span><i></i><b>320 ₽</b></div>
+            <div><span>Латте</span><i></i><b>350 ₽</b></div>
+            <div><span>Какао</span><i></i><b>330 ₽</b></div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="atmosphere"
+        id="atmosphere"
+        aria-labelledby="atmosphere-title"
+      >
+        <img
+          src="./assets/images/morrow-interior-v2.jpg"
+          width="1500"
+          height="844"
+          alt="Тёплый интерьер кофейни Morrow"
+          loading="lazy"
+        />
+        <div class="atmosphere-shade" aria-hidden="true"></div>
+        <div class="atmosphere-copy reveal">
+          <p class="coffee-eyebrow">Пространство Morrow</p>
+          <h2 id="atmosphere-title">
+            Иногда лучший план —<br /><em>никуда не спешить.</em>
+          </h2>
+        </div>
+      </section>
+
+      <section
+        class="coffee-section coffee-values"
+        aria-labelledby="values-title"
+      >
+        <div class="coffee-container">
+          <p class="section-kicker reveal"><span>03</span> Что важно гостю</p>
+          <div class="values-heading reveal">
+            <h2 id="values-title">
+              Просто хороший<br /><em>кофейный опыт.</em>
+            </h2>
+            <p>
+              Не используем вымышленные отзывы и рейтинги. Вместо этого
+              показываем конкретные детали сервиса, которые можно проверить при
+              визите.
+            </p>
+          </div>
+          <div class="values-grid">
+            <article class="reveal">
+              <span>01</span>
+              <h3>Стабильный вкус</h3>
+              <p>
+                Рецепт проверяется в начале смены, чтобы знакомый напиток
+                оставался знакомым.
+              </p>
+            </article>
+            <article class="reveal">
+              <span>02</span>
+              <h3>Понятное меню</h3>
+              <p>
+                Бариста поможет выбрать напиток по вкусу, крепости и
+                предпочтениям к молоку.
+              </p>
+            </article>
+            <article class="reveal">
+              <span>03</span>
+              <h3>Спокойное пространство</h3>
+              <p>
+                Есть места для короткой встречи, ноутбука и неспешного завтрака.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="visit" id="visit" aria-labelledby="visit-title">
+        <div class="visit-copy reveal">
+          <p class="coffee-eyebrow">Ждём вас сегодня</p>
+          <h2 id="visit-title">Загляните<br />на чашку кофе.</h2>
+          <div class="visit-details">
+            <div><span>Адрес</span><b>Москва · демонстрационный адрес</b></div>
+            <div>
+              <span>Время работы</span
+              ><b>Пн–Пт 7:30–22:00<br />Сб–Вс 8:30–22:00</b>
+            </div>
+          </div>
+          <a
+            class="coffee-button coffee-button-dark"
+            href="https://t.me/verto_agentbot"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Заказать похожий сайт <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <div
+          class="visit-map"
+          role="img"
+          aria-label="Декоративная схема расположения кофейни"
+        >
+          <div class="map-grid"></div>
+          <i class="road road-one"></i><i class="road road-two"></i
+          ><i class="road road-three"></i>
+          <div class="map-pin">
+            <span>M</span><b>Morrow Coffee<small>demo location</small></b>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="coffee-footer">
+      <a class="coffee-brand" href="#top"><span>M</span><b>MORROW</b></a>
+      <p>Демонстрационный проект кофейни.</p>
+      <a href="../../index.html">Вернуться в портфолио Verto Studio</a>
+      <a
+        href="https://t.me/Verto_Studio"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Project by <b>Verto Studio</b> ↗</a
+      >
+    </footer>
+  </body>
+</html>
