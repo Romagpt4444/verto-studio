@@ -187,6 +187,7 @@ def main() -> int:
 
     required_public_files = {
         "index.html",
+        "scene.js",
         "services.html",
         "privacy.html",
         "personal-data-consent.html",
@@ -200,12 +201,34 @@ def main() -> int:
         if not (ROOT / name).exists():
             failures.append(f"missing required public file: {name}")
 
+    for name in (
+        "01-rocket-before-launch.png",
+        "02-rocket-takeoff.png",
+        "03-rocket-atmosphere.png",
+        "04-rocket-space.png",
+        "01-rocket-before-launch-mobile.png",
+    ):
+        if not (ROOT / "assets" / "rocket-sequence" / name).exists():
+            failures.append(f"missing rocket scene asset: assets/rocket-sequence/{name}")
+    for name in (
+        "01-rocket-before-launch.jpg",
+        "02-rocket-takeoff.jpg",
+        "03-rocket-atmosphere.jpg",
+        "04-rocket-space.jpg",
+        "01-rocket-before-launch-mobile.jpg",
+    ):
+        if not (ROOT / "assets" / "rocket-sequence" / "web" / name).exists():
+            failures.append(f"missing web rocket asset: assets/rocket-sequence/web/{name}")
+
     sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
     for url in ("https://vertostudio.ru/", "https://vertostudio.ru/services.html", "https://vertostudio.ru/projects.html", "https://vertostudio.ru/lead-agent.html", "https://vertostudio.ru/cases/master-tyres.html"):
         if f"<loc>{url}</loc>" not in sitemap:
             failures.append(f"sitemap missing {url}")
 
     index = (ROOT / "index.html").read_text(encoding="utf-8")
+    scene = (ROOT / "scene.js").read_text(encoding="utf-8")
+    if "getContext(\"webgl\"" not in scene or "u_progress" not in scene:
+        failures.append("scene.js: WebGL scroll scene markers missing")
     if "https://t.me/Verto_Studio" not in index:
         failures.append("index.html missing direct Telegram studio CTA")
     lead_page = (ROOT / "lead-agent.html").read_text(encoding="utf-8")
