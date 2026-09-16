@@ -162,7 +162,7 @@ def check_security(failures: list[str]) -> dict[str, list[str]]:
             inventory["localStorage"].append(rel)
         if file.suffix.lower() == ".js" and "sessionStorage" in text:
             inventory["sessionStorage"].append(rel)
-        if rel != "scene.js" and tracker_pattern.search(text):
+        if tracker_pattern.search(text):
             inventory["analytics_or_trackers"].append(rel)
         if file.suffix.lower() == ".html" and re.search(r"<(?:iframe|embed|object)\b", text, re.I):
             inventory["embedded_content"].append(rel)
@@ -226,9 +226,9 @@ def main() -> int:
             failures.append(f"sitemap missing {url}")
 
     index = (ROOT / "index.html").read_text(encoding="utf-8")
-    scene = (ROOT / "scene-src.js").read_text(encoding="utf-8")
-    if "THREE.WebGLRenderer" not in scene or "points.findIndex" not in scene or "function update(p,t)" not in scene:
-        failures.append("scene-src.js: deterministic Three.js scene markers missing")
+    scene = (ROOT / "scene.js").read_text(encoding="utf-8")
+    if 'getContext("webgl"' not in scene or "u_progress" not in scene:
+        failures.append("scene.js: WebGL scroll scene markers missing")
     if "https://t.me/Verto_Studio" not in index:
         failures.append("index.html missing direct Telegram studio CTA")
     lead_page = (ROOT / "lead-agent.html").read_text(encoding="utf-8")
