@@ -15,3 +15,5 @@
 @media(max-width:700px){.scene-fallback .hero{background-image:linear-gradient(180deg,rgba(243,240,232,.9),rgba(243,240,232,.42)),url('./assets/rocket-sequence/web/01-rocket-before-launch-mobile.jpg')!important}}
 @media(prefers-reduced-motion:reduce){.scene-loading{transition:none}.scene-canvas{position:absolute;height:100%}}
 .home-scene .section-head>*,.home-scene .statement-grid>*,.home-scene .studio-grid>*,.home-scene .contact-grid>*{min-width:0}
+/* Legal documents remain fast, readable HTML outside the flight scene. */
+.legal-page{background:#090a0c;color:#f2efe7}.legal-header{border-color:#f2efe733}.legal-document h1,.legal-document h2{color:#f2efe7}.legal-document p,.legal-document li{color:#c6c7c2}.legal-meta,.legal-page .section-label{color:#9fa29c}.legal-notice{background:#17191d;color:#c6c7c2}.legal-back,.legal-document a{color:#ff7958}.not-found-page{background:#090a0c}.not-found-card>p:not(.not-found-code){color:#c6c7c2}

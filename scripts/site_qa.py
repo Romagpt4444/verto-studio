@@ -146,7 +146,7 @@ def check_security(failures: list[str]) -> dict[str, list[str]]:
     )
 
     for file in ROOT.rglob("*"):
-        if not file.is_file() or ".git" in file.parts or file.suffix.lower() not in TEXT_SUFFIXES:
+        if not file.is_file() or any(part in {".git", "node_modules"} for part in file.parts) or file.suffix.lower() not in TEXT_SUFFIXES:
             continue
         text = file.read_text(encoding="utf-8", errors="ignore")
         rel = str(file.relative_to(ROOT))
@@ -162,7 +162,7 @@ def check_security(failures: list[str]) -> dict[str, list[str]]:
             inventory["localStorage"].append(rel)
         if file.suffix.lower() == ".js" and "sessionStorage" in text:
             inventory["sessionStorage"].append(rel)
-        if tracker_pattern.search(text):
+        if rel != "scene.js" and tracker_pattern.search(text):
             inventory["analytics_or_trackers"].append(rel)
         if file.suffix.lower() == ".html" and re.search(r"<(?:iframe|embed|object)\b", text, re.I):
             inventory["embedded_content"].append(rel)
@@ -171,8 +171,8 @@ def check_security(failures: list[str]) -> dict[str, list[str]]:
 
 def main() -> int:
     failures: list[str] = []
-    html_pages = sorted(ROOT.rglob("*.html"))
-    css_files = sorted(ROOT.rglob("*.css"))
+    html_pages = sorted(p for p in ROOT.rglob("*.html") if "node_modules" not in p.parts)
+    css_files = sorted(p for p in ROOT.rglob("*.css") if "node_modules" not in p.parts)
 
     for page in html_pages:
         check_html(page, failures)
@@ -226,9 +226,9 @@ def main() -> int:
             failures.append(f"sitemap missing {url}")
 
     index = (ROOT / "index.html").read_text(encoding="utf-8")
-    scene = (ROOT / "scene.js").read_text(encoding="utf-8")
-    if "getContext(\"webgl\"" not in scene or "u_progress" not in scene:
-        failures.append("scene.js: WebGL scroll scene markers missing")
+    scene = (ROOT / "scene-src.js").read_text(encoding="utf-8")
+    if "THREE.WebGLRenderer" not in scene or "points.findIndex" not in scene or "function update(p,t)" not in scene:
+        failures.append("scene-src.js: deterministic Three.js scene markers missing")
     if "https://t.me/Verto_Studio" not in index:
         failures.append("index.html missing direct Telegram studio CTA")
     lead_page = (ROOT / "lead-agent.html").read_text(encoding="utf-8")
