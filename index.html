@@ -17,6 +17,7 @@
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="preload" as="image" href="./assets/rocket-sequence/web/01-rocket-before-launch.jpg" media="(min-width: 701px)">
   <link rel="preload" as="image" href="./assets/rocket-sequence/web/01-rocket-before-launch-mobile.jpg" media="(max-width: 700px)">
+  <script>try{if(sessionStorage.getItem('verto-intro-seen')==='1')document.documentElement.classList.add('skip-intro')}catch(e){}</script>
   <link rel="stylesheet" href="./main.css?v=20260916-webgl">
   <link rel="stylesheet" href="./experience.css?v=20260916-polish">
   <script src="./script.js?v=20260916-polish" defer></script>
@@ -27,14 +28,16 @@
   <a class="skip-link" href="#content">Перейти к содержанию</a>
   <div class="experience-world" aria-hidden="true">
     <canvas class="scene-canvas" data-scene-canvas></canvas>
+    <div class="fallback-scene"><span class="fallback-scene-current"></span><span class="fallback-scene-next"></span></div>
     <div class="world-shade"></div>
   </div>
   <div class="scene-loading" data-scene-loading role="status" aria-live="polite">
-    <span class="loading-mark">V / S</span>
-    <strong>Подготовка к запуску</strong>
-    <div class="scene-progress"><span data-scene-progress-bar></span></div>
-    <small data-scene-loading-label>0%</small>
+    <div class="launch-word" aria-label="Verto Studio"><span>V</span><span>E</span><span>R</span><span>T</span><span>O</span></div>
+    <strong>STUDIO</strong>
+    <small>ГОТОВИМ ЗАПУСК</small>
+    <i aria-hidden="true"></i>
   </div>
+  <noscript><style>.scene-loading{display:none!important}</style></noscript>
 
   <header class="site-header experience-header" data-header>
     <div class="shell header-inner">
@@ -133,52 +136,52 @@
     <section class="flight-chapter chapter-project" data-flight-chapter data-scene-title="06 / MASTER TIRES" aria-labelledby="master-title">
       <div class="chapter-inner shell project-layout">
         <div class="project-copy">
-          <p class="chapter-marker">01 / КЕЙС</p>
+          <p class="chapter-marker">06 / CASE STUDY</p>
           <h2 id="master-title">Master<br>Tires</h2>
           <p class="project-type">САЙТ ДЛЯ ШИНОМОНТАЖА</p>
           <p class="chapter-description">Структура услуг, строгий визуальный язык и понятный путь к записи.</p>
           <a class="inline-route" href="./cases/master-tyres.html">Открыть кейс <span aria-hidden="true">↗</span></a>
         </div>
-        <a class="project-visual" href="./cases/master-tyres.html" aria-label="Открыть кейс Master Tires"><img src="./assets/master-tires/hero.png" width="1600" height="900" loading="lazy" alt="Главный экран сайта Master Tires"><span>01 / CASE STUDY</span></a>
+        <a class="project-visual" href="./cases/master-tyres.html" aria-label="Открыть кейс Master Tires"><img src="./assets/master-tires/hero.png" width="1600" height="900" loading="lazy" alt="Главный экран сайта Master Tires"><span>06 / CASE STUDY</span></a>
       </div>
     </section>
 
     <section class="flight-chapter chapter-project" data-flight-chapter data-scene-title="07 / MORROW" aria-labelledby="morrow-title">
       <div class="chapter-inner shell project-layout">
         <div class="project-copy">
-          <p class="chapter-marker">02 / DEMO CONCEPT</p>
+          <p class="chapter-marker">07 / DEMO CONCEPT</p>
           <h2 id="morrow-title">Morrow<br>Coffee</h2>
           <p class="project-type">КОНЦЕПЦИЯ САЙТА / HORECA</p>
           <p class="chapter-description">Тёплая визуальная система для кофейни. Демонстрационный проект Verto Studio.</p>
           <a class="inline-route" href="./projects/morrow-coffee/index.html">Открыть концепцию <span aria-hidden="true">↗</span></a>
         </div>
-        <a class="project-visual" href="./projects/morrow-coffee/index.html" aria-label="Открыть концепцию Morrow Coffee"><img src="./assets/portfolio/morrow-preview-v2.jpg" width="1500" height="844" loading="lazy" alt="Главный экран концепции Morrow Coffee"><span>02 / DEMO CONCEPT</span></a>
+        <a class="project-visual" href="./projects/morrow-coffee/index.html" aria-label="Открыть концепцию Morrow Coffee"><img src="./assets/portfolio/morrow-preview-v2.jpg" width="1500" height="844" loading="lazy" alt="Главный экран концепции Morrow Coffee"><span>07 / DEMO CONCEPT</span></a>
       </div>
     </section>
 
     <section class="flight-chapter chapter-project" data-flight-chapter data-scene-title="08 / APEX" aria-labelledby="apex-title">
       <div class="chapter-inner shell project-layout">
         <div class="project-copy">
-          <p class="chapter-marker">03 / DEMO CONCEPT</p>
+          <p class="chapter-marker">08 / DEMO CONCEPT</p>
           <h2 id="apex-title">APEX<br>Detailing</h2>
           <p class="project-type">КОНЦЕПЦИЯ САЙТА / АВТО</p>
           <p class="chapter-description">Сдержанная подача сервиса автодетейлинга. Демонстрационный проект Verto Studio.</p>
           <a class="inline-route" href="./projects/apex-detailing/index.html">Открыть концепцию <span aria-hidden="true">↗</span></a>
         </div>
-        <a class="project-visual" href="./projects/apex-detailing/index.html" aria-label="Открыть концепцию APEX Detailing"><img src="./assets/portfolio/apex-preview-v2.jpg" width="1920" height="1080" loading="lazy" alt="Главный экран концепции APEX Detailing"><span>03 / DEMO CONCEPT</span></a>
+        <a class="project-visual" href="./projects/apex-detailing/index.html" aria-label="Открыть концепцию APEX Detailing"><img src="./assets/portfolio/apex-preview-v2.jpg" width="1920" height="1080" loading="lazy" alt="Главный экран концепции APEX Detailing"><span>08 / DEMO CONCEPT</span></a>
       </div>
     </section>
 
     <section class="flight-chapter chapter-project" data-flight-chapter data-scene-title="09 / FORMA" aria-labelledby="forma-title">
       <div class="chapter-inner shell project-layout">
         <div class="project-copy">
-          <p class="chapter-marker">04 / DEMO CONCEPT</p>
+          <p class="chapter-marker">09 / DEMO CONCEPT</p>
           <h2 id="forma-title">FORMA<br>ESTATE</h2>
           <p class="project-type">КОНЦЕПЦИЯ САЙТА / НЕДВИЖИМОСТЬ</p>
           <p class="chapter-description">Редакционная подача объектов недвижимости. Демонстрационный проект Verto Studio.</p>
           <a class="inline-route" href="./projects/forma-estate/index.html">Открыть концепцию <span aria-hidden="true">↗</span></a>
         </div>
-        <a class="project-visual" href="./projects/forma-estate/index.html" aria-label="Открыть концепцию FORMA ESTATE"><img src="./assets/portfolio/forma-preview-v2.jpg" width="1024" height="683" loading="lazy" alt="Главный экран концепции FORMA ESTATE"><span>04 / DEMO CONCEPT</span></a>
+        <a class="project-visual" href="./projects/forma-estate/index.html" aria-label="Открыть концепцию FORMA ESTATE"><img src="./assets/portfolio/forma-preview-v2.jpg" width="1024" height="683" loading="lazy" alt="Главный экран концепции FORMA ESTATE"><span>09 / DEMO CONCEPT</span></a>
       </div>
     </section>
 
@@ -217,6 +220,6 @@
     </section>
   </main>
 
-  <footer class="experience-footer"><div class="shell footer-inner"><a class="footer-brand" href="#top">VERTO STUDIO <span aria-hidden="true">↑</span></a><span>© <span data-year>2026</span> Verto Studio</span><nav aria-label="Юридическая информация"><a href="./privacy.html">Конфиденциальность</a><a href="./terms.html">Условия</a></nav></div></footer>
+  <footer class="site-footer"><div class="shell footer-grid"><p>Verto Studio — дизайн и разработка digital-продуктов от идеи до запуска.</p><nav aria-label="Разделы сайта"><a href="./services.html">Услуги</a><a href="./projects.html">Проекты</a><a href="./lead-agent.html">Lead Agent</a><a href="./studio.html">О студии</a></nav><nav aria-label="Связь"><a href="https://t.me/VertoStudio_ru" target="_blank" rel="noopener noreferrer">Telegram-канал</a><a href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Написать напрямую</a></nav><div class="footer-bottom"><span>© <span data-year>2026</span> Verto Studio</span><span><a href="./privacy.html">Конфиденциальность</a> · <a href="./terms.html">Условия</a></span></div></div></footer>
 </body>
 </html>

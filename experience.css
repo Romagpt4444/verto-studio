@@ -21,6 +21,12 @@ body.home-experience { background: #090a0c; color: var(--flight-white); }
 }
 .experience-world .scene-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .experience-world .scene-canvas[hidden] { display: none; }
+.fallback-scene { position:absolute; inset:0; overflow:hidden; opacity:0; transition:opacity .4s ease; }
+.fallback-scene span { position:absolute; inset:0; display:block; background-position:center; background-size:cover; background-repeat:no-repeat; }
+.fallback-scene-current { background-image:url('./assets/rocket-sequence/web/01-rocket-before-launch.jpg'); }
+.fallback-scene-next { opacity:0; transition:opacity .72s cubic-bezier(.22,.68,0,1); }
+.scene-fallback .fallback-scene { opacity:1; }
+.scene-fallback .world-shade { background:linear-gradient(90deg,rgba(3,7,13,.64),rgba(3,7,13,.25) 48%,rgba(3,7,13,.06)),linear-gradient(0deg,rgba(2,4,8,.65),transparent 40%,rgba(2,4,8,.25)); }
 .world-shade {
   position: absolute;
   inset: 0;
@@ -32,22 +38,35 @@ body.home-experience { background: #090a0c; color: var(--flight-white); }
 .scene-loading {
   position: fixed;
   z-index: 150;
+  left: 0;
+  top: 0;
   inset: 0;
+  width: auto;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  transform: none;
+  font-size: initial;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   background: #090a0c;
   color: var(--flight-white);
-  transition: opacity .5s ease, visibility .5s ease;
+  transition: opacity .42s ease, visibility .42s ease;
 }
-.scene-loading.is-ready { opacity: 0; visibility: hidden; pointer-events: none; }
-.loading-mark { font-size: clamp(60px, 9vw, 110px); font-weight: 700; letter-spacing: -.1em; line-height: .85; }
-.scene-loading strong { font-size: 11px; font-weight: 400; letter-spacing: .21em; text-transform: uppercase; }
-.scene-progress { width: 180px; height: 1px; margin-top: 14px; background: rgba(255, 255, 255, .2); }
-.scene-progress span { display: block; width: 0; height: 100%; background: var(--flight-orange); transition: width .18s ease; }
-.scene-loading small { font-size: 10px; color: var(--flight-muted); letter-spacing: .15em; }
+.scene-loading.is-ready { opacity: 0; visibility: hidden; pointer-events: none; transform: none; }
+.skip-intro .scene-loading { display:none; }
+.launch-word { display:flex; gap:.02em; color:var(--flight-white); font-size:clamp(54px,9vw,116px); font-weight:700; line-height:.8; letter-spacing:-.1em; }
+.launch-word span { opacity:0; transform:translateY(12px); animation:launch-letter .5s cubic-bezier(.22,.68,0,1) forwards; }
+.launch-word span:nth-child(2){animation-delay:.07s}.launch-word span:nth-child(3){animation-delay:.14s}.launch-word span:nth-child(4){animation-delay:.21s}.launch-word span:nth-child(5){animation-delay:.28s}
+.scene-loading strong { opacity:0; font-size:11px; font-weight:400; letter-spacing:.36em; animation:launch-fade .45s .46s ease forwards; }
+.scene-loading small { opacity:0; font-size:9px; color:var(--flight-muted); letter-spacing:.22em; animation:launch-fade .45s .52s ease forwards; }
+.scene-loading i { display:block; width:110px; height:1px; margin-top:13px; background:var(--flight-orange); transform:scaleX(0); transform-origin:left; animation:launch-line .42s .54s cubic-bezier(.22,.68,0,1) forwards; }
+@keyframes launch-letter { to{opacity:1;transform:none} }
+@keyframes launch-fade { to{opacity:1} }
+@keyframes launch-line { to{transform:scaleX(1)} }
 
 .home-experience .site-header {
   position: fixed;
@@ -224,6 +243,8 @@ body.home-experience { background: #090a0c; color: var(--flight-white); }
 .footer-brand span { margin-left: 8px; color: var(--flight-orange); }
 .footer-inner nav { display: flex; gap: 20px; margin-left: auto; }
 .footer-inner nav a:hover { color: var(--flight-white); }
+.page-leave::after { content:''; position:fixed; z-index:300; inset:0; pointer-events:none; background:#070a10; opacity:0; animation:page-leave .44s ease forwards; }
+@keyframes page-leave { to{opacity:1} }
 
 @media (max-width: 1000px) {
   .chapter-split { grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); gap: 5vw; }
@@ -273,6 +294,7 @@ body.home-experience { background: #090a0c; color: var(--flight-white); }
 
 @media (max-width: 700px) {
   .experience-world { background-image: url('./assets/rocket-sequence/web/01-rocket-before-launch-mobile.jpg'); }
+  .fallback-scene-current { background-image:url('./assets/rocket-sequence/web/01-rocket-before-launch-mobile.jpg'); }
   .world-shade { background: linear-gradient(180deg, rgba(3, 7, 13, .48) 0%, rgba(3, 7, 13, .14) 36%, rgba(3, 7, 13, .58) 100%); }
   .home-experience .shell { width: min(calc(100% - 36px), var(--shell)); }
   .flight-chapter, .chapter-hero, .chapter-project { min-height: 100svh; }
@@ -332,5 +354,6 @@ body.home-experience { background: #090a0c; color: var(--flight-white); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scene-loading, .exp-action, .inline-route, .project-visual, .experience-header .site-nav, .experience-header .site-nav > a, .experience-header .menu-toggle span { transition: none; }
+  .scene-loading, .exp-action, .inline-route, .project-visual, .experience-header .site-nav, .experience-header .site-nav > a, .experience-header .menu-toggle span, .fallback-scene, .fallback-scene-next { transition: none; }
+  .launch-word span,.scene-loading strong,.scene-loading small,.scene-loading i { animation:none; opacity:1; transform:none; }
 }
