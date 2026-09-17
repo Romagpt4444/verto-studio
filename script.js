@@ -14,6 +14,17 @@
   window.addEventListener("resize", () => { if (window.innerWidth > 900) closeMenu(); else if (nav && !nav.classList.contains("is-open")) nav.inert = true; }, { passive: true });
   const updateHeader = () => header?.classList.toggle("is-scrolled", window.scrollY > 10);
   updateHeader(); window.addEventListener("scroll", updateHeader, { passive: true });
+  document.documentElement.classList.add("page-ready");
+  const transitionLinks = document.querySelectorAll("a[data-page-transition], a.project, a.project-visual, a.portfolio-card");
+  transitionLinks.forEach((link) => link.addEventListener("click", (event) => {
+    if (reduced || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target === "_blank") return;
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return;
+    event.preventDefault();
+    body.classList.add("page-leave");
+    window.setTimeout(() => { window.location.href = href; }, 430);
+  }));
+  window.addEventListener("pageshow", () => body.classList.remove("page-leave"));
   const rocket = document.querySelector("[data-rocket-stage]");
   const routeSections = [...document.querySelectorAll("section")];
   let ticking = false;
