@@ -1,25 +1,169 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0B">
   <meta name="description" content="Master Tires — коммерческий кейс Verto Studio: структура услуг, понятная запись и адаптивный сайт шиномонтажа.">
-  <meta property="og:type" content="article"><meta property="og:site_name" content="Verto Studio"><meta property="og:title" content="Master Tires — кейс Verto Studio"><meta property="og:description" content="Сайт для шиномонтажа: структура услуг, визуальная система и понятный путь к записи."><meta property="og:url" content="https://vertostudio.ru/cases/master-tyres.html"><meta property="og:image" content="https://vertostudio.ru/assets/master-tires/hero.png">
-  <link rel="canonical" href="https://vertostudio.ru/cases/master-tyres.html"><link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../main.css?v=20260917-final"><title>Master Tires — кейс Verto Studio</title>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Verto Studio">
+  <meta property="og:title" content="Master Tires — кейс Verto Studio">
+  <meta property="og:description" content="Сайт для шиномонтажа: структура услуг, визуальная система и понятный путь к записи.">
+  <meta property="og:url" content="https://vertostudio.ru/cases/master-tyres.html">
+  <meta property="og:image" content="https://vertostudio.ru/assets/master-tires/hero.png">
+  <link rel="canonical" href="https://vertostudio.ru/cases/master-tyres.html">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../main.css?v=20260925-01">
+  <script src="../script.js?v=20260925-01" defer></script>
+  <title>Master Tires — кейс Verto Studio</title>
+  <style>
+    .case-hero{padding:180px 0 60px}
+    .case-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
+    .case-facts dt{color:var(--paper-mute);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px}
+    .case-facts dd{margin:0;color:var(--paper);font-size:1rem}
+    .case-media{margin:60px 0;border-radius:var(--radius-l);overflow:hidden;border:1px solid var(--line)}
+    .case-media img{width:100%;display:block}
+    .case-grid{display:grid;grid-template-columns:220px 1fr;gap:60px;align-items:start;padding:80px 0;border-top:1px solid var(--line)}
+    .case-grid h2{max-width:18ch}
+    .case-grid p{color:var(--paper-dim);max-width:56ch;margin-top:18px}
+    .case-media-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding:80px 0;border-top:1px solid var(--line)}
+    .case-media-grid figure{margin:0;border:1px solid var(--line);border-radius:var(--radius-m);overflow:hidden;background:var(--bg-elev)}
+    .case-media-grid figcaption{padding:14px 18px;color:var(--paper-mute);font-size:.85rem;border-top:1px solid var(--line)}
+    .case-media-grid img{width:100%;display:block}
+    .case-workshop{margin-top:32px;border-radius:var(--radius-m);overflow:hidden}
+    .case-workshop img{width:100%;display:block}
+    .case-nav{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:80px 0;border-top:1px solid var(--line)}
+    .case-nav a{padding:28px 32px;border:1px solid var(--line);display:flex;flex-direction:column;gap:8px;transition:background .3s var(--e1),border-color .3s var(--e1)}
+    .case-nav a:first-child{border-right:none}
+    .case-nav a:hover{background:var(--bg-elev);border-color:var(--line-strong)}
+    .case-nav small{color:var(--paper-mute);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+    .case-nav strong{font-size:1.2rem}
+    @media(max-width:800px){.case-grid{grid-template-columns:1fr;gap:24px;padding:56px 0}.case-media-grid{grid-template-columns:1fr;padding:56px 0}.case-facts{grid-template-columns:1fr}.case-nav{grid-template-columns:1fr}.case-nav a:first-child{border-right:1px solid var(--line);border-bottom:none}}
+  </style>
 </head>
-<body class="case-page case-detail">
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
   <a class="skip-link" href="#content">Перейти к кейсу</a>
-  <header class="site-header" data-header><div class="shell header-inner"><a class="brand" href="../index.html" aria-label="Verto Studio — на главную"><span class="brand-symbol" aria-hidden="true">V</span><span>Verto <i>Studio</i></span></a><nav class="site-nav" id="site-navigation" aria-label="Основная навигация" data-navigation><a href="../projects.html">Проекты</a><a href="../services.html">Услуги</a><a href="../lead-agent.html">Lead Agent</a><a href="../studio.html">О студии</a><a href="../index.html#contact">Контакты</a><a class="nav-mobile-cta" href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Обсудить проект ↗</a></nav><a class="header-cta" href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Обсудить проект ↗</a><button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-navigation" data-menu-toggle><span></span><span></span></button></div></header>
+
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="../index.html" aria-label="Verto Studio — на главную">
+        <span class="brand-symbol" aria-hidden="true">V</span>
+        <span>Verto <i>Studio</i></span>
+      </a>
+      <nav class="site-nav" id="site-navigation" aria-label="Основная навигация" data-navigation>
+        <a href="../projects.html">Проекты</a>
+        <a href="../services.html">Услуги</a>
+        <a href="../lead-agent.html">Lead Agent</a>
+        <a href="../studio.html">О студии</a>
+        <a href="../index.html#contact">Контакты</a>
+        <a class="nav-mobile-cta" href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Обсудить проект ↗</a>
+      </nav>
+      <a class="header-cta" href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Обсудить проект <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-navigation" data-menu-toggle>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
   <main id="content">
-    <section class="case-detail-hero"><div class="shell"><p class="section-index">06 / COMMERCIAL CASE</p><div class="case-detail-hero-copy"><div><p class="eyebrow">MASTER TIRES / ШИНОМОНТАЖ</p><h1>Master<br><em>Tires.</em></h1><p class="case-lede">Сайт для шиномонтажа в Талицах. Собрали строгую визуальную систему, понятную запись и актуальную сетку услуг в один маршрут.</p><a class="button button-orange" href="https://mastertyres-msk.ru/" target="_blank" rel="noopener noreferrer">Открыть работающий сайт ↗</a></div><dl class="case-facts"><div><dt>Роль</dt><dd>Структура / дизайн / разработка</dd></div><div><dt>Статус</dt><dd>Commercial case</dd></div><div><dt>Формат</dt><dd>Адаптивный сайт</dd></div></dl></div><figure class="case-hero-media"><img src="../assets/master-tires/hero.png" width="901" height="520" alt="Главный экран сайта Master Tires"></figure></div></section>
-    <section class="case-detail-section"><div class="shell case-detail-grid"><p class="section-index">ЗАДАЧА</p><div><h2>Показать точность<br><em>до первого звонка.</em></h2><p>Сервис шиномонтажа требует короткого и понятного маршрута: человек должен быстро увидеть услуги, понять порядок записи и найти нужную информацию с телефона.</p></div></div></section>
-    <section class="case-detail-section case-detail-section--dark"><div class="shell case-detail-grid"><p class="section-index">СТРУКТУРА</p><div><h2>Сначала —<br><em>маршрут.</em></h2><p>Собрали услуги и детали по приоритету: от первого экрана к конкретному действию. Навигация не спорит с содержанием, а поддерживает его.</p><div class="case-process"><span>01 / УСЛУГА</span><span>02 / ДЕТАЛИ</span><span>03 / ЗАПИСЬ</span></div></div></div></section>
-    <section class="case-detail-media"><div class="shell case-detail-media-grid"><figure><img src="../assets/master-tires/services.png" width="506" height="300" alt="Раздел услуг сайта Master Tires" loading="lazy"><figcaption>Услуги / ясная иерархия</figcaption></figure><figure><img src="../assets/master-tires/details.png" width="510" height="360" alt="Раздел деталей сайта Master Tires" loading="lazy"><figcaption>Детали / ответы до обращения</figcaption></figure></div></section>
-    <section class="case-detail-section case-detail-section--split"><div class="shell case-detail-grid"><p class="section-index">ВИЗУАЛЬНОЕ НАПРАВЛЕНИЕ</p><div><h2>Чёрный, белый<br><em>и сигнальный красный.</em></h2><p>Крупная типографика помогает быстро понять услугу. Красный используется как точка действия, а не как декоративный шум.</p></div><figure class="case-workshop"><img src="../assets/master-tires/workshop.jpg" width="590" height="420" alt="Рабочая зона Master Tires" loading="lazy"></figure></div></section>
-    <section class="case-detail-section"><div class="shell case-detail-grid"><p class="section-index">АДАПТИВНАЯ ВЕРСИЯ</p><div><h2>То же направление<br><em>на маленьком экране.</em></h2><p>Сетка и кнопки собраны так, чтобы с телефона было легко выбрать услугу, открыть детали и перейти к записи.</p><a class="under-link" href="https://mastertyres-msk.ru/" target="_blank" rel="noopener noreferrer">Открыть mastertyres-msk.ru ↗</a></div></div></section>
-    <nav class="case-project-nav shell" aria-label="Навигация по проектам"><a href="../projects.html"><small>ПОРТФОЛИО</small><strong>Все проекты ↗</strong></a><a href="../projects/morrow-coffee/index.html" data-page-transition><small>СЛЕДУЮЩИЙ ПРОЕКТ</small><strong>Morrow Coffee →</strong></a></nav>
-    <section class="case-detail-cta"><div class="shell"><p class="section-index">СЛЕДУЮЩИЙ ЗАПУСК</p><h2>Есть задача<br><em>для Verto?</em></h2><a class="button button-dark" href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Обсудить похожий проект ↗</a></div></section>
+    <section class="case-hero reveal-in">
+      <div class="shell">
+        <div class="statement-grid">
+          <div class="eyebrow-block" data-reveal>
+            <span class="index-tag">01 / Case study</span>
+            <span class="eyebrow">Master Tires · Шиномонтаж</span>
+          </div>
+          <div data-reveal>
+            <h1>Master<br><em>Tires.</em></h1>
+            <p class="statement-copy">Сайт для шиномонтажа в Талицах. Собрали строгую визуальную систему, понятную запись и актуальную сетку услуг в один маршрут.</p>
+            <div class="hero-actions" style="margin-top:32px">
+              <a class="btn btn-primary" href="https://mastertyres-msk.ru/" target="_blank" rel="noopener noreferrer">Открыть работающий сайт <span class="btn-arrow" aria-hidden="true">↗</span></a>
+              <a class="btn btn-ghost" href="../projects.html">Все проекты <span class="btn-arrow" aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
+        <dl class="case-facts" data-reveal>
+          <div><dt>Роль</dt><dd>Структура · дизайн · разработка</dd></div>
+          <div><dt>Статус</dt><dd>Commercial case</dd></div>
+          <div><dt>Формат</dt><dd>Адаптивный сайт</dd></div>
+        </dl>
+        <figure class="case-media" data-reveal>
+          <img src="../assets/master-tires/hero.png" width="1600" height="900" alt="Главный экран сайта Master Tires">
+        </figure>
+      </div>
+    </section>
+
+    <section class="shell">
+      <div class="case-grid" data-reveal>
+        <span class="index-tag">Задача</span>
+        <div>
+          <h2>Показать точность<br><em>до первого звонка.</em></h2>
+          <p>Сервис шиномонтажа требует короткого и понятного маршрута: человек должен быстро увидеть услуги, понять порядок записи и найти нужную информацию с телефона.</p>
+        </div>
+      </div>
+      <div class="case-grid" data-reveal>
+        <span class="index-tag">Структура</span>
+        <div>
+          <h2>Сначала — <em>маршрут.</em></h2>
+          <p>Собрали услуги и детали по приоритету: от первого экрана к конкретному действию. Навигация не спорит с содержанием, а поддерживает его.</p>
+        </div>
+      </div>
+      <div class="case-media-grid" data-reveal-stagger>
+        <figure><img src="../assets/master-tires/services.png" width="506" height="300" alt="Раздел услуг" loading="lazy"><figcaption>Услуги · ясная иерархия</figcaption></figure>
+        <figure><img src="../assets/master-tires/details.png" width="510" height="360" alt="Раздел деталей" loading="lazy"><figcaption>Детали · ответы до обращения</figcaption></figure>
+      </div>
+      <div class="case-grid" data-reveal>
+        <span class="index-tag">Визуал</span>
+        <div>
+          <h2>Чёрный, белый<br><em>и сигнальный красный.</em></h2>
+          <p>Крупная типографика помогает быстро понять услугу. Красный используется как точка действия, а не как декоративный шум.</p>
+          <figure class="case-workshop"><img src="../assets/master-tires/workshop.jpg" width="1180" height="820" alt="Рабочая зона Master Tires" loading="lazy"></figure>
+        </div>
+      </div>
+      <div class="case-grid" data-reveal>
+        <span class="index-tag">Мобильная</span>
+        <div>
+          <h2>То же направление<br><em>на маленьком экране.</em></h2>
+          <p>Сетка и кнопки собраны так, чтобы с телефона было легко выбрать услугу, открыть детали и перейти к записи.</p>
+          <a class="link-inline" href="https://mastertyres-msk.ru/" target="_blank" rel="noopener noreferrer">Открыть mastertyres-msk.ru <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <nav class="case-nav" aria-label="Навигация по проектам">
+        <a href="../projects.html"><small>Портфолио</small><strong>Все проекты ↗</strong></a>
+        <a href="../projects/morrow-coffee/index.html"><small>Следующий проект</small><strong>Morrow Coffee →</strong></a>
+      </nav>
+    </section>
+
+    <section class="contact">
+      <div class="shell">
+        <span class="index-tag" data-reveal>Следующий запуск</span>
+        <h2 data-reveal>Есть задача<br><em>для Verto?</em></h2>
+        <div class="contact-actions" data-reveal style="margin-top:24px">
+          <a class="btn btn-primary" href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Обсудить похожий проект <span class="btn-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer"><div class="shell footer-grid"><p>Verto Studio — дизайн и разработка digital-продуктов от идеи до запуска.</p><nav aria-label="Разделы сайта"><a href="../services.html">Услуги</a><a href="../projects.html">Проекты</a><a href="../lead-agent.html">Lead Agent</a><a href="../studio.html">О студии</a></nav><nav aria-label="Связь"><a href="https://t.me/VertoStudio_ru" target="_blank" rel="noopener noreferrer">Telegram-канал</a><a href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Написать напрямую</a></nav><div class="footer-bottom"><span>© <span data-year>2026</span> Verto Studio</span><span><a href="../privacy.html">Конфиденциальность</a> · <a href="../terms.html">Условия</a></span></div></div></footer>
-  <script src="../script.js?v=20260917-final" defer></script>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <p>Verto Studio — дизайн и разработка digital-продуктов от идеи до запуска.</p>
+      <nav aria-label="Разделы сайта">
+        <a href="../services.html">Услуги</a>
+        <a href="../projects.html">Проекты</a>
+        <a href="../lead-agent.html">Lead Agent</a>
+        <a href="../studio.html">О студии</a>
+      </nav>
+      <nav aria-label="Связь">
+        <a href="https://t.me/VertoStudio_ru" target="_blank" rel="noopener noreferrer">Telegram-канал</a>
+        <a href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Написать напрямую</a>
+      </nav>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Verto Studio. Все права защищены.</span>
+        <span><a href="../privacy.html">Конфиденциальность</a> · <a href="../terms.html">Условия</a></span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
