@@ -1,0 +1,49 @@
+.split-heading > *,
+.featured-grid > *,
+.contacts-grid > *,
+.reviews-layout > *,
+.contact-details > * {
+  min-width: 0;
+}
+
+.contact-details {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .hero-copy,
+  .featured-copy,
+  .clinic-grid,
+  .contacts-grid {
+    min-width: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 14.4vw, 73px);
+  }
+
+  .featured-copy h2 {
+    font-size: clamp(46px, 14vw, 76px);
+  }
+
+  .clinic h2 {
+    font-size: clamp(43px, 12vw, 72px);
+  }
+
+  .contacts h2 {
+    font-size: clamp(44px, 13vw, 68px);
+  }
+
+  .service-list article > div {
+    min-width: 0;
+  }
+
+  .contact-details {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-details p:last-child {
+    grid-column: auto;
+  }
+}
