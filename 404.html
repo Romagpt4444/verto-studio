@@ -1,31 +1,30 @@
 <!doctype html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; style-src 'self'; img-src 'self' data:; script-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'"
-    />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta name="theme-color" content="#090a0c" />
-    <meta name="robots" content="noindex" />
-    <meta name="description" content="Страница не найдена — Verto Studio." />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/main.css?v=20260916-rocket" />
-    <title>Страница не найдена — Verto Studio</title>
-  </head>
-  <body class="not-found-page">
-    <main class="not-found-card">
-      <p class="not-found-code" aria-hidden="true">404</p>
-      <h1>Страница не найдена</h1>
-      <p>Возможно, адрес изменился или в ссылке есть ошибка.</p>
-      <a class="button button-primary" href="/"
-        >Вернуться на главную <span aria-hidden="true">→</span></a
-      >
-    </main>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0A0A0B">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Страница не найдена — Verto Studio.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/main.css?v=20260925-02">
+  <title>Страница не найдена — Verto Studio</title>
+  <style>
+    body{min-height:100vh;display:grid;place-items:center;padding:40px 20px}
+    .nf{max-width:520px;text-align:center}
+    .nf-code{font-size:clamp(6rem,16vw,10rem);font-weight:600;color:var(--accent);line-height:.9;letter-spacing:-.04em}
+    .nf h1{margin-top:20px;font-size:clamp(2rem,4vw,3rem)}
+    .nf p{margin:20px auto 32px;color:var(--paper-dim);max-width:44ch}
+  </style>
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <main class="nf">
+    <p class="nf-code" aria-hidden="true">404</p>
+    <h1>Страница не найдена</h1>
+    <p>Возможно, адрес изменился или в ссылке есть ошибка. Вернитесь на главную и продолжите знакомство со студией.</p>
+    <a class="btn btn-primary" href="/">Вернуться на главную <span class="btn-arrow" aria-hidden="true">↗</span></a>
+  </main>
+  <script src="/script.js?v=20260925-02" defer></script>
+</body>
 </html>
