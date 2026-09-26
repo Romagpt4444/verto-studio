@@ -2,13 +2,23 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0A0A0B">
   <meta name="description" content="О Verto Studio — студии сайтов, интерфейсов и digital-продуктов.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Verto Studio">
+  <meta property="og:title" content="О студии — Verto Studio">
+  <meta property="og:description" content="Verto Studio соединяет структуру, дизайн и разработку в один рабочий маршрут.">
+  <meta property="og:url" content="https://vertostudio.ru/studio.html">
+  <meta property="og:image" content="https://vertostudio.ru/assets/verto-social.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://vertostudio.ru/studio.html">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./main.css?v=20260925-02">
-  <script src="./script.js?v=20260925-02" defer></script>
+  <link rel="preload" href="./assets/fonts/golos-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./main.css?v=20260926-premium-02">
+  <script src="./script.js?v=20260926-premium-02" defer></script>
   <title>О студии — Verto Studio</title>
 </head>
 <body>
@@ -67,9 +77,18 @@
       </div>
     </section>
 
+    <section class="section studio-principles" aria-labelledby="principles-title"><div class="shell">
+      <div class="section-head" data-reveal><div class="eyebrow-block"><span class="index-tag">02 —</span><span class="eyebrow">Внимание к деталям</span></div><div><h2 id="principles-title">Цельный проект.<br><em>На каждом экране.</em></h2><p class="section-head-lede">Уровень сайта складывается из деталей: точного текста, работающей кнопки, удобного меню и аккуратного мобильного экрана.</p></div></div>
+      <div class="principle-list" data-reveal-stagger>
+        <article><span>01</span><h3>Дизайн с контекстом</h3><p>Визуальный язык строим вокруг бизнеса и аудитории. Подбираем композицию, типографику и движение под конкретную задачу.</p></article>
+        <article><span>02</span><h3>Разработка как часть дизайна</h3><p>Макеты превращаем в живой интерфейс: продумываем адаптацию, взаимодействия и состояния элементов.</p></article>
+        <article><span>03</span><h3>Проверка до публикации</h3><p>Проверяем ключевой путь пользователя, ссылки, изображения и отображение на разных размерах экрана.</p></article>
+      </div>
+    </div></section>
+
     <section class="contact">
       <div class="shell">
-        <span class="index-tag" data-reveal>02 — Следующая точка</span>
+        <span class="index-tag" data-reveal>03 — Следующая точка</span>
         <h2 data-reveal>Обсудим<br><em>задачу?</em></h2>
         <p class="lede" data-reveal>Расскажите, что нужно сделать — предложим формат и первый шаг.</p>
         <div class="contact-actions" data-reveal>

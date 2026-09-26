@@ -13,7 +13,7 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 TEXT_SUFFIXES = {".html", ".css", ".js", ".svg", ".xml", ".txt", ".md"}
-LOCAL_ATTRS = {"href", "src", "srcset"}
+LOCAL_ATTRS = {"href", "src", "srcset", "poster", "data-src"}
 IGNORE_SCHEMES = ("http://", "https://", "mailto:", "tel:", "data:")
 
 
@@ -72,6 +72,14 @@ def check_html(page: Path, failures: list[str]) -> None:
     parser.feed(text)
 
     rel = page.relative_to(ROOT)
+    if "<!doctype html>" not in text.lower():
+        failures.append(f"{rel}: missing HTML doctype")
+    if not re.search(r'<html\b[^>]*\blang=[\"\']ru(?:-[^\"\']+)?[\"\']', text, re.I):
+        failures.append(f"{rel}: Russian document language missing")
+    if not re.search(r'<meta\b[^>]*charset=[\"\']utf-8[\"\']', text, re.I):
+        failures.append(f"{rel}: UTF-8 charset missing")
+    if "viewport" not in parser.meta_names:
+        failures.append(f"{rel}: viewport missing")
     if parser.title_count != 1:
         failures.append(f"{rel}: expected one <title>, found {parser.title_count}")
     if parser.h1_count != 1:
@@ -82,9 +90,20 @@ def check_html(page: Path, failures: list[str]) -> None:
         failures.append(f"{rel}: duplicate ids: {', '.join(duplicates)}")
 
     for tag, attr, raw in parser.refs:
-        target = local_target(page, raw)
-        if target is not None and not target.exists():
-            failures.append(f"{rel}: broken {tag}[{attr}] -> {raw}")
+        candidates = raw.split(",") if attr == "srcset" else [raw]
+        for candidate in candidates:
+            target = local_target(page, candidate.strip())
+            if target is not None and not target.exists():
+                failures.append(f"{rel}: broken {tag}[{attr}] -> {candidate.strip()}")
+            # Check cross-page fragment destinations as well as files.
+            fragment = urlsplit(candidate.strip().split()[0]).fragment
+            if fragment and not candidate.startswith(IGNORE_SCHEMES):
+                target_page = target if target is not None else page
+                if target_page.exists() and target_page.suffix == ".html":
+                    destination = PageParser()
+                    destination.feed(target_page.read_text(encoding="utf-8"))
+                    if fragment not in destination.ids:
+                        failures.append(f"{rel}: missing fragment -> {candidate.strip()}")
 
     for image in parser.images:
         src = image.get("src", "<missing>")
@@ -157,9 +176,9 @@ def check_security(failures: list[str]) -> dict[str, list[str]]:
                 failures.append(f"{rel}: possible committed secret")
         if re.search(r"document\.cookie", text):
             inventory["cookies"].append(rel)
-        if file.suffix.lower() == ".js" and "localStorage" in text:
+        if file.suffix.lower() in {".js", ".html"} and re.search(r"\blocalStorage\s*[.\[]", text):
             inventory["localStorage"].append(rel)
-        if file.suffix.lower() == ".js" and "sessionStorage" in text:
+        if file.suffix.lower() in {".js", ".html"} and re.search(r"\bsessionStorage\s*[.\[]", text):
             inventory["sessionStorage"].append(rel)
         if tracker_pattern.search(text):
             inventory["analytics_or_trackers"].append(rel)

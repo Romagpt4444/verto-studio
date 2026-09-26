@@ -11,6 +11,8 @@
   const bookingSummary = document.querySelector('[data-booking-summary]');
   const selected = { date: 'Сегодня, 24 сентября', time: '10:00', suite: 'Suite 01', players: '2 игрока' };
 
+  if (mobileMenu) mobileMenu.inert = true;
+
   function updateHeader() {
     if (header) header.classList.toggle('is-scrolled', window.scrollY > 24);
   }
@@ -22,6 +24,7 @@
     menuToggle.setAttribute('aria-expanded', 'false');
     mobileMenu.setAttribute('aria-hidden', 'true');
     mobileMenu.classList.remove('is-open');
+    mobileMenu.inert = true;
     body.classList.remove('menu-open');
   }
 
@@ -31,6 +34,7 @@
       menuToggle.setAttribute('aria-expanded', String(!open));
       mobileMenu.setAttribute('aria-hidden', String(open));
       mobileMenu.classList.toggle('is-open', !open);
+      mobileMenu.inert = open;
       body.classList.toggle('menu-open', !open);
     });
     mobileMenu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
@@ -73,6 +77,7 @@
         if (item.getAttribute('role') === 'radio') item.setAttribute('aria-checked', 'false');
       });
       option.classList.add('is-selected');
+      if (option.getAttribute('role') === 'radio') option.setAttribute('aria-checked', 'true');
       selected[group] = option.dataset.value;
       renderSummary();
     });

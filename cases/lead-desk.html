@@ -2,7 +2,9 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0A0A0B">
   <meta name="description" content="Verto Lead Desk — продуктовый кейс Verto Studio: Telegram-бот, сайт и Mini App для первого контакта и сбора заявок.">
   <meta property="og:type" content="article">
@@ -13,8 +15,9 @@
   <meta property="og:image" content="https://vertostudio.ru/assets/lead-desk/og-card.png">
   <link rel="canonical" href="https://vertostudio.ru/cases/lead-desk.html">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../main.css?v=20260925-03">
-  <script src="../script.js?v=20260925-03" defer></script>
+  <link rel="preload" href="../assets/fonts/golos-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="../main.css?v=20260926-premium-02">
+  <script src="../script.js?v=20260926-premium-02" defer></script>
   <title>Verto Lead Desk — кейс Verto Studio</title>
   <style>
     .case-hero{padding:180px 0 60px}
@@ -60,15 +63,15 @@
       <div class="statement-grid"><div class="eyebrow-block" data-reveal><span class="index-tag">03 / Product case</span><span class="eyebrow">Verto Lead Desk · AI-администратор</span></div><div data-reveal>
         <h1>Verto Lead<br><em>Desk.</em></h1>
         <p class="statement-copy">Сквозной первый контакт для бизнеса: Telegram-бот, сайт и Mini App отвечают на вопросы и превращают диалог в структурированную заявку.</p>
-        <div class="hero-actions" style="margin-top:32px"><a class="btn btn-primary" href="https://verto-lead-desk.vercel.app/" target="_blank" rel="noopener noreferrer">Открыть демо <span class="btn-arrow" aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="https://verto-lead-desk.vercel.app/mini-app" target="_blank" rel="noopener noreferrer">Открыть Mini App <span class="btn-arrow" aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="../projects.html">Все проекты <span class="btn-arrow" aria-hidden="true">↗</span></a></div>
+        <div class="hero-actions" style="margin-top:32px"><a class="btn btn-primary" href="https://verto-lead-desk.vercel.app/" target="_blank" rel="noopener noreferrer">Открыть демо <span class="btn-arrow" aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="https://t.me/verto_leaddeskbot" target="_blank" rel="noopener noreferrer">Открыть Telegram-бота <span class="btn-arrow" aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="../projects.html">Все проекты <span class="btn-arrow" aria-hidden="true">↗</span></a></div>
       </div></div>
       <dl class="case-facts" data-reveal><div><dt>Роль</dt><dd>Продуктовая концепция · UX · разработка</dd></div><div><dt>Статус</dt><dd>Live product demo</dd></div><div><dt>Формат</dt><dd>Telegram · Web · Mini App</dd></div></dl>
-      <figure class="case-media" data-reveal><img src="../assets/lead-desk/og-card.png" width="1200" height="630" alt="Verto Lead Desk — интерфейс продукта"></figure>
+      <figure class="case-media" data-reveal><img srcset="../assets/lead-desk/og-card-640.webp 640w, ../assets/lead-desk/og-card.webp 1200w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="../assets/lead-desk/og-card.webp" width="1200" height="630" alt="Verto Lead Desk — интерфейс продукта"></figure>
     </div></section>
     <section class="shell">
       <div class="case-grid" data-reveal><span class="index-tag">Задача</span><div><h2>Не терять обращение<br><em>между каналами.</em></h2><p>Первый вопрос клиента часто приходит в Telegram, а решение о покупке начинается с нескольких коротких уточнений. Lead Desk собирает этот маршрут в продукт, который можно показать, проверить и внедрить в бизнес.</p></div></div>
       <div class="case-grid" data-reveal><span class="index-tag">Архитектура</span><div><h2>Один сценарий.<br><em>Два входа.</em></h2><p>В обычном чате бот ведёт диалог командами и быстрыми ответами. В Mini App тот же lead engine работает внутри полноценного интерфейса: здесь можно изучить услугу, открыть подсказки и продолжить разговор без смены продукта.</p><div class="case-note"><strong>Честная граница demo</strong>В текущей сборке ответы формируются по подтверждённой базе знаний, а заявки передаются владельцу в Telegram. Генеративный LLM и CRM-интеграции подключаются отдельным серверным модулем при внедрении.</div></div></div>
-      <div class="case-media-grid" data-reveal-stagger><figure><img src="../assets/lead-desk/telegram-welcome.jpg" width="1280" height="720" alt="Приветственный экран Telegram-бота Verto Lead Desk" loading="lazy"><figcaption>Telegram · быстрый первый контакт</figcaption></figure><figure><img src="../assets/lead-desk/og-card.png" width="1200" height="630" alt="Mini App Verto Lead Desk на мобильном экране" loading="lazy"><figcaption>Mini App · расширенный маршрут</figcaption></figure></div>
+      <div class="case-media-grid" data-reveal-stagger><figure><img srcset="../assets/lead-desk/telegram-welcome-640.webp 640w, ../assets/lead-desk/telegram-welcome.webp 1280w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="../assets/lead-desk/telegram-welcome.webp" width="1280" height="720" alt="Приветственный экран Telegram-бота Verto Lead Desk" loading="lazy"><figcaption>Telegram · быстрый первый контакт</figcaption></figure><figure><img srcset="../assets/lead-desk/og-card-640.webp 640w, ../assets/lead-desk/og-card.webp 1200w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="../assets/lead-desk/og-card.webp" width="1200" height="630" alt="Mini App Verto Lead Desk на мобильном экране" loading="lazy"><figcaption>Mini App · расширенный маршрут</figcaption></figure></div>
       <div class="case-grid" data-reveal><span class="index-tag">Результат</span><div><h2>Демо, которое<br><em>можно продавать.</em></h2><p>Клиент видит не абстрактную презентацию, а рабочий сценарий: открывает сайт, переходит в Telegram или Mini App, задаёт вопрос и оставляет заявку. Такой формат удобно адаптировать под клинику, студию, сервис или локальный бизнес.</p><a class="link-inline" href="https://t.me/verto_leaddeskbot" target="_blank" rel="noopener noreferrer">Открыть @verto_leaddeskbot <span aria-hidden="true">↗</span></a></div></div>
       <nav class="case-nav" aria-label="Навигация по проектам"><a href="../projects.html"><small>Портфолио</small><strong>Все проекты ↗</strong></a><a href="../lead-agent.html"><small>Следующий продукт</small><strong>Verto Lead Agent →</strong></a></nav>
     </section>

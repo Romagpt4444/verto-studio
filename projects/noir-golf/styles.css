@@ -369,3 +369,6 @@ details p { max-width: 580px; padding: 0 40px 26px 0; color: #656158; font-size:
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   [data-reveal] { opacity: 1; transform: none; }
 }
+/* Keep the editorial headline inside its column on small phones. */
+.intro-grid>*{min-width:0}
+@media(max-width:380px){.intro-copy h2{font-size:40px}}
