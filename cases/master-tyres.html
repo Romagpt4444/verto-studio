@@ -2,7 +2,9 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0A0A0B">
   <meta name="description" content="Master Tires — коммерческий кейс Verto Studio: структура услуг, понятная запись и адаптивный сайт шиномонтажа.">
   <meta property="og:type" content="article">
@@ -13,8 +15,9 @@
   <meta property="og:image" content="https://vertostudio.ru/assets/master-tires/hero.png">
   <link rel="canonical" href="https://vertostudio.ru/cases/master-tyres.html">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../main.css?v=20260925-02">
-  <script src="../script.js?v=20260925-02" defer></script>
+  <link rel="preload" href="../assets/fonts/golos-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="../main.css?v=20260926-premium-02">
+  <script src="../script.js?v=20260926-premium-02" defer></script>
   <title>Master Tires — кейс Verto Studio</title>
   <style>
     .case-hero{padding:180px 0 60px}
@@ -89,7 +92,7 @@
           <div><dt>Формат</dt><dd>Адаптивный сайт</dd></div>
         </dl>
         <figure class="case-media" data-reveal>
-          <img src="../assets/master-tires/hero.png" width="1600" height="900" alt="Главный экран сайта Master Tires">
+          <img srcset="../assets/master-tires/hero-640.webp 640w, ../assets/master-tires/hero.webp 901w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="../assets/master-tires/hero.webp" width="901" height="520" alt="Главный экран сайта Master Tires">
         </figure>
       </div>
     </section>
@@ -110,15 +113,15 @@
         </div>
       </div>
       <div class="case-media-grid" data-reveal-stagger>
-        <figure><img src="../assets/master-tires/services.png" width="506" height="300" alt="Раздел услуг" loading="lazy"><figcaption>Услуги · ясная иерархия</figcaption></figure>
-        <figure><img src="../assets/master-tires/details.png" width="510" height="360" alt="Раздел деталей" loading="lazy"><figcaption>Детали · ответы до обращения</figcaption></figure>
+        <figure><img src="../assets/master-tires/services.webp" width="506" height="300" alt="Раздел услуг" loading="lazy"><figcaption>Услуги · ясная иерархия</figcaption></figure>
+        <figure><img src="../assets/master-tires/details.webp" width="510" height="360" alt="Раздел деталей" loading="lazy"><figcaption>Детали · ответы до обращения</figcaption></figure>
       </div>
       <div class="case-grid" data-reveal>
         <span class="index-tag">Визуал</span>
         <div>
           <h2>Чёрный, белый<br><em>и сигнальный красный.</em></h2>
           <p>Крупная типографика помогает быстро понять услугу. Красный используется как точка действия, а не как декоративный шум.</p>
-          <figure class="case-workshop"><img src="../assets/master-tires/workshop.jpg" width="1180" height="820" alt="Рабочая зона Master Tires" loading="lazy"></figure>
+          <figure class="case-workshop"><img src="../assets/master-tires/workshop.webp" width="590" height="420" alt="Рабочая зона Master Tires" loading="lazy"></figure>
         </div>
       </div>
       <div class="case-grid" data-reveal>

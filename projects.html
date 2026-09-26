@@ -2,7 +2,9 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0A0A0B">
   <meta name="description" content="Проекты Verto Studio: коммерческие кейсы, собственные digital-продукты и живые концепции с превью.">
   <meta property="og:type" content="website">
@@ -11,12 +13,13 @@
   <meta property="og:title" content="Проекты — Verto Studio">
   <meta property="og:description" content="Работы Verto Studio: сайты, Telegram-продукты, интерфейсы и digital-концепции с живыми превью.">
   <meta property="og:url" content="https://vertostudio.ru/projects.html">
-  <meta property="og:image" content="https://vertostudio.ru/assets/master-tires/hero.png">
+  <meta property="og:image" content="https://vertostudio.ru/assets/verto-social.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://vertostudio.ru/projects.html">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./main.css?v=20260925-02">
-  <script src="./script.js?v=20260925-02" defer></script>
+  <link rel="preload" href="./assets/fonts/golos-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./main.css?v=20260926-premium-02">
+  <script src="./script.js?v=20260926-premium-02" defer></script>
   <title>Проекты — Verto Studio</title>
 </head>
 <body>
@@ -53,20 +56,20 @@
         </div>
         <div data-reveal>
           <h1>Проекты, к которым<br><em>можно вернуться.</em></h1>
-          <p class="lede">Семь работ: коммерческий кейс, три собственных продукта студии и три живые концепции. Каждый проект можно посмотреть прямо здесь — без перехода на отдельную страницу.</p>
+          <p class="lede">Десять работ: коммерческий кейс, три продукта и шесть демонстрационных концепций. Выберите направление и откройте проект, чтобы изучить его целиком.</p>
         </div>
       </div>
     </section>
 
     <div class="filter-bar">
       <div class="shell filter-inner">
-        <div class="filter-tabs" role="tablist" aria-label="Фильтр проектов">
-          <button class="filter-tab" role="tab" data-filter="all" data-active="1">Все · 7</button>
-          <button class="filter-tab" role="tab" data-filter="case">Коммерческие</button>
-          <button class="filter-tab" role="tab" data-filter="product">Продукты</button>
-          <button class="filter-tab" role="tab" data-filter="demo">Концепции</button>
+        <div class="filter-tabs" role="group" aria-label="Фильтр проектов">
+          <button class="filter-tab" data-filter="all" data-active="1">Все · 10</button>
+          <button class="filter-tab" data-filter="case">Коммерческие</button>
+          <button class="filter-tab" data-filter="product">Продукты</button>
+          <button class="filter-tab" data-filter="demo">Концепции</button>
         </div>
-        <span class="filter-hint">Наведите на превью, чтобы открыть</span>
+        <span class="filter-hint">Откройте превью, чтобы изучить проект</span>
       </div>
     </div>
 
@@ -88,7 +91,7 @@
           <a class="preview-frame" href="./cases/master-tyres.html" aria-label="Открыть кейс Master Tires">
             <div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">master-tires.ru — case study</span></div>
             <div class="preview-body mockup">
-              <img src="./assets/master-tires/hero.png" width="1600" height="900" alt="Master Tires — главная страница" loading="lazy">
+              <img srcset="./assets/master-tires/hero-640.webp 640w, ./assets/master-tires/hero.webp 901w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/master-tires/hero.webp" width="901" height="520" alt="Master Tires — главная страница" loading="lazy">
               <div class="preview-hover-cta"><span class="btn btn-primary">Открыть кейс <span class="btn-arrow" aria-hidden="true">↗</span></span></div>
             </div>
           </a>
@@ -124,7 +127,7 @@
         </div>
       </article>
 
-      <!-- 02 · Verto Lead Desk — Product case -->
+      <!-- 03 · Verto Lead Desk — Product case -->
       <article class="project-row" data-project data-kind="product" data-reveal>
         <div class="project-row-inner">
           <div class="project-info">
@@ -141,21 +144,21 @@
           <a class="preview-frame" href="./cases/lead-desk.html" aria-label="Открыть кейс Verto Lead Desk">
             <div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">verto-lead-desk.vercel.app — live product</span></div>
             <div class="preview-body mockup">
-              <img src="./assets/lead-desk/og-card.png" width="1200" height="630" alt="Verto Lead Desk — продуктовый кейс" loading="lazy">
+              <img srcset="./assets/lead-desk/og-card-640.webp 640w, ./assets/lead-desk/og-card.webp 1200w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/lead-desk/og-card.webp" width="1200" height="630" alt="Verto Lead Desk — продуктовый кейс" loading="lazy">
               <div class="preview-hover-cta"><span class="btn btn-primary">Открыть кейс <span class="btn-arrow" aria-hidden="true">↗</span></span></div>
             </div>
           </a>
         </div>
       </article>
 
-      <!-- 03 · Отклик — Product -->
+      <!-- 04 · Отклик — Product -->
       <article class="project-row" data-project data-kind="product" data-reveal>
         <div class="project-row-inner">
           <div class="project-info">
             <span class="project-num">04 / Собственный продукт</span>
             <h2 class="project-title">Отклик</h2>
             <span class="project-kind" data-kind="product">Telegram-бот · AI-администратор</span>
-            <p class="project-desc">Бесплатный AI-администратор для малого бизнеса. Бот отвечает клиентам в Telegram за 15 секунд, квалифицирует лид и передаёт «горячего» клиента владельцу. 5 готовых ниш, настройка без кода.</p>
+            <p class="project-desc">Концепция AI-администратора для малого бизнеса: ответы на вопросы, уточнение запроса и передача обращения владельцу.</p>
             <div class="project-tags"><span>Bot</span><span>LLM</span><span>AI</span><span>Automation</span></div>
             <div class="project-actions">
               <a class="btn btn-primary" href="./projects/otklik/index.html" target="_blank" rel="noopener noreferrer">Открыть лендинг <span class="btn-arrow" aria-hidden="true">↗</span></a>
@@ -165,14 +168,14 @@
           <div class="preview-frame">
             <div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">otklik.verto — AI-администратор</span></div>
             <div class="preview-body">
-              <iframe title="Отклик — AI-администратор для бизнеса" data-live-src="./projects/otklik/index.html" data-scale loading="lazy"></iframe>
+              <a class="preview-image-link" href="./projects/otklik/index.html"><img class="preview-image" src="./assets/portfolio/otklik-preview.svg" width="1600" height="900" alt="Отклик — AI-администратор для бизнеса" loading="lazy"><span class="preview-visit">Открыть живую концепцию ↗</span></a>
               <a class="preview-hover-cta" href="./projects/otklik/index.html" target="_blank" rel="noopener noreferrer"><span class="btn btn-primary">Открыть на весь экран <span class="btn-arrow" aria-hidden="true">↗</span></span></a>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- 04 · Morrow Coffee — Demo concept, live iframe -->
+      <!-- 05 · Morrow Coffee — Demo concept, live iframe -->
       <article class="project-row" data-project data-kind="demo" data-reveal>
         <div class="project-row-inner">
           <div class="project-info">
@@ -187,16 +190,16 @@
             </div>
           </div>
           <div class="preview-frame">
-            <div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">morrow-coffee.verto — live concept</span></div>
+            <div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">morrow-coffee.verto — design concept</span></div>
             <div class="preview-body">
-              <iframe title="Morrow Coffee — живая концепция" data-live-src="./projects/morrow-coffee/index.html" data-scale loading="lazy"></iframe>
+              <a class="preview-image-link" href="./projects/morrow-coffee/index.html"><img class="preview-image" srcset="./assets/portfolio/morrow-preview-v2-640.webp 640w, ./assets/portfolio/morrow-preview-v2.webp 1500w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/portfolio/morrow-preview-v2.webp" width="1500" height="844" alt="Morrow Coffee — живая концепция" loading="lazy"><span class="preview-visit">Открыть живую концепцию ↗</span></a>
               <a class="preview-hover-cta" href="./projects/morrow-coffee/index.html" target="_blank" rel="noopener noreferrer"><span class="btn btn-primary">Открыть на весь экран <span class="btn-arrow" aria-hidden="true">↗</span></span></a>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- 04 · APEX Detailing -->
+      <!-- 06 · APEX Detailing -->
       <article class="project-row" data-project data-kind="demo" data-reveal>
         <div class="project-row-inner">
           <div class="project-info">
@@ -211,16 +214,16 @@
             </div>
           </div>
           <div class="preview-frame">
-            <div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">apex-detailing.verto — live concept</span></div>
+            <div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">apex-detailing.verto — design concept</span></div>
             <div class="preview-body">
-              <iframe title="APEX Detailing — живая концепция" data-live-src="./projects/apex-detailing/index.html" data-scale loading="lazy"></iframe>
+              <a class="preview-image-link" href="./projects/apex-detailing/index.html"><img class="preview-image" srcset="./assets/portfolio/apex-preview-v2-640.webp 640w, ./assets/portfolio/apex-preview-v2.webp 1600w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/portfolio/apex-preview-v2.webp" width="1600" height="900" alt="APEX Detailing — живая концепция" loading="lazy"><span class="preview-visit">Открыть живую концепцию ↗</span></a>
               <a class="preview-hover-cta" href="./projects/apex-detailing/index.html" target="_blank" rel="noopener noreferrer"><span class="btn btn-primary">Открыть на весь экран <span class="btn-arrow" aria-hidden="true">↗</span></span></a>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- 05 · FORMA ESTATE -->
+      <!-- 07 · FORMA ESTATE -->
       <article class="project-row" data-project data-kind="demo" data-reveal>
         <div class="project-row-inner">
           <div class="project-info">
@@ -235,19 +238,37 @@
             </div>
           </div>
           <div class="preview-frame">
-            <div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">forma-estate.verto — live concept</span></div>
+            <div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">forma-estate.verto — design concept</span></div>
             <div class="preview-body">
-              <iframe title="FORMA ESTATE — живая концепция" data-live-src="./projects/forma-estate/index.html" data-scale loading="lazy"></iframe>
+              <a class="preview-image-link" href="./projects/forma-estate/index.html"><img class="preview-image" srcset="./assets/portfolio/forma-preview-v2-640.webp 640w, ./assets/portfolio/forma-preview-v2.webp 1024w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/portfolio/forma-preview-v2.webp" width="1024" height="683" alt="FORMA ESTATE — живая концепция" loading="lazy"><span class="preview-visit">Открыть живую концепцию ↗</span></a>
               <a class="preview-hover-cta" href="./projects/forma-estate/index.html" target="_blank" rel="noopener noreferrer"><span class="btn btn-primary">Открыть на весь экран <span class="btn-arrow" aria-hidden="true">↗</span></span></a>
             </div>
           </div>
+        </div>
+      </article>
+      <article class="project-row" data-project data-kind="demo" data-reveal>
+        <div class="project-row-inner">
+          <div class="project-info"><span class="project-num">08 / Design concept</span><h2 class="project-title">AUREN Dental</h2><span class="project-kind" data-kind="demo">Концепция · Медицина</span><p class="project-desc">Спокойная визуальная система клиники: команда, услуги и понятная запись. Демонстрационная работа Verto Studio.</p><div class="project-tags"><span>Медицина · Editorial</span></div><div class="project-actions"><a class="btn btn-primary" href="./projects/auren-dental/index.html">Открыть концепцию <span class="btn-arrow" aria-hidden="true">↗</span></a></div></div>
+          <a class="preview-frame" href="./projects/auren-dental/index.html" aria-label="Открыть концепцию AUREN Dental"><div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">Verto / AUREN Dental — design concept</span></div><div class="preview-body"><img class="preview-image" srcset="./assets/portfolio/auren-dental-preview-v2-640.webp 640w, ./assets/portfolio/auren-dental-preview-v2.webp 1600w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/portfolio/auren-dental-preview-v2.webp" width="1600" height="900" alt="AUREN Dental — демонстрационная концепция сайта" loading="lazy"><span class="preview-visit">Открыть концепцию ↗</span></div></a>
+        </div>
+      </article>
+      <article class="project-row" data-project data-kind="demo" data-reveal>
+        <div class="project-row-inner">
+          <div class="project-info"><span class="project-num">09 / Design concept</span><h2 class="project-title">NORD Cabin</h2><span class="project-kind" data-kind="demo">Концепция · Архитектура</span><p class="project-desc">Сайт модульных домов с акцентом на архитектуру, планировки и материалы. Демонстрационная работа Verto Studio.</p><div class="project-tags"><span>Архитектура · Web</span></div><div class="project-actions"><a class="btn btn-primary" href="./projects/nord-cabin/index.html">Открыть концепцию <span class="btn-arrow" aria-hidden="true">↗</span></a></div></div>
+          <a class="preview-frame" href="./projects/nord-cabin/index.html" aria-label="Открыть концепцию NORD Cabin"><div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">Verto / NORD Cabin — design concept</span></div><div class="preview-body"><img class="preview-image" srcset="./assets/portfolio/nord-cabin-preview-640.webp 640w, ./assets/portfolio/nord-cabin-preview.webp 1536w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/portfolio/nord-cabin-preview.webp" width="1536" height="1024" alt="NORD Cabin — демонстрационная концепция сайта" loading="lazy"><span class="preview-visit">Открыть концепцию ↗</span></div></a>
+        </div>
+      </article>
+      <article class="project-row" data-project data-kind="demo" data-reveal>
+        <div class="project-row-inner">
+          <div class="project-info"><span class="project-num">10 / Design concept</span><h2 class="project-title">NOIR Golf</h2><span class="project-kind" data-kind="demo">Концепция · Спорт и досуг</span><p class="project-desc">Атмосферная концепция гольф-клуба: пространство, события и первый визит. Демонстрационная работа Verto Studio.</p><div class="project-tags"><span>Спорт · Brand</span></div><div class="project-actions"><a class="btn btn-primary" href="./projects/noir-golf/index.html">Открыть концепцию <span class="btn-arrow" aria-hidden="true">↗</span></a></div></div>
+          <a class="preview-frame" href="./projects/noir-golf/index.html" aria-label="Открыть концепцию NOIR Golf"><div class="preview-topbar"><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-url">Verto / NOIR Golf — design concept</span></div><div class="preview-body"><img class="preview-image" srcset="./assets/portfolio/noir-golf-preview-640.webp 640w, ./assets/portfolio/noir-golf-preview.webp 1600w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/portfolio/noir-golf-preview.webp" width="1600" height="900" alt="NOIR Golf — демонстрационная концепция сайта" loading="lazy"><span class="preview-visit">Открыть концепцию ↗</span></div></a>
         </div>
       </article>
     </section>
 
     <section class="contact">
       <div class="shell">
-        <span class="index-tag" data-reveal>07 — Следующая точка</span>
+        <span class="index-tag" data-reveal>Следующая точка</span>
         <h2 data-reveal>Есть задача<br><em>для Verto?</em></h2>
         <p class="lede" data-reveal>Расскажите, что нужно сделать — предложим формат и первый шаг. Обычно отвечаем в течение дня.</p>
         <div class="contact-actions" data-reveal>

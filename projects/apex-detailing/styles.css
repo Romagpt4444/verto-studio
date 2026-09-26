@@ -992,3 +992,6 @@ em {
     transform: none;
   }
 }
+/* Narrow-screen headings must fit the content grid, including long Russian words. */
+.apex-heading>*{min-width:0}
+@media(max-width:640px){.intro h2,.apex-heading h2,.works h2,.standards h2,.apex-contact h2{font-size:clamp(42px,13vw,74px)}}

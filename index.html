@@ -2,6 +2,8 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Hm4v7Q9BDry4qcVRF8oUYE52uFSJBk80KkJPBwfBaeA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0A0A0B">
   <meta name="description" content="Verto Studio — дизайн и разработка digital-продуктов: сайты, интерфейсы и AI-продукты, которые двигают бизнес вперёд.">
@@ -11,15 +13,17 @@
   <meta property="og:title" content="Verto Studio — digital-студия полного цикла">
   <meta property="og:description" content="Сайты, интерфейсы и AI-продукты — от идеи и структуры до разработки и запуска.">
   <meta property="og:url" content="https://vertostudio.ru/">
-  <meta property="og:image" content="https://vertostudio.ru/assets/master-tires/hero.png">
+  <meta property="og:image" content="https://vertostudio.ru/assets/verto-social.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://vertostudio.ru/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./main.css?v=20260925-02">
-  <script src="./script.js?v=20260925-02" defer></script>
+  <link rel="preload" href="./assets/fonts/golos-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./main.css?v=20260926-premium-02">
+  <script src="./script.js?v=20260926-premium-02" defer></script>
   <title>Verto Studio — digital-студия полного цикла</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Verto Studio","url":"https://vertostudio.ru/","sameAs":["https://t.me/VertoStudio_ru"],"description":"Дизайн и разработка сайтов и digital-продуктов."}</script>
 </head>
-<body>
+<body class="home-page">
   <div class="cursor-glow" aria-hidden="true"></div>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
 
@@ -45,24 +49,22 @@
   </header>
 
   <main id="content">
-    <section class="hero reveal-in" id="top">
-      <div class="shell hero-grid">
-        <div>
-          <p class="hero-marker">Verto Studio · Москва · Online</p>
-          <h1 class="hero-title" data-split>
-            Запускаем <em>digital-продукты,</em> которые двигают бизнес вперёд.
-          </h1>
-          <p class="hero-sub">Дизайн, разработка и AI-продукты — от идеи и структуры до релиза. Одна команда, один маршрут, один результат.</p>
+    <section class="hero hero-premium" id="top" aria-labelledby="hero-title">
+      <div class="shell hero-stage">
+        <div class="hero-copy">
+          <p class="hero-marker">Независимая digital-студия</p>
+          <h1 id="hero-title" class="hero-title">Смысл.<br>Характер.<br><em>Результат.</em></h1>
+          <p class="hero-sub">Создаём сайты и digital-продукты, в которых сильный дизайн встречается с точной разработкой.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="./projects.html">Смотреть проекты <span class="btn-arrow" aria-hidden="true">↗</span></a>
-            <a class="btn btn-ghost" href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Обсудить задачу <span class="btn-arrow" aria-hidden="true">↗</span></a>
+            <a class="btn btn-primary" href="#work">Избранные работы <span class="btn-arrow" aria-hidden="true">↓</span></a>
+            <a class="link-inline" href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Обсудить проект <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <div class="hero-meta" data-reveal>
-          <div><p>2026</p><p>Год работы студии — гибкая команда без бюрократии.</p></div>
-          <div><p>07+</p><p>Готовых digital-продуктов и концепций в портфолио.</p></div>
-          <div><p>100%</p><p>Проектов сопровождаем от идеи до запуска.</p></div>
+        <div class="hero-art">
+          <video class="ribbon-video" muted loop playsinline preload="none" poster="./assets/motion/verto-ribbon.jpg" data-motion-video aria-label="Авторская анимация металлической ленты"><source data-src="./assets/motion/verto-ribbon.webm" type="video/webm"></video>
+          <div class="art-caption"><span>Verto / Motion study 01</span><button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false">Включить движение</button></div>
         </div>
+        <div class="hero-foot"><span>Стратегия → Дизайн → Разработка</span><a href="#work">Листайте, чтобы увидеть подход <span aria-hidden="true">↓</span></a></div>
       </div>
     </section>
 
@@ -83,66 +85,21 @@
       </div>
     </section>
 
-    <section class="section" id="services" aria-labelledby="services-title">
-      <div class="shell">
-        <div class="section-head" data-reveal>
-          <div class="eyebrow-block">
-            <span class="index-tag">01 —</span>
-            <span class="eyebrow">Услуги</span>
-          </div>
-          <div>
-            <h2 id="services-title">Всё, что нужно, чтобы<br>запустить продукт.</h2>
-            <p class="section-head-lede">Работаем не по услугам из прайса, а по маршруту задачи. Собираем нужную комбинацию и доводим до результата.</p>
-          </div>
-        </div>
-        <div class="services-grid" data-reveal-stagger>
-          <article class="service-card">
-            <div>
-              <div class="service-head"><span class="service-num">01</span><h3 class="service-title">Стратегия и структура</h3></div>
-              <p class="service-body">Аудит задачи, аудитории и конкурентов. Карта страниц, путь пользователя, содержание экранов.</p>
-            </div>
-            <div class="service-tags"><span>Research</span><span>Sitemap</span><span>Content</span></div>
-          </article>
-          <article class="service-card">
-            <div>
-              <div class="service-head"><span class="service-num">02</span><h3 class="service-title">UI/UX и визуальный дизайн</h3></div>
-              <p class="service-body">Интерфейсы, брендовая система, типографика и сетка. Дизайн, который работает на бизнес.</p>
-            </div>
-            <div class="service-tags"><span>UI</span><span>UX</span><span>Identity</span></div>
-          </article>
-          <article class="service-card">
-            <div>
-              <div class="service-head"><span class="service-num">03</span><h3 class="service-title">Разработка и релиз</h3></div>
-              <p class="service-body">Адаптивная вёрстка, интеграции, оптимизация и публикация. Быстро, стабильно, под ключ.</p>
-            </div>
-            <div class="service-tags"><span>Frontend</span><span>Perf</span><span>SEO</span></div>
-          </article>
-          <article class="service-card">
-            <div>
-              <div class="service-head"><span class="service-num">04</span><h3 class="service-title">AI и автоматизация</h3></div>
-              <p class="service-body">Telegram-боты, ассистенты, обработка лидов и сигналов. Делаем собственный продукт — Verto Lead Agent.</p>
-            </div>
-            <div class="service-tags"><span>LLM</span><span>Bots</span><span>Workflow</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="work" aria-labelledby="work-title">
       <div class="shell">
         <div class="section-head" data-reveal>
           <div class="eyebrow-block">
-            <span class="index-tag">02 —</span>
+            <span class="index-tag">01 —</span>
             <span class="eyebrow">Избранные работы</span>
           </div>
           <div>
-            <h2 id="work-title">Проекты, которые<br>говорят за студию.</h2>
-            <p class="section-head-lede">Коммерческие кейсы, собственные продукты и живые концепции — каждая работа начинается с ясной задачи и заканчивается работающим результатом.</p>
+            <h2 id="work-title">Дизайн виден.<br><em>Подход — тоже.</em></h2>
+            <p class="section-head-lede">Кейсы, собственные продукты и демонстрационные концепции. Откройте работу, чтобы увидеть структуру, детали и живой интерфейс.</p>
           </div>
         </div>
         <div class="work-list" data-reveal-stagger>
           <a class="work-card wide" href="./cases/master-tyres.html">
-            <div class="work-media"><img src="./assets/master-tires/hero.png" width="1600" height="900" alt="Master Tires — сайт шиномонтажа" loading="lazy"></div>
+            <div class="work-media"><img srcset="./assets/master-tires/hero-640.webp 640w, ./assets/master-tires/hero.webp 901w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/master-tires/hero.webp" width="901" height="520" alt="Master Tires — сайт шиномонтажа" loading="lazy"></div>
             <div class="work-meta">
               <span class="work-tag">Case study · Шиномонтаж</span>
               <h3 class="work-title">Master Tires</h3>
@@ -151,7 +108,7 @@
             </div>
           </a>
           <a class="work-card" href="./cases/lead-desk.html">
-            <div class="work-media"><img src="./assets/lead-desk/og-card.png" width="1200" height="630" alt="Verto Lead Desk — Telegram-бот и Mini App" loading="lazy"></div>
+            <div class="work-media"><img srcset="./assets/lead-desk/og-card-640.webp 640w, ./assets/lead-desk/og-card.webp 1200w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/lead-desk/og-card.webp" width="1200" height="630" alt="Verto Lead Desk — Telegram-бот и Mini App" loading="lazy"></div>
             <div class="work-meta">
               <span class="work-tag">Product case · Telegram / Mini App</span>
               <h3 class="work-title">Verto Lead Desk</h3>
@@ -160,7 +117,7 @@
             </div>
           </a>
           <a class="work-card" href="./projects/morrow-coffee/index.html">
-            <div class="work-media"><img src="./assets/portfolio/morrow-preview-v2.jpg" width="1500" height="844" alt="Morrow Coffee — концепт кофейни" loading="lazy"></div>
+            <div class="work-media"><img srcset="./assets/portfolio/morrow-preview-v2-640.webp 640w, ./assets/portfolio/morrow-preview-v2.webp 1500w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/portfolio/morrow-preview-v2.webp" width="1500" height="844" alt="Morrow Coffee — концепт кофейни" loading="lazy"></div>
             <div class="work-meta">
               <span class="work-tag">Concept · HORECA</span>
               <h3 class="work-title">Morrow Coffee</h3>
@@ -173,12 +130,12 @@
             <div class="work-meta">
               <span class="work-tag">Продукт · AI-бот</span>
               <h3 class="work-title">Отклик</h3>
-              <p class="work-desc">Бесплатный AI-администратор для малого бизнеса. 5 ниш, 15 сек ответ, 24/7.</p>
+              <p class="work-desc">Концепция AI-администратора: ответы на вопросы и первый контакт с клиентом в Telegram.</p>
               <span class="work-open">Открыть проект <span aria-hidden="true">↗</span></span>
             </div>
           </a>
           <a class="work-card" href="./projects/apex-detailing/index.html">
-            <div class="work-media"><img src="./assets/portfolio/apex-preview-v2.jpg" width="1920" height="1080" alt="APEX Detailing — концепт автосервиса" loading="lazy"></div>
+            <div class="work-media"><img srcset="./assets/portfolio/apex-preview-v2-640.webp 640w, ./assets/portfolio/apex-preview-v2.webp 1600w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/portfolio/apex-preview-v2.webp" width="1600" height="900" alt="APEX Detailing — концепт автосервиса" loading="lazy"></div>
             <div class="work-meta">
               <span class="work-tag">Concept · Auto</span>
               <h3 class="work-title">APEX Detailing</h3>
@@ -187,7 +144,7 @@
             </div>
           </a>
           <a class="work-card wide" href="./projects/forma-estate/index.html">
-            <div class="work-media"><img src="./assets/portfolio/forma-preview-v2.jpg" width="1024" height="683" alt="FORMA ESTATE — концепт недвижимости" loading="lazy"></div>
+            <div class="work-media"><img srcset="./assets/portfolio/forma-preview-v2-640.webp 640w, ./assets/portfolio/forma-preview-v2.webp 1024w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 900px) 90vw, 65vw" src="./assets/portfolio/forma-preview-v2.webp" width="1024" height="683" alt="FORMA ESTATE — концепт недвижимости" loading="lazy"></div>
             <div class="work-meta">
               <span class="work-tag">Concept · Real estate</span>
               <h3 class="work-title">FORMA ESTATE</h3>
@@ -198,6 +155,61 @@
         </div>
         <div style="margin-top:56px;display:flex;justify-content:center" data-reveal>
           <a class="btn btn-ghost" href="./projects.html">Все проекты <span class="btn-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="film-section" aria-labelledby="film-title">
+      <div class="shell">
+        <div class="film-heading"><p class="eyebrow">Verto in motion</p><h2 id="film-title">Несколько работ.<br><em>Один уровень внимания.</em></h2><p>12 секунд о визуальном языке студии.<br>Кейсы и концепции из нашего портфолио.</p></div>
+        <button class="film-cover" type="button" data-reel-open aria-haspopup="dialog" aria-controls="reel-dialog">
+          <img src="./assets/motion/verto-showreel.jpg" alt="Видеорил Verto Studio: сайты Master Tires, Morrow, APEX и FORMA" width="1440" height="810" loading="lazy">
+          <span class="film-play"><span aria-hidden="true">▶</span> Смотреть рил <small>00:12 / без звука</small></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <div class="eyebrow-block">
+            <span class="index-tag">02 —</span>
+            <span class="eyebrow">Услуги</span>
+          </div>
+          <div>
+            <h2 id="services-title">От бизнес-задачи<br>до <em>сильного сайта.</em></h2>
+            <p class="section-head-lede">Работаем не по услугам из прайса, а по маршруту задачи. Собираем нужную комбинацию и доводим до результата.</p>
+          </div>
+        </div>
+        <div class="services-grid" data-reveal-stagger>
+          <article class="service-card">
+            <div>
+              <div class="service-head"><span class="service-num">01</span><h3 class="service-title"><a href="./services.html#strategy">Стратегия и структура<span class="service-arrow" aria-hidden="true">↗</span></a></h3></div>
+              <p class="service-body">Аудит задачи, аудитории и конкурентов. Карта страниц, путь пользователя, содержание экранов.</p>
+            </div>
+            <div class="service-tags"><span>Research</span><span>Sitemap</span><span>Content</span></div>
+          </article>
+          <article class="service-card">
+            <div>
+              <div class="service-head"><span class="service-num">02</span><h3 class="service-title"><a href="./services.html#design">UI/UX и визуальный дизайн<span class="service-arrow" aria-hidden="true">↗</span></a></h3></div>
+              <p class="service-body">Интерфейсы, брендовая система, типографика и сетка. Дизайн, который работает на бизнес.</p>
+            </div>
+            <div class="service-tags"><span>UI</span><span>UX</span><span>Identity</span></div>
+          </article>
+          <article class="service-card">
+            <div>
+              <div class="service-head"><span class="service-num">03</span><h3 class="service-title"><a href="./services.html#development">Разработка и релиз<span class="service-arrow" aria-hidden="true">↗</span></a></h3></div>
+              <p class="service-body">Адаптивная вёрстка, интеграции, оптимизация и публикация. Быстро, стабильно, под ключ.</p>
+            </div>
+            <div class="service-tags"><span>Frontend</span><span>Perf</span><span>SEO</span></div>
+          </article>
+          <article class="service-card">
+            <div>
+              <div class="service-head"><span class="service-num">04</span><h3 class="service-title"><a href="./services.html#ai">AI и автоматизация<span class="service-arrow" aria-hidden="true">↗</span></a></h3></div>
+              <p class="service-body">Telegram-боты, ассистенты, обработка лидов и сигналов. Делаем собственный продукт — Verto Lead Agent.</p>
+            </div>
+            <div class="service-tags"><span>LLM</span><span>Bots</span><span>Workflow</span></div>
+          </article>
         </div>
       </div>
     </section>
@@ -218,32 +230,32 @@
           <div class="process-step">
             <div class="process-num">01</div>
             <div class="process-name">Анализ</div>
-            <p class="process-body">Разбираемся в задаче, аудитории и контексте.</p>
+            <p class="process-body">Результат: согласованные цели, аудитория и критерии успеха.</p>
           </div>
           <div class="process-step">
             <div class="process-num">02</div>
             <div class="process-name">Структура</div>
-            <p class="process-body">Проектируем страницы, сценарии и содержание.</p>
+            <p class="process-body">Результат: карта страниц и прототип ключевого сценария.</p>
           </div>
           <div class="process-step">
             <div class="process-num">03</div>
             <div class="process-name">Дизайн</div>
-            <p class="process-body">Визуальный язык, компоненты, интерактив.</p>
+            <p class="process-body">Результат: макеты, типографика и состояния интерфейса.</p>
           </div>
           <div class="process-step">
             <div class="process-num">04</div>
             <div class="process-name">Разработка</div>
-            <p class="process-body">Адаптивная вёрстка, интеграции, тесты.</p>
+            <p class="process-body">Результат: рабочий сайт и нужные интеграции.</p>
           </div>
           <div class="process-step">
             <div class="process-num">05</div>
             <div class="process-name">Проверка</div>
-            <p class="process-body">Устройства, доступность, скорость, аналитика.</p>
+            <p class="process-body">Результат: проверенные экраны, ссылки и сценарии.</p>
           </div>
           <div class="process-step">
             <div class="process-num">06</div>
             <div class="process-name">Запуск</div>
-            <p class="process-body">Публикация, домен, поддержка после релиза.</p>
+            <p class="process-body">Результат: опубликованный сайт и материалы для дальнейшей работы.</p>
           </div>
         </div>
       </div>
@@ -261,29 +273,52 @@
               <a class="btn btn-ghost" href="./lead-agent.html">О продукте <span class="btn-arrow" aria-hidden="true">↗</span></a>
             </div>
           </div>
-          <div class="agent-visual" aria-hidden="true">
-            <span class="agent-ring"></span>
-            <span class="agent-ring"></span>
-            <span class="agent-ring"></span>
-            <span class="agent-core"></span>
+          <div class="signal-visual" aria-label="Иллюстрация принципа работы Lead Agent">
+            <span class="signal-symbol" aria-hidden="true">✳</span>
+            <p class="signal-label">Меньше шума.<br><strong>Больше нужных сигналов.</strong></p>
+            <div class="signal-line"><span>Запрос</span><span aria-hidden="true">→</span><span>Фильтр</span><span aria-hidden="true">→</span><span>Уведомление</span></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" aria-labelledby="faq-title">
+      <div class="shell faq-layout">
+        <div><p class="index-tag">05 — До первого сообщения</p><h2 id="faq-title">Давайте<br><em>проясним.</em></h2></div>
+        <div class="faq-list">
+          <details><summary>С чего начинается работа?<span aria-hidden="true">+</span></summary><p>С обсуждения задачи: что за бизнес, кому нужен сайт и какое действие должен совершить посетитель. Затем определяем объём, этапы и состав результата.</p></details>
+          <details><summary>Как определить бюджет и сроки?<span aria-hidden="true">+</span></summary><p>Оценка зависит от количества страниц, контента, анимаций и интеграций. После знакомства с задачей предлагаем состав работ и согласуем стоимость и сроки до старта.</p></details>
+          <details><summary>Можно обновить существующий сайт?<span aria-hidden="true">+</span></summary><p>Да. Сначала изучаем текущие страницы и сценарии, затем определяем, что стоит сохранить, а что нужно изменить в структуре, дизайне и разработке.</p></details>
+          <details><summary>Что нужно подготовить?<span aria-hidden="true">+</span></summary><p>Ссылку на текущий сайт, короткое описание бизнеса и задачи. Если есть — логотип, тексты, фотографии и примеры, которые вам близки. Остальное обсудим вместе.</p></details>
+          <details><summary>В портфолио только клиентские проекты?<span aria-hidden="true">+</span></summary><p>В портфолио есть кейсы, собственные продукты и демонстрационные концепции. Тип каждой работы отмечен рядом с названием, чтобы вы могли оценить её в правильном контексте.</p></details>
         </div>
       </div>
     </section>
 
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="shell">
-        <span class="index-tag" data-reveal>05 — Следующая точка</span>
-        <h2 id="contact-title" data-reveal>Готовы запустить<br><em>следующий проект?</em></h2>
-        <p class="lede" data-reveal>Расскажите о задаче — предложим структуру и подходящий формат работы. Первый ответ — в течение дня.</p>
+        <span class="index-tag" data-reveal>06 — Начнём с вашей задачи</span>
+        <h2 id="contact-title" data-reveal>Что создадим<br><em>для вас?</em></h2>
+        <p class="lede" data-reveal>Выберите направление или просто расскажите о бизнесе. Обсудим задачу, объём работ и следующий шаг.</p>
+        <div class="brief-choices" role="group" aria-label="Направление проекта">
+          <button type="button" data-brief="Новый сайт" aria-pressed="false">Новый сайт <span aria-hidden="true">↗</span></button>
+          <button type="button" data-brief="Редизайн" aria-pressed="false">Редизайн <span aria-hidden="true">↗</span></button>
+          <button type="button" data-brief="AI-продукт" aria-pressed="false">AI-продукт <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="brief-status" data-brief-status aria-live="polite">Начать можно с одного сообщения.</p>
         <div class="contact-actions" data-reveal>
-          <a class="btn btn-primary" href="https://t.me/Verto_Studio" target="_blank" rel="noopener noreferrer">Написать в Telegram <span class="btn-arrow" aria-hidden="true">↗</span></a>
+          <a class="btn btn-primary" href="https://t.me/Verto_Studio" data-brief-link target="_blank" rel="noopener noreferrer">Написать в Telegram <span class="btn-arrow" aria-hidden="true">↗</span></a>
           <a class="btn btn-ghost" href="https://t.me/VertoStudio_ru" target="_blank" rel="noopener noreferrer">Telegram-канал <span class="btn-arrow" aria-hidden="true">↗</span></a>
         </div>
         <p class="contact-coordinate" data-reveal>Работаем удалённо</p>
       </div>
     </section>
   </main>
+  <dialog id="reel-dialog" class="reel-dialog" aria-labelledby="reel-title">
+    <div class="reel-top"><h2 id="reel-title">Verto / Selected work</h2><button type="button" data-reel-close aria-label="Закрыть видеорил">Закрыть ×</button></div>
+    <video controls playsinline preload="none" poster="./assets/motion/verto-showreel.jpg" aria-label="Видеорил избранных работ"><source data-src="./assets/motion/verto-showreel.webm" type="video/webm"></video>
+    <p>Master Tires — кейс. Morrow Coffee, APEX Detailing, FORMA ESTATE — демонстрационные концепции. Видео без звука.</p>
+  </dialog>
 
   <footer class="site-footer">
     <div class="shell footer-grid">
