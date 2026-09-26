@@ -84,9 +84,9 @@
   });
 
   const suiteData = {
-    '01': { kicker: 'SUITE 01 / THE CLASSIC', title: 'Точный удар.<br><em>Чистая игра.</em>', description: 'Private lounge, профессиональный TrackMan simulator и отдельный 55″ secondary display — всё необходимое для игры в своём темпе.', image: 'assets/images/hero.jpg', alt: 'Suite 01 — игровой зал с большим экраном', items: ['До 4 игроков', 'TrackMan simulator', 'Private lounge', '55″ secondary display'] },
-    '02': { kicker: 'SUITE 02 / THE SOCIAL', title: 'Ваша компания.<br><em>Ваше поле.</em>', description: 'Больше пространства для друзей, команд и разговоров между ударами. Удобный формат для долгого вечера.', image: 'assets/images/lounge.jpg', alt: 'Suite 02 — приватная lounge-зона', items: ['До 6 игроков', 'TrackMan simulator', 'Lounge seating', 'Bar service on request'] },
-    vip: { kicker: 'VIP SUITE / THE PRIVATE', title: 'Игра без<br><em>лишних слов.</em>', description: 'Увеличенная игровая зона, private bar и отдельная lounge-комната с персональным обслуживанием.', image: 'assets/images/events.jpg', alt: 'VIP Suite — пространство для закрытого события', items: ['До 8 гостей', 'Увеличенная игровая зона', 'Private bar', 'Персональный host'] }
+    '01': { kicker: 'SUITE 01 / THE CLASSIC', title: 'Точный удар.<br><em>Чистая игра.</em>', description: 'Private lounge, профессиональный TrackMan simulator и отдельный 55″ secondary display — всё необходимое для игры в своём темпе.', image: 'assets/images/hero.webp', alt: 'Suite 01 — игровой зал с большим экраном', items: ['До 4 игроков', 'TrackMan simulator', 'Private lounge', '55″ secondary display'] },
+    '02': { kicker: 'SUITE 02 / THE SOCIAL', title: 'Ваша компания.<br><em>Ваше поле.</em>', description: 'Больше пространства для друзей, команд и разговоров между ударами. Удобный формат для долгого вечера.', image: 'assets/images/lounge.webp', alt: 'Suite 02 — приватная lounge-зона', items: ['До 6 игроков', 'TrackMan simulator', 'Lounge seating', 'Bar service on request'] },
+    vip: { kicker: 'VIP SUITE / THE PRIVATE', title: 'Игра без<br><em>лишних слов.</em>', description: 'Увеличенная игровая зона, private bar и отдельная lounge-комната с персональным обслуживанием.', image: 'assets/images/events.webp', alt: 'VIP Suite — пространство для закрытого события', items: ['До 8 гостей', 'Увеличенная игровая зона', 'Private bar', 'Персональный host'] }
   };
   const suiteImage = document.querySelector('[data-suite-image]');
   const suiteKicker = document.querySelector('[data-suite-kicker]');

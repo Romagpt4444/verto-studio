@@ -44,9 +44,9 @@
   window.addEventListener("scroll", updateHeader, { passive: true });
 
   const modelData = {
-    28: { label: "NORD 28 / COMPACT CABIN", title: "Маленький дом", accent: "для большой паузы.", description: "Пространство для двоих, коротких выходных и долгих завтраков у окна.", area: "28 м²", people: "до 2 человек", price: "от 3,9 млн ₽", image: "./assets/images/nord-28.jpg", alt: "NORD 28 среди северной природы" },
-    46: { label: "NORD 46 / ALL-SEASON HOME", title: "Панорамный дом", accent: "для двоих и своих.", description: "Круглогодичный сценарий с кухней-гостиной, отдельной спальней и видом, который остаётся с вами.", area: "46 м²", people: "до 4 человек", price: "от 5,8 млн ₽", image: "./assets/images/hero.jpg", alt: "NORD 46 у воды в сосновом лесу" },
-    72: { label: "NORD 72 / COUNTRY RESIDENCE", title: "Больше воздуха.", accent: "Больше времени вместе.", description: "Просторная резиденция для длинных выходных, семейных ритуалов и жизни в собственном ритме.", area: "72 м²", people: "до 6 человек", price: "от 8,4 млн ₽", image: "./assets/images/nord-72.jpg", alt: "NORD 72 на краю соснового леса" }
+    28: { label: "NORD 28 / COMPACT CABIN", title: "Маленький дом", accent: "для большой паузы.", description: "Пространство для двоих, коротких выходных и долгих завтраков у окна.", area: "28 м²", people: "до 2 человек", price: "от 3,9 млн ₽", image: "./assets/images/nord-28.webp", alt: "NORD 28 среди северной природы" },
+    46: { label: "NORD 46 / ALL-SEASON HOME", title: "Панорамный дом", accent: "для двоих и своих.", description: "Круглогодичный сценарий с кухней-гостиной, отдельной спальней и видом, который остаётся с вами.", area: "46 м²", people: "до 4 человек", price: "от 5,8 млн ₽", image: "./assets/images/hero.webp", alt: "NORD 46 у воды в сосновом лесу" },
+    72: { label: "NORD 72 / COUNTRY RESIDENCE", title: "Больше воздуха.", accent: "Больше времени вместе.", description: "Просторная резиденция для длинных выходных, семейных ритуалов и жизни в собственном ритме.", area: "72 м²", people: "до 6 человек", price: "от 8,4 млн ₽", image: "./assets/images/nord-72.webp", alt: "NORD 72 на краю соснового леса" }
   };
   const tabs = [...document.querySelectorAll("[data-model]")];
   const modelImage = document.querySelector("[data-model-image]");
