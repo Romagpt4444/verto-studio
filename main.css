@@ -284,6 +284,8 @@ body[data-cursor="1"] .cursor-glow{opacity:1}
 /* Master Tires — special: show mockup */
 .preview-body.mockup{aspect-ratio:16/10;background:#0d0d0f;display:grid;place-items:center;padding:6% 8%}
 .preview-body.mockup img{width:100%;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.preview-body.mockup.portrait-mockup{overflow:hidden}
+.preview-body.mockup.portrait-mockup img{width:auto;height:100%;max-width:100%;object-fit:contain}
 
 /* Lead Agent — special: chat mockup */
 .chat-mock{position:absolute;inset:0;padding:24px 26px;display:flex;flex-direction:column;gap:12px;background:linear-gradient(160deg,#0d1a26,#0b1521);overflow:hidden}
