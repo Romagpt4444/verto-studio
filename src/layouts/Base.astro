@@ -17,7 +17,7 @@ const ogImage = `${site}/og/og-${lang}.jpg`;
 
 // Ранний скрипт: классы js / preload / motion-off до первой отрисовки.
 // Inline ради скорости; разрешён в CSP по sha256-хэшу, посчитанному здесь же.
-const boot = `(function(d){var h=d.documentElement;h.classList.add('js');try{var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var o=localStorage.getItem('verto-motion')==='off';if(r||o){h.classList.add('motion-off')}else if(!sessionStorage.getItem('verto-fueled')){h.classList.add('preload')}}catch(e){}})(document);`;
+const boot = `(function(d){var h=d.documentElement;h.classList.add('js');try{var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var s=localStorage.getItem('verto-motion');if(s==='off'||(r&&s!=='on')){h.classList.add('motion-off')}else if(!sessionStorage.getItem('verto-fueled')){h.classList.add('preload')}}catch(e){}})(document);`;
 const bootHash = createHash('sha256').update(boot).digest('base64');
 
 const csp = [

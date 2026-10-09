@@ -1113,3 +1113,43 @@
 @layer sections {
   .section { z-index: var(--z-content); }
 }
+
+/* ───────── Движение (фаза 3) ───────── */
+@layer motion {
+  /* Lenis */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: clip; }
+
+  /* Слова заголовков под маской */
+  .w-mask { display: inline-block; overflow: clip; overflow-clip-margin: 0.1em; padding-bottom: 0.08em; margin-bottom: -0.08em; vertical-align: top; }
+  .w { display: inline-block; will-change: transform; }
+
+  /* Шаги загораются, когда до них доходит траектория */
+  .step::before { transition: background-color var(--dur-ui) var(--ease-out), transform var(--dur-ui) var(--ease-out); }
+  .step[data-lit]::before { background: var(--accent); transform: scale(1.15); }
+
+  /* Мобильное меню: панель и пункты лесенкой */
+  .mobile-menu[data-state='open'] { animation: menu-in var(--dur-panel) var(--ease-drawer) both; }
+  .mobile-menu[data-state='open'] .mobile-links li { animation: menu-item 500ms var(--ease-out) both; animation-delay: calc(80ms + var(--i, 0) * 40ms); }
+  .mobile-menu[data-state='open'] .mobile-menu-foot { animation: menu-item 500ms var(--ease-out) 260ms both; }
+  @keyframes menu-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+  @keyframes menu-item { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+  html.motion-off .mobile-menu[data-state='open'],
+  html.motion-off .mobile-menu[data-state='open'] .mobile-links li,
+  html.motion-off .mobile-menu[data-state='open'] .mobile-menu-foot { animation: fade-in 200ms linear both; animation-delay: 0ms; }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+  /* Hero: прелоадер закрывает буквы, затем они выезжают */
+  html.preload .hero-title .ch { transform: translateY(115%); }
+}
+
+/* Место под шкалу высоты справа на десктопе */
+@layer layout {
+  @media (min-width: 1024px) {
+    main .shell, .site-footer .shell { padding-right: max(var(--gutter), 76px); }
+    .works-track { padding-right: max(var(--gutter), 76px); }
+  }
+}
