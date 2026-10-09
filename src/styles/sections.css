@@ -35,7 +35,7 @@
     aspect-ratio: 1;
     border-radius: 50%;
     translate: -50% 92%;
-    background: radial-gradient(closest-side in oklch, var(--space-800) 92%, color-mix(in oklch, var(--accent) 35%, var(--space-800)) 99%, transparent 100%);
+    background: radial-gradient(closest-side, var(--space-900) 90%, var(--space-800) 97%, rgb(255 107 44 / 0.55) 99.4%, transparent 100%);
     box-shadow: 0 -30px 120px -40px rgb(255 107 44 / 0.35);
     opacity: 0;
   }
@@ -773,6 +773,9 @@
   }
   .works-progress { position: relative; flex: 1; max-width: 320px; height: 2px; background: var(--line); overflow: hidden; }
   .works-progress span { position: absolute; inset: 0; background: var(--accent); transform: scaleX(var(--wp, 0)); transform-origin: left; }
+  .works[data-horizontal] { padding-top: calc(var(--header-h) + 16px); padding-bottom: 24px; min-height: 100svh; }
+  .works[data-horizontal] .works-head { margin-bottom: 18px; }
+  .works[data-horizontal] .section-title { font-size: clamp(2.25rem, 4.6vw, 4rem); }
   .works[data-horizontal] .works-viewport { overflow: clip; overflow-clip-margin: 40px; }
   .works[data-horizontal] .works-track {
     display: flex;
@@ -782,7 +785,8 @@
     gap: 32px;
     padding-top: 24px;
   }
-  .works[data-horizontal] .card { width: clamp(340px, 30vw, 440px); flex: none; }
+  .works[data-horizontal] .card { width: clamp(300px, min(29vw, calc((100svh - 520px) * 1.6)), 430px); flex: none; }
+  .works[data-horizontal] .card-text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
   .card { position: relative; }
   .card[hidden] { display: none; }
@@ -1168,5 +1172,19 @@
   @media (min-width: 1024px) {
     main .shell, .site-footer .shell { padding-right: max(var(--gutter), 76px); }
     .works-track { padding-right: max(var(--gutter), 76px); }
+  }
+}
+
+/* Стек на десктопе с 3D: справа место для ракеты */
+@layer sections {
+  @media (min-width: 1024px) {
+    html.webgl-ready .stack-pin > * { max-width: 64%; }
+    html.webgl-ready .stage { grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); }
+  }
+  @media (min-width: 1024px) and (min-height: 640px) {
+    html.lenis .stack { min-height: 100svh; padding-block: calc(var(--header-h) + 24px) 32px; display: flex; align-items: center; }
+    html.lenis .stack .stack-pin { width: 100%; }
+    html.lenis .stack-head { margin-bottom: clamp(20px, 3vh, 40px); }
+    html.lenis .stage { padding-block: clamp(12px, 1.9vh, 24px); }
   }
 }

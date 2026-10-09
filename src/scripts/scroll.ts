@@ -8,6 +8,7 @@ import { $, $$, mq } from './env';
 import { initMarquee } from './marquee';
 import { countUp } from './counters';
 import { initMagnetic } from './magnetic';
+import { initPins } from './pins';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -73,7 +74,11 @@ export function initMotion(): MotionApi {
   };
   document.addEventListener('click', onAnchor);
 
+  let pinsMM: gsap.MatchMedia | null = null;
   const ctx = gsap.context(() => {
+    // ── Пины (стек, коллекция) создаём первыми: они добавляют высоту странице ──
+    pinsMM = initPins();
+
     // ── Заголовки блоков: слова из-под маски ──
     $$<HTMLElement>('[data-split]').forEach((h) => {
       const words = splitWords(h);
@@ -130,7 +135,7 @@ export function initMotion(): MotionApi {
 
     // ── Карточки работ (обычная сетка; горизонтальная лента — в хореографии) ──
     const cards = $$<HTMLElement>('[data-card]');
-    gsap.set(cards, { opacity: 0, y: 24 });
+    if (!document.getElementById('works')?.hasAttribute('data-horizontal')) gsap.set(cards, { opacity: 0, y: 24 });
     ScrollTrigger.batch(cards, {
       start: 'top 90%',
       once: true,
@@ -191,6 +196,7 @@ export function initMotion(): MotionApi {
       document.removeEventListener('click', onAnchor);
       stopMarquee();
       stopMagnetic();
+      pinsMM?.revert();
       ctx.revert();
       gsap.ticker.remove(raf);
       lenis.destroy();

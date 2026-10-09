@@ -21,6 +21,7 @@ export interface RocketState {
   sep1: number; sep2: number; // отделение ступеней 0..1
   planet: number; planetX: number; planetY: number; planetR: number; // планета (px)
   sway: number; // покачивание на старте 0..1
+  orbitK: number; orbitA: number; orbitRx: number; orbitRy: number; // полёт по орбите вокруг планеты (px)
 }
 
 export interface RocketScene {
@@ -105,18 +106,20 @@ export async function createRocketScene(container: HTMLElement, opts: { mobile: 
       if (!m.isMesh || rocket.highlights[k as PartName] === m || m === rocket.highlights.engine) return;
       const cloned = (m.material as THREE.Material).clone();
       m.material = cloned;
-      cloned.userData.baseTransparent = cloned.transparent;
+      // всегда transparent: переключение флага на лету требует перекомпиляции шейдера (define OPAQUE)
+      cloned.transparent = true;
       list.push(cloned);
       allMats.push(cloned);
     });
     stageMats.set(rocket.parts[k], list);
   });
-  [...pad.group.children].forEach((o) => { const m = (o as THREE.Mesh).material as THREE.Material; if (m) { m.userData.baseTransparent = m.transparent; allMats.push(m); } });
+  [...pad.group.children].forEach((o) => { const m = (o as THREE.Mesh).material as THREE.Material; if (m) { m.transparent = true; allMats.push(m); } });
 
   const state: RocketState = {
     x: innerWidth * 0.75, y: innerHeight * 0.5, h: innerHeight * 0.6,
     yaw: 0, pitch: 0, roll: 0, thrust: 0, opacity: 1, stars: 0, orbits: 1, pad: 0, steam: 1,
     sep1: 0, sep2: 0, planet: 0, planetX: innerWidth * 0.7, planetY: innerHeight * 0.55, planetR: 120, sway: 1,
+    orbitK: 0, orbitA: 0, orbitRx: 200, orbitRy: 80,
   };
 
   // Прогрев, мышь, подсветка
@@ -150,9 +153,11 @@ export async function createRocketScene(container: HTMLElement, opts: { mobile: 
   addEventListener('pointermove', onPointer, { passive: true });
   const setPointerTilt = (on: boolean) => { tiltOn = on; if (!on) { yawTo(0); pitchTo(0); } };
 
+  const PARTS: PartName[] = ['capsule', 'stage3', 'stage2', 'stage1', 'engine'];
+  // GSAP добавляет к объекту служебное поле _gsap, поэтому перебираем фиксированный список
   const hl: Record<PartName, number> = { capsule: 0, stage3: 0, stage2: 0, stage1: 0, engine: 0 };
   const highlight = (part: PartName | null) => {
-    (Object.keys(hl) as PartName[]).forEach((k) => gsap.to(hl, { [k]: k === part ? 1 : 0, duration: 0.35, ease: 'power2.out', overwrite: 'auto' }));
+    PARTS.forEach((k) => gsap.to(hl, { [k]: k === part ? 1 : 0, duration: 0.35, ease: 'power2.out', overwrite: 'auto' }));
   };
 
   // Размер
@@ -183,11 +188,7 @@ export async function createRocketScene(container: HTMLElement, opts: { mobile: 
   const applyOpacity = (o: number) => {
     if (Math.abs(o - lastOpacity) < 0.002) return;
     lastOpacity = o;
-    allMats.forEach((m) => {
-      m.transparent = o < 0.999 || m.userData.baseTransparent;
-      m.opacity = o * (m.userData.stageFade ?? 1);
-      m.depthWrite = o > 0.999;
-    });
+    allMats.forEach((m) => { m.opacity = o * (m.userData.stageFade ?? 1); });
   };
   const sepApply = (part: THREE.Group, p: number, dir: number) => {
     part.position.set(dir * 0.6 * p, -6 * p * p, 0);
@@ -196,7 +197,6 @@ export async function createRocketScene(container: HTMLElement, opts: { mobile: 
     const fade = 1 - Math.min(1, Math.max(0, (p - 0.35) / 0.6));
     (stageMats.get(part) ?? []).forEach((m) => {
       m.userData.stageFade = fade;
-      m.transparent = fade < 0.999 || state.opacity < 0.999 || m.userData.baseTransparent;
       m.opacity = state.opacity * fade;
     });
   };
@@ -207,15 +207,26 @@ export async function createRocketScene(container: HTMLElement, opts: { mobile: 
     quality.sample(dtMs);
     const s = state;
 
+    // орбита: смешиваем позицию и крен с точкой на эллипсе вокруг планеты
+    let sx = s.x, sy = s.y, roll = s.roll, orbitZ = 0;
+    if (s.orbitK > 0.001) {
+      const px = s.planetX + Math.cos(s.orbitA) * s.orbitRx;
+      const py = s.planetY + Math.sin(s.orbitA) * s.orbitRy;
+      const ang = (Math.atan2(Math.cos(s.orbitA) * s.orbitRy, -Math.sin(s.orbitA) * s.orbitRx) * 180) / Math.PI;
+      sx += (px - sx) * s.orbitK;
+      sy += (py - sy) * s.orbitK;
+      roll += (-90 - ang - roll) * s.orbitK;
+      orbitZ = Math.sin(s.orbitA) * 2.5 * s.orbitK; // за планетой — дальше, перед ней — ближе
+    }
     // экран → мир
-    rig.position.set((s.x - innerWidth / 2) * k, -(s.y - innerHeight / 2) * k, 0);
+    rig.position.set((sx - innerWidth / 2) * k, -(sy - innerHeight / 2) * k, orbitZ);
     rig.scale.setScalar(Math.max(0.0001, (s.h * k) / ROCKET_HEIGHT));
 
     const shake = fx.shake * 0.06 * Math.sin(time * Math.PI * 2 * 6);
     const thrust = Math.min(1, s.thrust + fx.thrust);
     const rumble = thrust * 0.012 * Math.sin(time * 71);
     const sway = s.sway * deg(0.5) * Math.sin(time * 0.9);
-    tilt.rotation.set(deg(s.pitch + mouse.pitch) + rumble, deg(s.yaw + mouse.yaw), deg(s.roll) + sway + shake);
+    tilt.rotation.set(deg(s.pitch + mouse.pitch) + rumble, deg(s.yaw + mouse.yaw), deg(roll) + sway + shake);
     tilt.position.x = shake * 0.5;
 
     // ступени и точка крепления пламени
@@ -228,8 +239,9 @@ export async function createRocketScene(container: HTMLElement, opts: { mobile: 
 
     flame.uniforms.uTime.value = time;
     flame.uniforms.uThrust.value = thrust;
+    flame.uniforms.uOpacity.value = Math.min(1, s.opacity * 1.4);
     flame.group.visible = thrust > 0.01;
-    glow.material.opacity = Math.min(1, thrust * 0.9 + fx.flash * 0.6);
+    glow.material.opacity = Math.min(1, thrust * 0.9 + fx.flash * 0.6) * s.opacity;
     glow.sprite.scale.setScalar(1.6 + thrust * 1.8);
     flameLight.intensity = (thrust * 26 + fx.flash * 30) * (s.h * k / ROCKET_HEIGHT);
 
@@ -248,7 +260,7 @@ export async function createRocketScene(container: HTMLElement, opts: { mobile: 
       planet.group.rotation.y += dt * 0.08;
     }
 
-    (Object.keys(hl) as PartName[]).forEach((p) => {
+    PARTS.forEach((p) => {
       const m = rocket.highlights[p];
       const v = hl[p] * s.opacity;
       m.visible = v > 0.01;

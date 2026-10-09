@@ -27,6 +27,7 @@ const frag = /* glsl */ `
   uniform vec3 uColA;
   uniform vec3 uColB;
   uniform float uCore;
+  uniform float uOpacity;
   varying float vT;
   varying vec2 vUv;
   float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -42,7 +43,7 @@ const frag = /* glsl */ `
     float edge = 1.0 - abs(vUv.x - 0.5) * 2.0;
     vec3 col = mix(uColA, uColB, smoothstep(0.55, 0.0, vT) * uCore);
     float a = tail * (0.55 + 0.45 * n2) * uThrust;
-    gl_FragColor = vec4(col, a * mix(0.85, 1.0, edge));
+    gl_FragColor = vec4(col, a * mix(0.85, 1.0, edge) * uOpacity);
   }
 `;
 
@@ -51,6 +52,7 @@ export function createFlame() {
   const uniforms = {
     uTime: { value: 0 },
     uThrust: { value: 0 },
+    uOpacity: { value: 1 },
   };
   const make = (radius: number, height: number, colA: number, colB: number, core: number) => {
     const g = new THREE.ConeGeometry(radius, height, 28, 12, true);
@@ -68,6 +70,7 @@ export function createFlame() {
     // общие uniform-объекты: время и тяга одни на оба конуса
     m.uniforms.uTime = uniforms.uTime;
     m.uniforms.uThrust = uniforms.uThrust;
+    m.uniforms.uOpacity = uniforms.uOpacity;
     const mesh = new THREE.Mesh(g, m);
     mesh.frustumCulled = false;
     return mesh;
