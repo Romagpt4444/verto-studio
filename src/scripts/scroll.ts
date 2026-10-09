@@ -9,6 +9,8 @@ import { initMarquee } from './marquee';
 import { countUp } from './counters';
 import { initMagnetic } from './magnetic';
 import { initPins } from './pins';
+import { initStickers } from './stickers';
+import { initShimmer, initSpotlight } from './polish';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -184,6 +186,13 @@ export function initMotion(): MotionApi {
   });
 
   const stopMarquee = initMarquee(() => lenis.velocity * 60);
+  // стикеры — после первой отрисовки, в простое (lottie ~47 КБ не нужен до взаимодействия)
+  let stopStickers: () => void = () => {};
+  const idle = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
+  const startStickers = () => { stopStickers = initStickers(); };
+  if (idle) idle(startStickers, { timeout: 2500 }); else setTimeout(startStickers, 1200);
+  const stopSpot = initSpotlight();
+  const stopShimmer = initShimmer();
   const stopMagnetic = mq.fine.matches ? initMagnetic() : () => {};
 
   // Пересчёт после загрузки шрифтов и картинок
@@ -196,6 +205,9 @@ export function initMotion(): MotionApi {
       document.removeEventListener('click', onAnchor);
       stopMarquee();
       stopMagnetic();
+      stopStickers();
+      stopSpot();
+      stopShimmer();
       pinsMM?.revert();
       ctx.revert();
       gsap.ticker.remove(raf);

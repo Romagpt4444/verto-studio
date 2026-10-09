@@ -1,4 +1,5 @@
 ---
+import Sticker from './Sticker.astro';
 import Icon from './Icon.astro';
 import type { Dict } from '../i18n';
 interface Props { t: Dict }
@@ -48,7 +49,7 @@ const letters = (w: string, offset: number) =>
         </span>
       </button>
       <p class="rocket-hint mono" data-rocket-hint>
-        <span class="sticker-slot" data-sticker="1f680" data-sticker-size="40" aria-hidden="true"></span>
+        <Sticker cp="1f680" size={28} />
         <span>{t.hero.rocketHint}</span>
       </p>
     </div>

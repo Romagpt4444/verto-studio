@@ -1,4 +1,5 @@
 ---
+import Sticker from './Sticker.astro';
 import Icon from './Icon.astro';
 import ProjectCard from './ProjectCard.astro';
 import { type Dict, fmt } from '../i18n';
@@ -36,7 +37,7 @@ const filters = ['all', 'case', 'product', 'concept'] as const;
         {items.map((item, i) => <ProjectCard item={item} index={i} t={t} />)}
         <li class="card card--invite" data-card data-kind="invite">
           <article class="card-inner invite-inner" aria-labelledby="work-invite">
-            <span class="sticker-slot card-sticker" data-sticker="1f680" data-sticker-size="88" aria-hidden="true"></span>
+            <Sticker cp="1f680" size={88} class="card-sticker" />
             <h3 class="invite-title" id="work-invite">{t.works.invite.title}</h3>
             <p class="card-text">{t.works.invite.text}</p>
             <a class="btn btn-primary" href={t.contacts.telegram} target="_blank" rel="noopener noreferrer">

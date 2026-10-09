@@ -1,4 +1,5 @@
 ---
+import Sticker from './Sticker.astro';
 import Icon from './Icon.astro';
 import type { Dict } from '../i18n';
 interface Props { t: Dict }
@@ -14,7 +15,7 @@ const cards = [
     <div class="contact-main">
       <h2 id="contact-title" class="contact-title" data-split>
         {t.contact.title}
-        <span class="sticker-slot contact-sticker" data-sticker="1f44b" data-sticker-size="64" aria-hidden="true"></span>
+        <Sticker cp="1f44b" size={64} class="contact-sticker" />
       </h2>
       <p class="contact-text">{t.contact.text}</p>
 

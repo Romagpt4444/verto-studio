@@ -1,0 +1,21 @@
+---
+// Анимированный стикер Noto Emoji Animation (Google, CC BY 4.0).
+// В HTML — статичный кадр; скрипт stickers.ts подменяет его на Lottie у видимых карточек.
+interface Props { emoji?: string; cp?: string; size: number; class?: string }
+const { emoji, cp, size, class: cls = '' } = Astro.props;
+
+// Нужных эмодзи нет в каталоге Noto Animation — ближайшие по смыслу (docs/DECISIONS.md)
+const SUBSTITUTE: Record<string, string> = {
+  '1f9e5': '1f976', // 🧥 → 🥶
+  '1f6de': '1f697', // 🛞 → 🚗
+  '1f4ec': '1f514', // 📬 → 🔔
+  '1f3e1': '1f3e0', // 🏡 → 🏠
+  '1f9b7': '1f601', // 🦷 → 😁
+  '1f3ce': '1f3ce_fe0f',
+};
+const raw = cp ?? [...(emoji ?? '')].map((c) => c.codePointAt(0)!.toString(16)).filter((c) => c !== 'fe0f').join('_');
+const code = SUBSTITUTE[raw] ?? raw;
+---
+<span class={`sticker-slot ${cls}`} data-sticker={code} style={`--sticker:${size}px`} aria-hidden="true">
+  <img src={`/stickers/${code}-192.webp`} width="192" height="192" alt="" loading="lazy" decoding="async" />
+</span>
