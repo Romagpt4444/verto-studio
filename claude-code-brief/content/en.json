@@ -1,0 +1,461 @@
+{
+  "_note": "Final copy from the brief, section 13. Use as is.",
+  "meta": {
+    "title": "Verto Studio — websites and Telegram bots for business",
+    "description": "We build websites, landing pages, online stores and Telegram bots. Message us on Telegram — we reply within a day."
+  },
+  "contacts": {
+    "telegram": "https://t.me/Verto_Studio",
+    "telegramHandle": "@Verto_Studio",
+    "channel": "https://t.me/VertoStudio_ru",
+    "whatsapp": "https://wa.me/79935358696",
+    "phone": "+7 993 535-86-96",
+    "instagram": "https://www.instagram.com/verto_studio.ru/",
+    "instagramHandle": "@verto_studio.ru"
+  },
+  "preloader": "Fueling up",
+  "nav": {
+    "create": "What we build",
+    "stack": "Stack",
+    "works": "Work",
+    "contact": "Contact",
+    "cta": "Discuss on Telegram",
+    "skip": "Skip to content",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "hero": {
+    "quote": "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.",
+    "quoteAuthor": "Antoine de Saint-Exupéry, pilot and writer",
+    "title": "VERTO STUDIO",
+    "offer": "We build websites and Telegram bots that make it easier for customers to choose you.",
+    "cta": "Discuss on Telegram",
+    "secondary": {
+      "whatsapp": "WhatsApp",
+      "instagram": "Instagram*",
+      "channel": "Our channel"
+    },
+    "rocketHint": "Tap the rocket to fire up the engines",
+    "scroll": "Scroll"
+  },
+  "create": {
+    "title": "What we build",
+    "label": "Per project",
+    "rows": [
+      {
+        "name": "Websites & landing pages",
+        "text": "Fast, easy to use on a phone, with animation that helps you read instead of getting in the way.",
+        "value": "100%"
+      },
+      {
+        "name": "Telegram bots & Mini Apps",
+        "text": "They take orders, answer common questions and ping you right away.",
+        "value": "100%"
+      },
+      {
+        "name": "Online stores",
+        "text": "Catalog, product pages, cart and a clear path to checkout.",
+        "value": "100%"
+      },
+      {
+        "name": "Design",
+        "text": "First we decide what people see and where they tap. Then we draw it.",
+        "value": "100%"
+      }
+    ],
+    "footnote": "* No templates, no filler. G-forces within normal limits.",
+    "counters": [
+      {
+        "value": 11,
+        "label": "works in the portfolio"
+      },
+      {
+        "value": 3,
+        "label": "products of our own"
+      },
+      {
+        "value": 2,
+        "label": "client case studies"
+      }
+    ]
+  },
+  "marquee": [
+    "WEBSITES",
+    "LANDING PAGES",
+    "ONLINE STORES",
+    "TELEGRAM BOTS",
+    "MINI APPS",
+    "AI AGENTS",
+    "ADMIN PANELS",
+    "REDESIGN",
+    "ANIMATION",
+    "REACT",
+    "NEXT.JS",
+    "THREE.JS",
+    "GSAP"
+  ],
+  "stack": {
+    "title": "What we build with",
+    "subtitle": "Tools picked for the job. If none of these words mean anything to you, that's fine — knowing them is our job.",
+    "groups": [
+      {
+        "id": "site",
+        "num": "01",
+        "rocketPart": "capsule",
+        "name": "Website & interface",
+        "tags": [
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Next.js",
+          "Vite",
+          "Tailwind CSS",
+          "Responsive layout",
+          "PWA",
+          "Admin panels"
+        ]
+      },
+      {
+        "id": "motion",
+        "num": "02",
+        "rocketPart": "stage3",
+        "name": "Animation & graphics",
+        "tags": [
+          "GSAP",
+          "Framer Motion",
+          "Three.js",
+          "WebGL",
+          "Canvas API",
+          "SVG",
+          "Lottie",
+          "Figma"
+        ]
+      },
+      {
+        "id": "server",
+        "num": "03",
+        "rocketPart": "stage2",
+        "name": "Server & data",
+        "tags": [
+          "Node.js",
+          "Python",
+          "FastAPI",
+          "PostgreSQL",
+          "SQLite",
+          "Supabase",
+          "Firebase",
+          "REST API",
+          "GraphQL",
+          "Webhooks",
+          "CRM integrations"
+        ]
+      },
+      {
+        "id": "tg_ai",
+        "num": "04",
+        "rocketPart": "stage1",
+        "name": "Telegram & AI",
+        "tags": [
+          "Telegram Bot API",
+          "Telegram Mini Apps",
+          "OpenAI API",
+          "AI assistants",
+          "AI agents",
+          "Business process automation"
+        ]
+      },
+      {
+        "id": "launch",
+        "num": "05",
+        "rocketPart": "engine",
+        "name": "Launch & infrastructure",
+        "tags": [
+          "Git",
+          "GitHub",
+          "Vercel",
+          "Cloudflare",
+          "CI/CD",
+          "HTTPS",
+          "DNS & deployment"
+        ]
+      }
+    ]
+  },
+  "works": {
+    "title": "Our collection",
+    "subtitle": "Websites and bots you can open and scroll through right now.",
+    "filters": {
+      "all": "All",
+      "case": "Case studies",
+      "product": "Products",
+      "concept": "Concepts"
+    },
+    "types": {
+      "case": "Case study",
+      "product": "Product",
+      "concept": "Concept"
+    },
+    "open": "Open",
+    "site": "Website ↗",
+    "countLive": "Works: {n}",
+    "items": [
+      {
+        "id": "weshalka",
+        "type": "case",
+        "title": "THE WESHALKA",
+        "text": "Outerwear store: catalog, cart and ordering through Telegram.",
+        "tags": [
+          "Store",
+          "Catalog",
+          "Mobile"
+        ],
+        "link": "/cases/the-weshalka.html",
+        "site": "https://theweshalka.ru/",
+        "sticker": "🧥",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "master-tyres",
+        "type": "case",
+        "title": "Master Tyres",
+        "text": "Tyre service: clear services and quick booking from a phone.",
+        "tags": [
+          "Service site",
+          "Booking",
+          "Mobile"
+        ],
+        "link": "/cases/master-tyres.html",
+        "site": "https://mastertyres-msk.ru/",
+        "sticker": "🛞",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "lead-agent",
+        "type": "product",
+        "title": "Verto Lead Agent",
+        "text": "Our own bot. It finds fresh orders and sends them to Telegram before they go cold.",
+        "tags": [
+          "Telegram bot",
+          "Automation"
+        ],
+        "link": "/lead-agent.html",
+        "site": "https://t.me/verto_agentbot",
+        "sticker": "🎯",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "lead-desk",
+        "type": "product",
+        "title": "Verto Lead Desk",
+        "text": "A website, bot and Mini App collect a request and hand it to the owner.",
+        "tags": [
+          "Mini App",
+          "Bot",
+          "Requests"
+        ],
+        "link": "/cases/lead-desk.html",
+        "site": "https://verto-lead-desk.vercel.app/",
+        "sticker": "📬",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "otklik",
+        "type": "product",
+        "title": "Otklik",
+        "text": "An admin bot that answers customer questions and passes the conversation to you.",
+        "tags": [
+          "Telegram bot",
+          "AI"
+        ],
+        "link": "/projects/otklik/",
+        "site": null,
+        "sticker": "💬",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "morrow",
+        "type": "concept",
+        "title": "Morrow Coffee",
+        "text": "A coffee shop site with a warm mood and a menu.",
+        "tags": [
+          "Cafe",
+          "Landing page"
+        ],
+        "link": "/projects/morrow-coffee/",
+        "site": null,
+        "sticker": "☕",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "apex",
+        "type": "concept",
+        "title": "APEX Detailing",
+        "text": "Car detailing studio: services, process and booking.",
+        "tags": [
+          "Auto",
+          "Landing page"
+        ],
+        "link": "/projects/apex-detailing/",
+        "site": null,
+        "sticker": "🏎️",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "forma",
+        "type": "concept",
+        "title": "FORMA ESTATE",
+        "text": "Premium real estate: listings, photos, floor plans.",
+        "tags": [
+          "Real estate",
+          "Website"
+        ],
+        "link": "/projects/forma-estate/",
+        "site": null,
+        "sticker": "🏡",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "auren",
+        "type": "concept",
+        "title": "AUREN Dental",
+        "text": "Dental clinic: doctors, services and calm booking.",
+        "tags": [
+          "Healthcare",
+          "Website"
+        ],
+        "link": "/projects/auren-dental/",
+        "site": null,
+        "sticker": "🦷",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "nord",
+        "type": "concept",
+        "title": "NORD Cabin",
+        "text": "Modular houses: architecture, layouts, materials.",
+        "tags": [
+          "Architecture",
+          "Website"
+        ],
+        "link": "/projects/nord-cabin/",
+        "site": null,
+        "sticker": "🌲",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "noir",
+        "type": "concept",
+        "title": "NOIR Golf",
+        "text": "Golf club: lessons, events and a lounge.",
+        "tags": [
+          "Sport",
+          "Website"
+        ],
+        "link": "/projects/noir-golf/",
+        "site": null,
+        "sticker": "⛳",
+        "linkNote": "(RU)"
+      }
+    ],
+    "invite": {
+      "title": "Your project could be here",
+      "text": "Tell us what you need and we'll figure out how to build it.",
+      "cta": "Discuss on Telegram",
+      "sticker": "🚀"
+    }
+  },
+  "launch": {
+    "title": "How a launch works",
+    "steps": [
+      {
+        "num": "01",
+        "name": "You message us",
+        "text": "On Telegram or WhatsApp. Tell us about your business and what you need. Voice messages are fine."
+      },
+      {
+        "num": "02",
+        "name": "We estimate",
+        "text": "We send what we'll build, how long it takes and what it costs. Work starts once you agree."
+      },
+      {
+        "num": "03",
+        "name": "We build",
+        "text": "You see the design and work-in-progress versions. Changes happen along the way, not at the end."
+      },
+      {
+        "num": "04",
+        "name": "We launch",
+        "text": "We test on phones and computers, publish on your domain and hand over all access."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Questions",
+    "items": [
+      {
+        "q": "How much does a website cost?",
+        "a": "We price every project individually — it all depends on the scope. Describe the task and we'll send you an estimate before any work starts."
+      },
+      {
+        "q": "How long does it take?",
+        "a": "A landing page usually takes a couple of weeks. A site with a catalog or a bot takes longer. We give the exact timeline together with the price."
+      },
+      {
+        "q": "Can you redo my old website?",
+        "a": "Yes. First we look at what already works and keep it. Then we change what gets in the way."
+      },
+      {
+        "q": "What do you need from me?",
+        "a": "A few words about your business and a link to your site, if you have one. Logo, photos and copy if you have them. If not, we'll help you find them."
+      }
+    ]
+  },
+  "contact": {
+    "title": "You're in orbit",
+    "text": "All that's left is to say hi. Tell us about your project — we reply within a day.",
+    "cta": "Message us on Telegram",
+    "briefLabel": "I'd like to discuss:",
+    "briefOptions": [
+      "A new website",
+      "A redesign",
+      "A Telegram bot"
+    ],
+    "briefMessage": "Hi! I'd like to discuss: {choice}. ",
+    "cards": {
+      "whatsapp": {
+        "name": "WhatsApp",
+        "text": "+7 993 535-86-96",
+        "href": "https://wa.me/79935358696"
+      },
+      "instagram": {
+        "name": "Instagram*",
+        "text": "@verto_studio.ru",
+        "href": "https://www.instagram.com/verto_studio.ru/"
+      },
+      "channel": {
+        "name": "Telegram channel",
+        "text": "New work and notes (in Russian)",
+        "href": "https://t.me/VertoStudio_ru"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Websites and Telegram bots for business",
+    "privacy": "Privacy policy (RU)",
+    "terms": "Terms (RU)",
+    "copyright": "© 2026 Verto Studio",
+    "toTop": "Back to launch ↑",
+    "emojiCredit": "Animated emoji: Noto Emoji Animation by Google, CC BY 4.0",
+    "motionOff": "Pause animation",
+    "motionOn": "Play animation",
+    "metaNote": "* Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой в России. / Instagram is owned by Meta, which is designated an extremist organization and banned in Russia."
+  },
+  "altimeter": {
+    "label": "Altitude",
+    "unit": "km",
+    "orbit": "Orbit",
+    "maxKm": 400
+  }
+}

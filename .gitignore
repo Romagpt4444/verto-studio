@@ -6,4 +6,10 @@ __pycache__/
 !.env.example
 
 node_modules/
-.claude/
+.claude/*
+!.claude/skills/
+!.claude/launch.json
+claude-code-brief/skills/
+dist/
+.astro/
+.unlazy/

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "verto-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4788"],
+      "port": 4788,
+      "url": "http://localhost:4788"
+    }
+  ]
+}
