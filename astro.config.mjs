@@ -25,7 +25,7 @@ const legacyPages = [
 export default defineConfig({
   site,
   trailingSlash: 'ignore',
-  build: { format: 'directory', inlineStylesheets: 'auto' },
+  build: { format: 'directory', inlineStylesheets: 'always' }, // CSS в HTML: минус один запрос до первой отрисовки
   i18n: {
     defaultLocale: 'ru',
     locales: ['ru', 'en'],

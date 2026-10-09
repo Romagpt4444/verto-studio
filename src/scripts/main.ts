@@ -7,6 +7,9 @@ import { initBrief } from './brief';
 import { initLang } from './lang';
 import { initMotionToggle } from './motion-toggle';
 import { runPreloader } from './preloader';
+import { loadDeferredFonts } from './fonts';
+
+loadDeferredFonts();
 
 let menuOpen = false;
 let motion: { destroy: () => void; lenis: { stop(): void; start(): void } } | null = null;
@@ -14,9 +17,9 @@ let refreshLayout: () => void = () => {};
 let rocket: { destroy: () => void } | null = null;
 let rocketLoading = false;
 
-// 3D грузится после первой отрисовки: в простое браузера, только при включённой анимации,
-// наличии WebGL и без режима экономии трафика.
-function loadRocket() {
+// 3D грузится после первой отрисовки и первого действия пользователя, только при включённой
+// анимации, наличии WebGL и без режима экономии трафика.
+function loadRocket(now = false) {
   if (rocket || rocketLoading || !motionOn()) return;
   const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
   if (conn?.saveData) return;
@@ -37,8 +40,16 @@ function loadRocket() {
       rocketLoading = false;
     }
   };
+  // Сцена тяжёлая (компиляция шейдеров, ~150 КБ): запускаем при первом действии пользователя —
+  // движение мыши, касание, колесо, клавиша, прокрутка. До этого виден постер (тот же ракурс).
+  const events = ['pointermove', 'pointerdown', 'wheel', 'touchstart', 'keydown', 'scroll'] as const;
   const idle = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
-  if (idle) idle(go, { timeout: 1500 }); else setTimeout(go, 300);
+  const trigger = () => {
+    events.forEach((e) => removeEventListener(e, trigger));
+    if (idle) idle(go, { timeout: 500 }); else setTimeout(go, 50);
+  };
+  if (now) { go(); return; }
+  events.forEach((e) => addEventListener(e, trigger, { passive: true }));
 }
 
 const chrome = initChrome(() => menuOpen);
@@ -69,14 +80,14 @@ const syncWarmBtn = () => {
 };
 syncWarmBtn();
 
-async function startMotion(withIntro: boolean) {
+async function startMotion(withIntro: boolean, userAction = false) {
   const mod = await import('./scroll');
   if (!motionOn()) return;
   motion = mod.initMotion();
   refreshLayout = () => mod.ScrollTrigger.refresh();
   if (withIntro) mod.heroLetters();
   chrome.refresh();
-  loadRocket();
+  loadRocket(userAction);
 }
 
 function stopMotion() {
@@ -88,7 +99,7 @@ function stopMotion() {
   chrome.refresh();
 }
 
-initMotionToggle((on) => { syncWarmBtn(); if (on) startMotion(false); else stopMotion(); });
+initMotionToggle((on) => { syncWarmBtn(); if (on) startMotion(false, true); else stopMotion(); });
 
 if (motionOn()) {
   const hadPreloader = root.classList.contains('preload');

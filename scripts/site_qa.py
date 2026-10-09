@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
-"""Dependency-free production checks for the static Verto Studio site."""
+"""Статические проверки собранного сайта (dist/) без зависимостей.
+
+Запуск: npm run build && python3 scripts/site_qa.py
+Печатает SITE_QA_OK, если всё в порядке; иначе — список ошибок и код выхода 1.
+"""
 
 from __future__ import annotations
 
+import html
+import json
 import re
 import sys
 from collections import Counter
@@ -10,11 +16,20 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
 
-
 ROOT = Path(__file__).resolve().parents[1]
-TEXT_SUFFIXES = {".html", ".css", ".js", ".svg", ".xml", ".txt", ".md"}
+DIST = ROOT / "dist"
 LOCAL_ATTRS = {"href", "src", "srcset", "poster", "data-src"}
 IGNORE_SCHEMES = ("http://", "https://", "mailto:", "tel:", "data:")
+SITE = "https://vertostudio.ru"
+
+# Страницы, которые нужно сохранить (ТЗ, раздел 17)
+LEGACY = [
+    "projects/morrow-coffee/index.html", "projects/apex-detailing/index.html", "projects/forma-estate/index.html",
+    "projects/auren-dental/index.html", "projects/nord-cabin/index.html", "projects/noir-golf/index.html",
+    "projects/otklik/index.html", "cases/lead-desk.html", "cases/master-tyres.html", "cases/the-weshalka.html",
+    "lead-agent.html", "privacy.html", "terms.html", "personal-data-consent.html", "404.html",
+]
+REDIRECTS = {"services.html": "/#create", "studio.html": "/#start", "projects.html": "/#works"}
 
 
 class PageParser(HTMLParser):
@@ -23,255 +38,235 @@ class PageParser(HTMLParser):
         self.refs: list[tuple[str, str, str]] = []
         self.images: list[dict[str, str]] = []
         self.ids: list[str] = []
-        self.h1_count = 0
-        self.title_count = 0
-        self.meta_names: set[str] = set()
-        self.meta_properties: set[str] = set()
-        self.external_blank_links: list[dict[str, str]] = []
+        self.h1 = 0
+        self.titles = 0
+        self.meta: dict[str, str] = {}
+        self.links: list[dict[str, str]] = []
+        self.blank: list[dict[str, str]] = []
+        self.jsonld = False
+        self._in_jsonld = False
+        self.text: list[str] = []
+        self._skip = 0
 
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        values = {key: value or "" for key, value in attrs}
-        if "id" in values:
-            self.ids.append(values["id"])
+    def handle_starttag(self, tag, attrs):
+        v = {k: (x or "") for k, x in attrs}
+        if "id" in v:
+            self.ids.append(v["id"])
         if tag == "h1":
-            self.h1_count += 1
+            self.h1 += 1
         if tag == "title":
-            self.title_count += 1
+            self.titles += 1
         if tag == "meta":
-            if values.get("name"):
-                self.meta_names.add(values["name"].lower())
-            if values.get("property"):
-                self.meta_properties.add(values["property"].lower())
+            key = (v.get("name") or v.get("property") or v.get("http-equiv") or "").lower()
+            if key:
+                self.meta[key] = v.get("content", "")
+        if tag == "link":
+            self.links.append(v)
         if tag == "img":
-            self.images.append(values)
+            self.images.append(v)
+        if tag == "script" and v.get("type") == "application/ld+json":
+            self.jsonld = True
+        if tag in ("script", "style"):
+            self._skip += 1
         for attr in LOCAL_ATTRS:
-            value = values.get(attr)
-            if value:
-                self.refs.append((tag, attr, value))
-        if tag == "a" and values.get("target") == "_blank":
-            self.external_blank_links.append(values)
+            if v.get(attr):
+                self.refs.append((tag, attr, v[attr]))
+        if tag == "a" and v.get("target") == "_blank":
+            self.blank.append(v)
+
+    def handle_endtag(self, tag):
+        if tag in ("script", "style") and self._skip:
+            self._skip -= 1
+
+    def handle_data(self, data):
+        if not self._skip:
+            self.text.append(data)
+
+
+def parse(page: Path) -> PageParser:
+    p = PageParser()
+    p.feed(page.read_text(encoding="utf-8"))
+    return p
 
 
 def local_target(page: Path, raw: str) -> Path | None:
-    candidate = raw.split(",", 1)[0].strip().split()[0]
-    if not candidate or candidate.startswith(("#", *IGNORE_SCHEMES)):
+    cand = raw.strip().split()[0] if raw.strip() else ""
+    if not cand or cand.startswith(("#", *IGNORE_SCHEMES)):
         return None
-    path = urlsplit(candidate).path
+    path = urlsplit(cand).path
     if not path:
         return None
-    target = ROOT / path.lstrip("/") if path.startswith("/") else page.parent / path
-    target = target.resolve()
-    if target.is_dir():
-        target /= "index.html"
-    return target
+    t = DIST / path.lstrip("/") if path.startswith("/") else page.parent / path
+    t = t.resolve()
+    if t.is_dir():
+        t = t / "index.html"
+    return t
 
 
-def check_html(page: Path, failures: list[str]) -> None:
-    parser = PageParser()
+def check_page(page: Path, fails: list[str]) -> PageParser:
+    rel = page.relative_to(DIST)
     text = page.read_text(encoding="utf-8")
-    parser.feed(text)
-
-    rel = page.relative_to(ROOT)
+    p = parse(page)
+    is_redirect = "http-equiv=\"refresh\"" in text.lower() or "refresh" in p.meta
     if "<!doctype html>" not in text.lower():
-        failures.append(f"{rel}: missing HTML doctype")
-    if not re.search(r'<html\b[^>]*\blang=[\"\']ru(?:-[^\"\']+)?[\"\']', text, re.I):
-        failures.append(f"{rel}: Russian document language missing")
-    if not re.search(r'<meta\b[^>]*charset=[\"\']utf-8[\"\']', text, re.I):
-        failures.append(f"{rel}: UTF-8 charset missing")
-    if "viewport" not in parser.meta_names:
-        failures.append(f"{rel}: viewport missing")
-    if parser.title_count != 1:
-        failures.append(f"{rel}: expected one <title>, found {parser.title_count}")
-    if parser.h1_count != 1:
-        failures.append(f"{rel}: expected one <h1>, found {parser.h1_count}")
-
-    duplicates = [item for item, count in Counter(parser.ids).items() if count > 1]
-    if duplicates:
-        failures.append(f"{rel}: duplicate ids: {', '.join(duplicates)}")
-
-    for tag, attr, raw in parser.refs:
-        candidates = raw.split(",") if attr == "srcset" else [raw]
-        for candidate in candidates:
-            target = local_target(page, candidate.strip())
-            if target is not None and not target.exists():
-                failures.append(f"{rel}: broken {tag}[{attr}] -> {candidate.strip()}")
-            # Check cross-page fragment destinations as well as files.
-            fragment = urlsplit(candidate.strip().split()[0]).fragment
-            if fragment and not candidate.startswith(IGNORE_SCHEMES):
-                target_page = target if target is not None else page
-                if target_page.exists() and target_page.suffix == ".html":
-                    destination = PageParser()
-                    destination.feed(target_page.read_text(encoding="utf-8"))
-                    if fragment not in destination.ids:
-                        failures.append(f"{rel}: missing fragment -> {candidate.strip()}")
-
-    for image in parser.images:
-        src = image.get("src", "<missing>")
-        if not image.get("alt"):
-            failures.append(f"{rel}: image has missing/empty alt: {src}")
-        if not image.get("width") or not image.get("height"):
-            failures.append(f"{rel}: image lacks width/height: {src}")
-
-    for link in parser.external_blank_links:
-        rel_tokens = set(link.get("rel", "").split())
-        if not {"noopener", "noreferrer"}.issubset(rel_tokens):
-            failures.append(f"{rel}: target=_blank link lacks safe rel: {link.get('href')}")
-
-    if rel in {Path("index.html"), Path("services.html")}:
-        required_names = {"description", "viewport", "twitter:card"}
-        required_properties = {"og:title", "og:description", "og:url", "og:image"}
-        missing_names = required_names - parser.meta_names
-        missing_properties = required_properties - parser.meta_properties
-        if missing_names:
-            failures.append(f"{rel}: missing meta names: {', '.join(sorted(missing_names))}")
-        if missing_properties:
-            failures.append(f"{rel}: missing OG properties: {', '.join(sorted(missing_properties))}")
-        if 'rel="canonical"' not in text:
-            failures.append(f"{rel}: canonical link missing")
+        fails.append(f"{rel}: нет doctype")
+    if "charset" not in text.lower():
+        fails.append(f"{rel}: нет charset")
+    if "viewport" not in p.meta:
+        fails.append(f"{rel}: нет viewport")
+    if p.titles != 1:
+        fails.append(f"{rel}: <title> {p.titles} шт.")
+    if not is_redirect and p.h1 != 1:
+        fails.append(f"{rel}: <h1> {p.h1} шт.")
+    dup = [i for i, c in Counter(p.ids).items() if c > 1]
+    if dup:
+        fails.append(f"{rel}: повтор id: {', '.join(dup)}")
+    for tag, attr, raw in p.refs:
+        for cand in (raw.split(",") if attr == "srcset" else [raw]):
+            t = local_target(page, cand)
+            if t is not None and not t.exists():
+                fails.append(f"{rel}: битая ссылка {tag}[{attr}] → {cand.strip()}")
+            frag = urlsplit(cand.strip().split()[0] if cand.strip() else "").fragment
+            if frag and not cand.strip().startswith(IGNORE_SCHEMES):
+                dest = t if t is not None else page
+                if dest.exists() and dest.suffix == ".html" and frag not in parse(dest).ids:
+                    fails.append(f"{rel}: нет якоря → {cand.strip()}")
+    for img in p.images:
+        if "alt" not in img:
+            fails.append(f"{rel}: у картинки нет alt: {img.get('src')}")
+        if not img.get("width") or not img.get("height"):
+            fails.append(f"{rel}: у картинки нет width/height: {img.get('src')}")
+    for a in p.blank:
+        if not {"noopener", "noreferrer"} <= set(a.get("rel", "").split()):
+            fails.append(f"{rel}: target=_blank без noopener noreferrer: {a.get('href')}")
+    return p
 
 
-def check_css(css_file: Path, failures: list[str]) -> None:
-    text = css_file.read_text(encoding="utf-8")
-    for raw in re.findall(r"url\(([^)]+)\)", text):
-        value = raw.strip().strip("'\"")
-        target = local_target(css_file, value)
-        if target is not None and not target.exists():
-            failures.append(f"{css_file.relative_to(ROOT)}: broken url() -> {value}")
+def check_home(lang: str, fails: list[str]) -> None:
+    path = DIST / ("index.html" if lang == "ru" else "en/index.html")
+    rel = path.relative_to(DIST)
+    text = path.read_text(encoding="utf-8")
+    p = parse(path)
+    t = json.loads((ROOT / f"src/i18n/{lang}.json").read_text(encoding="utf-8"))
+    url = SITE + ("/" if lang == "ru" else "/en/")
 
+    if not re.search(rf'<html[^>]*\blang="{lang}"', text):
+        fails.append(f"{rel}: lang не {lang}")
+    for key in ("description", "twitter:card", "og:title", "og:description", "og:url", "og:image", "og:locale", "content-security-policy", "referrer"):
+        if key not in p.meta:
+            fails.append(f"{rel}: нет meta {key}")
+    if p.meta.get("og:locale") != ("ru_RU" if lang == "ru" else "en_US"):
+        fails.append(f"{rel}: og:locale = {p.meta.get('og:locale')}")
+    og = p.meta.get("og:image", "")
+    if not og.startswith(SITE) or not (DIST / urlsplit(og).path.lstrip("/")).exists():
+        fails.append(f"{rel}: og:image не найден: {og}")
+    canon = [l.get("href") for l in p.links if l.get("rel") == "canonical"]
+    if canon != [url]:
+        fails.append(f"{rel}: canonical {canon} ≠ {url}")
+    alts = {l.get("hreflang"): l.get("href") for l in p.links if l.get("rel") == "alternate" and l.get("hreflang")}
+    if alts != {"ru": SITE + "/", "en": SITE + "/en/", "x-default": SITE + "/"}:
+        fails.append(f"{rel}: hreflang {alts}")
+    if not p.jsonld:
+        fails.append(f"{rel}: нет JSON-LD Organization")
+    if p.meta.get("description") != t["meta"]["description"] or t["meta"]["title"] not in text:
+        fails.append(f"{rel}: title/description не из i18n")
 
-def check_security(failures: list[str]) -> dict[str, list[str]]:
-    inventory = {
-        "cookies": [],
-        "localStorage": [],
-        "sessionStorage": [],
-        "analytics_or_trackers": [],
-        "embedded_content": [],
-    }
-    unsafe_patterns = {
-        "blob URL": re.compile(r"\bblob:", re.I),
-        "file URL": re.compile(r"\bfile://", re.I),
-        "localhost dependency": re.compile(r"(?:src|href)=[\"']https?://(?:localhost|127\.0\.0\.1)", re.I),
-        "javascript URL": re.compile(r"javascript\s*:", re.I),
-        "eval": re.compile(r"\beval\s*\(", re.I),
-    }
-    secret_pattern = re.compile(
-        r"(?:BOT_TOKEN|TELEGRAM_TOKEN|OPENAI_API_KEY|API_SECRET)\s*[=:]\s*[\"'][^\"']{12,}",
-        re.I,
-    )
-    tracker_pattern = re.compile(
-        r"googletagmanager|google-analytics|gtag\s*\(|mc\.yandex|ym\s*\(|facebook\.com/tr|meta[_ -]?pixel|hotjar|clarity\.ms",
-        re.I,
-    )
+    csp = p.meta.get("content-security-policy", "")
+    for need in ("default-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'none'", "frame-src 'none'"):
+        if need not in csp:
+            fails.append(f"{rel}: в CSP нет {need}")
+    if "unsafe-eval" in csp or re.search(r"script-src[^;]*'unsafe-inline'", csp):
+        fails.append(f"{rel}: CSP разрешает unsafe-eval/unsafe-inline для скриптов")
+    if re.search(r"<script(?![^>]*\bsrc=)(?![^>]*application/ld\+json)[^>]*>", text) and "sha256-" not in csp:
+        fails.append(f"{rel}: inline-скрипт без хэша в CSP")
+    if re.search(r"https?://(?!vertostudio\.ru)[^\"' ]+\.(?:js|css)(?:[\"' ?])", text):
+        fails.append(f"{rel}: внешний скрипт/стиль (CDN)")
 
-    for file in ROOT.rglob("*"):
-        if not file.is_file() or any(part in {".git", "node_modules"} for part in file.parts) or file.suffix.lower() not in TEXT_SUFFIXES:
-            continue
-        text = file.read_text(encoding="utf-8", errors="ignore")
-        rel = str(file.relative_to(ROOT))
-        if file.suffix.lower() in {".html", ".css", ".js", ".svg"}:
-            for label, pattern in unsafe_patterns.items():
-                if pattern.search(text):
-                    failures.append(f"{rel}: found {label}")
-            if secret_pattern.search(text):
-                failures.append(f"{rel}: possible committed secret")
-        if re.search(r"document\.cookie", text):
-            inventory["cookies"].append(rel)
-        if file.suffix.lower() in {".js", ".html"} and re.search(r"\blocalStorage\s*[.\[]", text):
-            inventory["localStorage"].append(rel)
-        if file.suffix.lower() in {".js", ".html"} and re.search(r"\bsessionStorage\s*[.\[]", text):
-            inventory["sessionStorage"].append(rel)
-        if tracker_pattern.search(text):
-            inventory["analytics_or_trackers"].append(rel)
-        if file.suffix.lower() == ".html" and re.search(r"<(?:iframe|embed|object)\b", text, re.I):
-            inventory["embedded_content"].append(rel)
-    return inventory
+    # Все тексты из i18n есть в HTML (кроме шаблонов и служебных ключей)
+    visible = html.unescape(" ".join(p.text) + " " + text)
+    skip_keys = {"_note", "contacts", "meta"}
+
+    def walk(node, path=""):
+        if isinstance(node, dict):
+            for k, v in node.items():
+                if path == "" and k in skip_keys:
+                    continue
+                if k in {"href", "link", "site", "sticker", "rocketPart", "id", "type", "maxKm", "linkNote"}:
+                    continue
+                yield from walk(v, f"{path}.{k}" if path else k)
+        elif isinstance(node, list):
+            for i, v in enumerate(node):
+                yield from walk(v, f"{path}.{i}")
+        elif isinstance(node, str):
+            if "{" not in node:
+                yield path, node
+    missing = [f"{k}: {v}" for k, v in walk(t) if v.replace(" ", " ") not in visible.replace(" ", " ")]
+    if missing:
+        fails.append(f"{rel}: нет текстов из i18n ({len(missing)}): " + "; ".join(missing[:6]))
+
+    # Обязательное в подвале
+    for must in (t["footer"]["emojiCredit"], "creativecommons.org/licenses/by/4.0", t["footer"]["metaNote"].split(" / ")[0]):
+        if must not in visible:
+            fails.append(f"{rel}: нет обязательного текста/ссылки: {must[:60]}")
+    for link in (t["contacts"]["telegram"], t["contacts"]["whatsapp"], t["contacts"]["instagram"], t["contacts"]["channel"]):
+        if f'href="{link}"' not in text:
+            fails.append(f"{rel}: нет ссылки {link}")
+    if lang == "en" and t["works"]["items"][0]["linkNote"] not in visible:
+        fails.append(f"{rel}: ссылки на русские страницы не помечены (RU)")
+    if re.search(r"(?:от\s*\d[\d\s]*₽|\d[\d\s]*\s?₽|\$\d)", visible):
+        fails.append(f"{rel}: на странице есть цена")
 
 
 def main() -> int:
-    failures: list[str] = []
-    html_pages = sorted(p for p in ROOT.rglob("*.html") if "node_modules" not in p.parts)
-    css_files = sorted(p for p in ROOT.rglob("*.css") if "node_modules" not in p.parts)
-
-    for page in html_pages:
-        check_html(page, failures)
-    for css_file in css_files:
-        check_css(css_file, failures)
-
-    inventory = check_security(failures)
-
-    cname = (ROOT / "CNAME").read_text(encoding="utf-8").strip()
-    if cname != "vertostudio.ru":
-        failures.append(f"CNAME changed unexpectedly: {cname!r}")
-
-    required_public_files = {
-        "index.html",
-        "scene.js",
-        "services.html",
-        "privacy.html",
-        "personal-data-consent.html",
-        "terms.html",
-        "404.html",
-        "robots.txt",
-        "sitemap.xml",
-        "favicon.svg",
-    }
-    for name in required_public_files:
-        if not (ROOT / name).exists():
-            failures.append(f"missing required public file: {name}")
-
-    for name in (
-        "01-rocket-before-launch.png",
-        "02-rocket-takeoff.png",
-        "03-rocket-atmosphere.png",
-        "04-rocket-space.png",
-        "01-rocket-before-launch-mobile.png",
-    ):
-        if not (ROOT / "assets" / "rocket-sequence" / name).exists():
-            failures.append(f"missing rocket scene asset: assets/rocket-sequence/{name}")
-    for name in (
-        "01-rocket-before-launch.jpg",
-        "02-rocket-takeoff.jpg",
-        "03-rocket-atmosphere.jpg",
-        "04-rocket-space.jpg",
-        "01-rocket-before-launch-mobile.jpg",
-    ):
-        if not (ROOT / "assets" / "rocket-sequence" / "web" / name).exists():
-            failures.append(f"missing web rocket asset: assets/rocket-sequence/web/{name}")
-
-    sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-    for url in ("https://vertostudio.ru/", "https://vertostudio.ru/services.html", "https://vertostudio.ru/projects.html", "https://vertostudio.ru/lead-agent.html", "https://vertostudio.ru/cases/master-tyres.html", "https://vertostudio.ru/cases/lead-desk.html"):
-        if f"<loc>{url}</loc>" not in sitemap:
-            failures.append(f"sitemap missing {url}")
-
-    index = (ROOT / "index.html").read_text(encoding="utf-8")
-    scene = (ROOT / "scene.js").read_text(encoding="utf-8")
-    if "deprecated" in scene.lower():
-        print("scene.js: deprecated placeholder retained for backwards compatibility")
-    if "https://t.me/Verto_Studio" not in index:
-        failures.append("index.html missing direct Telegram studio CTA")
-    lead_page = (ROOT / "lead-agent.html").read_text(encoding="utf-8")
-    if "https://t.me/verto_agentbot" not in lead_page:
-        failures.append("lead-agent.html missing Lead Agent CTA")
-
-    css = (ROOT / "main.css").read_text(encoding="utf-8")
-    if not re.search(r"html,body\s*\{[^}]*background:\s*var\(--bg\)", css, re.S):
-        failures.append("main.css: page background is not explicitly var(--bg)")
-    if "--bg:#0A0A0B" not in css:
-        failures.append("main.css: dark background token missing")
-
-    print(f"HTML pages checked: {len(html_pages)}")
-    print(f"CSS files checked: {len(css_files)}")
-    print("Tracking technology inventory:")
-    for label, files in inventory.items():
-        print(f"  {label}: {', '.join(files) if files else 'none'}")
-
-    if failures:
-        print(f"\nFAILURES ({len(failures)}):")
-        for failure in failures:
-            print(f"- {failure}")
+    if not DIST.exists():
+        print("Нет dist/: сначала npm run build")
         return 1
+    fails: list[str] = []
+    pages = sorted(DIST.rglob("*.html"))
+    for page in pages:
+        check_page(page, fails)
+    check_home("ru", fails)
+    check_home("en", fails)
 
-    print("\nPASS: internal resources, images, metadata, security patterns, CNAME and deep-links")
+    for name in LEGACY:
+        if not (DIST / name).exists():
+            fails.append(f"нет старой страницы: {name}")
+    for name, target in REDIRECTS.items():
+        f = DIST / name
+        txt = f.read_text(encoding="utf-8") if f.exists() else ""
+        if f"url={target}" not in txt or 'rel="canonical"' not in txt or f'href="{target}"' not in txt:
+            fails.append(f"{name}: редирект не на {target} или нет canonical/ссылки")
+
+    if (DIST / "CNAME").read_text(encoding="utf-8").strip() != "vertostudio.ru":
+        fails.append("CNAME изменился")
+    robots = (DIST / "robots.txt").read_text(encoding="utf-8")
+    if "Sitemap: https://vertostudio.ru/sitemap-index.xml" not in robots:
+        fails.append("robots.txt: нет ссылки на sitemap-index.xml")
+    sm = (DIST / "sitemap-0.xml").read_text(encoding="utf-8") if (DIST / "sitemap-0.xml").exists() else ""
+    for url in (SITE + "/", SITE + "/en/", SITE + "/cases/lead-desk.html", SITE + "/lead-agent.html", SITE + "/projects/noir-golf/"):
+        if f"<loc>{url}</loc>" not in sm:
+            fails.append(f"sitemap: нет {url}")
+    if "services.html" in sm:
+        fails.append("sitemap: есть страница-редирект")
+    for f in ("llms.txt", "favicon.svg", "og/og-ru.jpg", "og/og-en.jpg", "rocket/poster-hero.webp"):
+        if not (DIST / f).exists():
+            fails.append(f"нет файла {f}")
+    if (DIST / "claude-code-brief").exists() or (DIST / "TZ-VERTO-ROCKET.md").exists():
+        fails.append("в публикацию попали материалы брифа")
+    for js in (DIST / "_astro").glob("*.js"):
+        body = js.read_text(encoding="utf-8", errors="ignore")
+        if re.search(r"\beval\s*\(|new Function\s*\(", body):
+            fails.append(f"{js.name}: eval/new Function (несовместимо с CSP)")
+        if re.search(r"googletagmanager|google-analytics|mc\.yandex|facebook\.com/tr", body):
+            fails.append(f"{js.name}: трекер")
+
+    print(f"Проверено HTML-страниц: {len(pages)}")
+    if fails:
+        print(f"\nОШИБКИ ({len(fails)}):")
+        for f in fails:
+            print("-", f)
+        return 1
+    print("SITE_QA_OK")
     return 0
 
 

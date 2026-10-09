@@ -64,7 +64,7 @@
   --z-content: 1;
   --z-altimeter: 20;
   --z-header: 30;
-  --z-menu: 40;
+  --z-menu: 25; /* под шапкой: кнопка закрытия меню остаётся доступной */
   --z-preloader: 50;
   --z-skip: 60;
 }

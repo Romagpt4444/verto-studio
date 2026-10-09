@@ -1,0 +1,26 @@
+# Verto Studio
+
+> Веб-студия: делаем сайты, лендинги, интернет-магазины и Telegram-ботов для малого и среднего бизнеса. Связь — Telegram @Verto_Studio, ответ в течение дня. Цена индивидуальная, зависит от объёма работы.
+
+Сайт на двух языках: русский (основной) и английский.
+
+## Главное
+
+- [Главная (RU)](https://vertostudio.ru/): что делаем, стек, работы, как проходит запуск, вопросы, контакты
+- [Home (EN)](https://vertostudio.ru/en/): the same in English
+- [Telegram для связи](https://t.me/Verto_Studio)
+- [Telegram-канал](https://t.me/VertoStudio_ru)
+
+## Работы
+
+- [THE WESHALKA — кейс](https://vertostudio.ru/cases/the-weshalka.html): магазин верхней одежды
+- [Master Tyres — кейс](https://vertostudio.ru/cases/master-tyres.html): шиномонтаж, запись с телефона
+- [Verto Lead Agent — продукт](https://vertostudio.ru/lead-agent.html): бот, который находит свежие заказы
+- [Verto Lead Desk — продукт](https://vertostudio.ru/cases/lead-desk.html): сайт, бот и Mini App для заявок
+- [Отклик — продукт](https://vertostudio.ru/projects/otklik/): бот-администратор
+- Концепции: [Morrow Coffee](https://vertostudio.ru/projects/morrow-coffee/), [APEX Detailing](https://vertostudio.ru/projects/apex-detailing/), [FORMA ESTATE](https://vertostudio.ru/projects/forma-estate/), [AUREN Dental](https://vertostudio.ru/projects/auren-dental/), [NORD Cabin](https://vertostudio.ru/projects/nord-cabin/), [NOIR Golf](https://vertostudio.ru/projects/noir-golf/)
+
+## Документы
+
+- [Политика конфиденциальности](https://vertostudio.ru/privacy.html)
+- [Условия](https://vertostudio.ru/terms.html)

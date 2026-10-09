@@ -1,5 +1,5 @@
 // Снимает постер ракеты из живой сцены (нужен запущенный `npm run dev` на :4321).
-// node scripts/make-rocket-poster.cjs → public/rocket/poster-hero.{webp,avif}
+// node scripts/make-rocket-poster.cjs → public/rocket/poster-hero.webp
 const { chromium } = require('playwright');
 const sharp = require('sharp');
 const fs = require('fs');
@@ -28,6 +28,5 @@ const fs = require('fs');
     .extract({ left: Math.round(box.left * sx), top: Math.round(box.top * sx), width: Math.round(box.width * sx), height: Math.round(box.height * sx) })
     .resize({ width: 450, height: 900, fit: 'fill' });
   const w = await base.clone().webp({ quality: 78, alphaQuality: 80, effort: 6 }).toFile('public/rocket/poster-hero.webp');
-  const a = await base.clone().avif({ quality: 55, effort: 6 }).toFile('public/rocket/poster-hero.avif');
-  console.log('box', box, 'webp', w.size, 'avif', a.size);
+  console.log('box', box, 'webp', w.size);
 })();

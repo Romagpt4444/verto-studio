@@ -9,16 +9,14 @@ export function initFilter(onChange?: () => void) {
   const live = $<HTMLElement>('[data-works-live]');
   const total = $<HTMLElement>('[data-works-total]');
 
+  // «Таблетка» под активной вкладкой: ширина ставится сразу, переезд — transform (ТЗ 10.2)
   const placePill = () => {
     const active = tabs.find((t) => t.getAttribute('aria-pressed') === 'true');
     if (!active) return;
-    const g = group.getBoundingClientRect();
-    const a = active.getBoundingClientRect();
-    const inset = 4;
-    group.style.setProperty('--pill-t', `${a.top - g.top - inset}px`);
-    group.style.setProperty('--pill-l', `${a.left - g.left - inset + group.scrollLeft}px`);
-    group.style.setProperty('--pill-r', `${g.right - a.right - inset - group.scrollLeft}px`);
-    group.style.setProperty('--pill-b', `${g.bottom - a.bottom - inset}px`);
+    group.style.setProperty('--pill-x', `${active.offsetLeft}px`);
+    group.style.setProperty('--pill-w', `${active.offsetWidth}px`);
+    group.style.setProperty('--pill-t', `${active.offsetTop}px`);
+    group.style.setProperty('--pill-h', `${active.offsetHeight}px`);
   };
 
   const apply = (kind: string) => {
@@ -39,7 +37,6 @@ export function initFilter(onChange?: () => void) {
     apply(t.dataset.filter ?? 'all');
     t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   }));
-  group.addEventListener('scroll', placePill, { passive: true });
   addEventListener('resize', placePill, { passive: true });
   document.fonts?.ready.then(placePill);
   placePill();

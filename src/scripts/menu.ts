@@ -16,6 +16,8 @@ export function initMenu(onToggle?: (open: boolean) => void) {
     root.classList.toggle('menu-open', open);
     outside().forEach((el) => { el.inert = open; });
     if (open) {
+      const header = $<HTMLElement>('[data-header]');
+      if (header) header.dataset.hidden = '0';
       menu.hidden = false;
       menu.dataset.state = 'open';
       requestAnimationFrame(() => $<HTMLElement>('a', menu)?.focus({ preventScroll: true }));

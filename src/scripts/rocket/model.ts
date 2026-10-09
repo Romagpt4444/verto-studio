@@ -19,7 +19,7 @@ export interface RocketModel {
   dispose: () => void;
 }
 
-export function createRocket(opts: { segments: number }): RocketModel {
+export function createRocket(opts: { segments: number; name: string }): RocketModel {
   const seg = opts.segments;
   const disposables: Array<{ dispose: () => void }> = [];
   const keep = <T extends { dispose: () => void }>(x: T) => { disposables.push(x); return x; };
@@ -91,7 +91,7 @@ export function createRocket(opts: { segments: number }): RocketModel {
   stage2.add(lathe([[R, 2.2], [R, 3.6]], panelMats[1]));
   stage2.add(ring(2.24), cap(R, 2.2, false), cap(R, 3.6, true));
   const nozzle2 = nozzle(2.2, 0.75); stage2.add(nozzle2);
-  const nameMat = keep(new THREE.MeshStandardMaterial({ map: keep(nameTexture('VERTO-1')), transparent: true, metalness: 0.2, roughness: 0.5, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }));
+  const nameMat = keep(new THREE.MeshStandardMaterial({ map: keep(nameTexture(opts.name)), transparent: true, metalness: 0.2, roughness: 0.5, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }));
   const nameGeo = keep(new THREE.CylinderGeometry(R + 0.003, R + 0.003, 1.22, 24, 1, true, Math.PI / 2 - 0.42, 0.84));
   const name = new THREE.Mesh(nameGeo, nameMat);
   name.position.y = 2.9;

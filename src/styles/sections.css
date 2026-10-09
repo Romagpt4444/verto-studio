@@ -238,7 +238,7 @@
       transform: translateY(-50%);
     }
     .alt-label { font-size: 10px; color: var(--text-mute); writing-mode: vertical-rl; transform: rotate(180deg); }
-    .alt-scale { position: relative; width: 28px; height: 240px; }
+    .alt-scale { position: relative; width: 28px; height: 264px; }
     .alt-rail {
       position: absolute;
       left: 50%;
@@ -267,7 +267,7 @@
     .alt-ticks a {
       position: relative;
       display: block;
-      height: 14px;
+      height: 26px;
     }
     .alt-ticks a::before {
       content: '';
@@ -746,11 +746,14 @@
   html.js .filter[data-pill-ready] .filter-pill {
     display: block;
     position: absolute;
-    inset: 4px;
+    left: 0;
+    top: var(--pill-t, 4px);
+    width: var(--pill-w, 0);
+    height: var(--pill-h, 40px);
     border-radius: var(--r-pill);
     background: var(--accent);
-    clip-path: inset(var(--pill-t, 0) var(--pill-r, 0) var(--pill-b, 0) var(--pill-l, 0) round 999px);
-    transition: clip-path var(--dur-ui) var(--ease-out);
+    transform: translateX(var(--pill-x, 0));
+    transition: transform var(--dur-ui) var(--ease-out);
   }
 
   .works-meta { display: none; }

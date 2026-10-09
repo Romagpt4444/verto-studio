@@ -187,10 +187,17 @@ export function initMotion(): MotionApi {
 
   const stopMarquee = initMarquee(() => lenis.velocity * 60);
   // стикеры — после первой отрисовки, в простое (lottie ~47 КБ не нужен до взаимодействия)
+  // и только после первого действия пользователя (как и 3D): до этого видны статичные кадры
   let stopStickers: () => void = () => {};
+  let stickersOn = true;
   const idle = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
-  const startStickers = () => { stopStickers = initStickers(); };
-  if (idle) idle(startStickers, { timeout: 2500 }); else setTimeout(startStickers, 1200);
+  const startStickers = () => { if (stickersOn) stopStickers = initStickers(); };
+  const userEvents = ['pointermove', 'pointerdown', 'wheel', 'touchstart', 'keydown', 'scroll'] as const;
+  const onUser = () => {
+    userEvents.forEach((e) => removeEventListener(e, onUser));
+    if (idle) idle(startStickers, { timeout: 1500 }); else setTimeout(startStickers, 300);
+  };
+  userEvents.forEach((e) => addEventListener(e, onUser, { passive: true }));
   const stopSpot = initSpotlight();
   const stopShimmer = initShimmer();
   const stopMagnetic = mq.fine.matches ? initMagnetic() : () => {};
@@ -205,6 +212,8 @@ export function initMotion(): MotionApi {
       document.removeEventListener('click', onAnchor);
       stopMarquee();
       stopMagnetic();
+      stickersOn = false;
+      userEvents.forEach((e) => removeEventListener(e, onUser));
       stopStickers();
       stopSpot();
       stopShimmer();

@@ -67,7 +67,7 @@ export async function createRocketScene(container: HTMLElement, opts: { mobile: 
   scene.add(key, hemi);
 
   const softTex = softTexture();
-  const rocket = createRocket({ segments: mobile ? 32 : 64 });
+  const rocket = createRocket({ segments: mobile ? 32 : 64, name: container.dataset.rocketName || 'VERTO-1' });
   const flame = createFlame();
   const glow = createGlow(softTex);
   const steam = createSteam(mobile ? 20 : 34, softTex);

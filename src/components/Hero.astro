@@ -42,10 +42,7 @@ const letters = (w: string, offset: number) =>
     <div class="hero-rocket" data-rocket-anchor="start">
       <button class="rocket-hit" type="button" data-warmup aria-label={t.ui.rocketWarmup}>
         <span class="rocket-poster" data-rocket-poster>
-          <picture>
-            <source srcset="/rocket/poster-hero.avif" type="image/avif" />
-            <img src="/rocket/poster-hero.webp" width="450" height="900" alt="" decoding="async" />
-          </picture>
+          <img src="/rocket/poster-hero.webp" width="450" height="900" alt="" fetchpriority="high" />
         </span>
       </button>
       <p class="rocket-hint mono" data-rocket-hint>

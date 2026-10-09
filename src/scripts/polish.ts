@@ -33,12 +33,13 @@ export function initShimmer(firstShowDelay = 1.4) {
     last = now;
     gsap.timeline({ delay })
       .to(chars, {
-        filter: 'drop-shadow(0 0 14px rgba(255, 138, 85, 0.85)) brightness(1.2)',
+        // тёплый «блик» без свечения: drop-shadow обрезается масками букв (заметно в Safari)
+        filter: 'sepia(1) saturate(3) hue-rotate(-28deg)',
         duration: 0.22,
         ease: 'power2.out',
         stagger: 0.035,
       })
-      .to(chars, { filter: 'drop-shadow(0 0 0px rgba(255, 138, 85, 0)) brightness(1)', duration: 0.45, ease: 'power2.out', stagger: 0.035 }, 0.22);
+      .to(chars, { filter: 'sepia(0) saturate(1) hue-rotate(0deg)', duration: 0.45, ease: 'power2.out', stagger: 0.035 }, 0.22);
   };
   run(firstShowDelay);
   const enter = () => run(0);

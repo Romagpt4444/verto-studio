@@ -13,14 +13,24 @@ export function initChrome(getMenuOpen: () => boolean) {
   let ticking = false;
   let positions: number[] = [];
 
+  // Деления стоят равномерно (удобно нажимать), а заливка идёт кусочно-линейно:
+  // доходит до деления ровно тогда, когда начинается его блок.
   const measure = () => {
     const max = Math.max(1, root.scrollHeight - innerHeight);
     positions = ticks.map((li) => {
       const sec = document.getElementById(li.dataset.altTick ?? '');
-      const p = sec ? Math.min(1, Math.max(0, (sec.getBoundingClientRect().top + scrollY - innerHeight * 0.3) / max)) : 0;
-      li.style.setProperty('--pos', p.toFixed(4));
-      return p;
+      return sec ? Math.min(1, Math.max(0, (sec.getBoundingClientRect().top + scrollY - innerHeight * 0.3) / max)) : 0;
     });
+    positions[0] = 0;
+  };
+  const toDisplay = (p: number) => {
+    const n = positions.length;
+    if (n < 2) return p;
+    for (let i = 0; i < n - 1; i++) {
+      const a = positions[i], b = Math.max(positions[i + 1], a + 1e-4);
+      if (p <= b) return (i + Math.min(1, Math.max(0, (p - a) / (b - a)))) / (n - 1);
+    }
+    return 1;
   };
 
   const update = () => {
@@ -39,11 +49,12 @@ export function initChrome(getMenuOpen: () => boolean) {
     lastY = y;
     const inOrbit = !!contact && contact.getBoundingClientRect().top < innerHeight * 0.5;
     const km = inOrbit ? maxKm : Math.round(p * maxKm);
-    fills.forEach((f) => f.style.setProperty('--alt-p', p.toFixed(4)));
+    const shown = inOrbit ? 1 : toDisplay(p);
+    fills.forEach((f) => f.style.setProperty('--alt-p', (f.closest('.alt-mobile') ? p : shown).toFixed(4)));
     const label = String(km).padStart(3, '0');
     kms.forEach((k, i) => { k.textContent = i === 0 ? label : String(km); });
     if (alt) alt.toggleAttribute('data-orbit', inOrbit);
-    ticks.forEach((li, i) => li.toggleAttribute('data-passed', p + 0.002 >= positions[i]));
+    ticks.forEach((li, i) => li.toggleAttribute('data-passed', inOrbit || p + 0.002 >= positions[i]));
   };
 
   const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
