@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { type Lang, getDict } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getDict(lang);
+---
+<Base lang={lang} t={t}>
+  <a class="skip-link" href="#content">{t.nav.skip}</a>
+  <main id="content">
+    <section id="start" class="section"><div class="shell"><h1>{t.hero.title}</h1></div></section>
+    <section id="create" class="section"><div class="shell"><h2 class="section-title">{t.create.title}</h2></div></section>
+    <section id="stack" class="section"><div class="shell"><h2 class="section-title">{t.stack.title}</h2></div></section>
+    <section id="works" class="section"><div class="shell"><h2 class="section-title">{t.works.title}</h2></div></section>
+    <section id="launch" class="section"><div class="shell"><h2 class="section-title">{t.launch.title}</h2></div></section>
+    <section id="faq" class="section"><div class="shell"><h2 class="section-title">{t.faq.title}</h2></div></section>
+    <section id="contact" class="section"><div class="shell"><h2 class="section-title">{t.contact.title}</h2></div></section>
+  </main>
+</Base>

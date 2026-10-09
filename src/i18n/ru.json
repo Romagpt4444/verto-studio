@@ -1,0 +1,472 @@
+{
+  "_note": "Финальные тексты из ТЗ, раздел 13. Вставлять как есть.",
+  "meta": {
+    "title": "Verto Studio — сайты и Telegram-боты для бизнеса",
+    "description": "Делаем сайты, лендинги, интернет-магазины и Telegram-ботов. Пишите в Telegram — ответим в течение дня."
+  },
+  "contacts": {
+    "telegram": "https://t.me/Verto_Studio",
+    "telegramHandle": "@Verto_Studio",
+    "channel": "https://t.me/VertoStudio_ru",
+    "whatsapp": "https://wa.me/79935358696",
+    "phone": "+7 993 535-86-96",
+    "instagram": "https://www.instagram.com/verto_studio.ru/",
+    "instagramHandle": "@verto_studio.ru"
+  },
+  "preloader": "Заправляем ракету",
+  "nav": {
+    "create": "Что создаём",
+    "stack": "Стек",
+    "works": "Работы",
+    "contact": "Контакты",
+    "cta": "Обсудить в Telegram",
+    "skip": "Перейти к содержанию",
+    "menuOpen": "Открыть меню",
+    "menuClose": "Закрыть меню"
+  },
+  "hero": {
+    "quote": "Совершенство достигается не тогда, когда нечего добавить, а когда нечего убрать.",
+    "quoteAuthor": "Антуан де Сент-Экзюпери, лётчик и писатель",
+    "title": "VERTO STUDIO",
+    "offer": "Делаем сайты и Telegram-ботов, с которыми клиентам проще выбрать вас.",
+    "cta": "Обсудить в Telegram",
+    "secondary": {
+      "whatsapp": "WhatsApp",
+      "instagram": "Instagram*",
+      "channel": "Наш канал"
+    },
+    "rocketHint": "Нажмите на ракету — прогреем двигатели",
+    "scroll": "Листайте"
+  },
+  "create": {
+    "title": "Что создаём",
+    "label": "На один проект",
+    "rows": [
+      {
+        "name": "Сайты и лендинги",
+        "text": "Быстрые, удобные на телефоне, с анимацией, которая помогает, а не мешает читать.",
+        "value": "100%"
+      },
+      {
+        "name": "Telegram-боты и Mini Apps",
+        "text": "Принимают заявки, отвечают на частые вопросы и сразу присылают вам уведомление.",
+        "value": "100%"
+      },
+      {
+        "name": "Интернет-магазины",
+        "text": "Каталог, карточки товаров, корзина и понятный путь до заказа.",
+        "value": "100%"
+      },
+      {
+        "name": "Дизайн",
+        "text": "Продумываем, что человек увидит первым и куда нажмёт. Потом рисуем.",
+        "value": "100%"
+      }
+    ],
+    "footnote": "* Без шаблонов и воды. Перегрузки на взлёте в пределах нормы.",
+    "counters": [
+      {
+        "value": 11,
+        "label": "работ в портфолио"
+      },
+      {
+        "value": 3,
+        "label": "собственных продукта"
+      },
+      {
+        "value": 2,
+        "label": "коммерческих кейса"
+      }
+    ]
+  },
+  "marquee": [
+    "САЙТЫ",
+    "ЛЕНДИНГИ",
+    "ИНТЕРНЕТ-МАГАЗИНЫ",
+    "TELEGRAM-БОТЫ",
+    "MINI APPS",
+    "AI-АГЕНТЫ",
+    "АДМИН-ПАНЕЛИ",
+    "РЕДИЗАЙН",
+    "АНИМАЦИЯ",
+    "REACT",
+    "NEXT.JS",
+    "THREE.JS",
+    "GSAP"
+  ],
+  "stack": {
+    "title": "На чём собираем",
+    "subtitle": "Технологии под задачу. Если вам эти слова ничего не говорят — это нормально, разбираться в них наша работа.",
+    "groups": [
+      {
+        "id": "site",
+        "num": "01",
+        "rocketPart": "capsule",
+        "name": "Сайт и интерфейс",
+        "tags": [
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Next.js",
+          "Vite",
+          "Tailwind CSS",
+          "Адаптивная вёрстка",
+          "PWA",
+          "Админ-панели"
+        ]
+      },
+      {
+        "id": "motion",
+        "num": "02",
+        "rocketPart": "stage3",
+        "name": "Анимация и графика",
+        "tags": [
+          "GSAP",
+          "Framer Motion",
+          "Three.js",
+          "WebGL",
+          "Canvas API",
+          "SVG",
+          "Lottie",
+          "Figma"
+        ]
+      },
+      {
+        "id": "server",
+        "num": "03",
+        "rocketPart": "stage2",
+        "name": "Сервер и данные",
+        "tags": [
+          "Node.js",
+          "Python",
+          "FastAPI",
+          "PostgreSQL",
+          "SQLite",
+          "Supabase",
+          "Firebase",
+          "REST API",
+          "GraphQL",
+          "Webhooks",
+          "CRM-интеграции"
+        ]
+      },
+      {
+        "id": "tg_ai",
+        "num": "04",
+        "rocketPart": "stage1",
+        "name": "Telegram и AI",
+        "tags": [
+          "Telegram Bot API",
+          "Telegram Mini Apps",
+          "OpenAI API",
+          "AI-ассистенты",
+          "AI-агенты",
+          "Автоматизация бизнес-процессов"
+        ]
+      },
+      {
+        "id": "launch",
+        "num": "05",
+        "rocketPart": "engine",
+        "name": "Запуск и инфраструктура",
+        "tags": [
+          "Git",
+          "GitHub",
+          "Vercel",
+          "Cloudflare",
+          "CI/CD",
+          "HTTPS",
+          "DNS и деплой"
+        ]
+      }
+    ]
+  },
+  "works": {
+    "title": "Наша коллекция",
+    "subtitle": "Сайты и боты, которые можно открыть и пролистать прямо сейчас.",
+    "filters": {
+      "all": "Все",
+      "case": "Кейсы",
+      "product": "Продукты",
+      "concept": "Концепции"
+    },
+    "types": {
+      "case": "Кейс",
+      "product": "Продукт",
+      "concept": "Концепция"
+    },
+    "open": "Открыть",
+    "site": "Сайт ↗",
+    "countLive": "Работ: {n}",
+    "items": [
+      {
+        "id": "weshalka",
+        "type": "case",
+        "title": "THE WESHALKA",
+        "text": "Магазин верхней одежды: каталог, корзина и заказ через Telegram.",
+        "tags": [
+          "Магазин",
+          "Каталог",
+          "Мобильная версия"
+        ],
+        "link": "/cases/the-weshalka.html",
+        "site": "https://theweshalka.ru/",
+        "sticker": "🧥",
+        "linkNote": null
+      },
+      {
+        "id": "master-tyres",
+        "type": "case",
+        "title": "Master Tyres",
+        "text": "Шиномонтаж: понятные услуги и быстрая запись с телефона.",
+        "tags": [
+          "Сайт услуг",
+          "Запись",
+          "Мобильная версия"
+        ],
+        "link": "/cases/master-tyres.html",
+        "site": "https://mastertyres-msk.ru/",
+        "sticker": "🛞",
+        "linkNote": null
+      },
+      {
+        "id": "lead-agent",
+        "type": "product",
+        "title": "Verto Lead Agent",
+        "text": "Наш бот. Находит свежие заказы и присылает их в Telegram, пока они не остыли.",
+        "tags": [
+          "Telegram-бот",
+          "Автоматизация"
+        ],
+        "link": "/lead-agent.html",
+        "site": "https://t.me/verto_agentbot",
+        "sticker": "🎯",
+        "linkNote": null
+      },
+      {
+        "id": "lead-desk",
+        "type": "product",
+        "title": "Verto Lead Desk",
+        "text": "Сайт, бот и Mini App собирают заявку и передают её владельцу.",
+        "tags": [
+          "Mini App",
+          "Бот",
+          "Заявки"
+        ],
+        "link": "/cases/lead-desk.html",
+        "site": "https://verto-lead-desk.vercel.app/",
+        "sticker": "📬",
+        "linkNote": null
+      },
+      {
+        "id": "otklik",
+        "type": "product",
+        "title": "Отклик",
+        "text": "Бот-администратор: отвечает клиентам на вопросы и передаёт обращение вам.",
+        "tags": [
+          "Telegram-бот",
+          "AI"
+        ],
+        "link": "/projects/otklik/",
+        "site": null,
+        "sticker": "💬",
+        "linkNote": null
+      },
+      {
+        "id": "morrow",
+        "type": "concept",
+        "title": "Morrow Coffee",
+        "text": "Сайт кофейни с тёплым настроением и меню.",
+        "tags": [
+          "Кафе",
+          "Лендинг"
+        ],
+        "link": "/projects/morrow-coffee/",
+        "site": null,
+        "sticker": "☕",
+        "linkNote": null
+      },
+      {
+        "id": "apex",
+        "type": "concept",
+        "title": "APEX Detailing",
+        "text": "Детейлинг-центр: услуги, процесс и запись.",
+        "tags": [
+          "Авто",
+          "Лендинг"
+        ],
+        "link": "/projects/apex-detailing/",
+        "site": null,
+        "sticker": "🏎️",
+        "linkNote": null
+      },
+      {
+        "id": "forma",
+        "type": "concept",
+        "title": "FORMA ESTATE",
+        "text": "Премиальная недвижимость: объекты, фото, планировки.",
+        "tags": [
+          "Недвижимость",
+          "Сайт"
+        ],
+        "link": "/projects/forma-estate/",
+        "site": null,
+        "sticker": "🏡",
+        "linkNote": null
+      },
+      {
+        "id": "auren",
+        "type": "concept",
+        "title": "AUREN Dental",
+        "text": "Стоматология: врачи, услуги и спокойная запись.",
+        "tags": [
+          "Медицина",
+          "Сайт"
+        ],
+        "link": "/projects/auren-dental/",
+        "site": null,
+        "sticker": "🦷",
+        "linkNote": null
+      },
+      {
+        "id": "nord",
+        "type": "concept",
+        "title": "NORD Cabin",
+        "text": "Модульные дома: архитектура, планировки, материалы.",
+        "tags": [
+          "Архитектура",
+          "Сайт"
+        ],
+        "link": "/projects/nord-cabin/",
+        "site": null,
+        "sticker": "🌲",
+        "linkNote": null
+      },
+      {
+        "id": "noir",
+        "type": "concept",
+        "title": "NOIR Golf",
+        "text": "Гольф-клуб: тренировки, события и лаунж.",
+        "tags": [
+          "Спорт",
+          "Сайт"
+        ],
+        "link": "/projects/noir-golf/",
+        "site": null,
+        "sticker": "⛳",
+        "linkNote": null
+      }
+    ],
+    "invite": {
+      "title": "Здесь может быть ваш проект",
+      "text": "Расскажите, что нужно, — прикинем, как это сделать.",
+      "cta": "Обсудить в Telegram",
+      "sticker": "🚀"
+    }
+  },
+  "launch": {
+    "title": "Как проходит запуск",
+    "steps": [
+      {
+        "num": "01",
+        "name": "Пишете нам",
+        "text": "В Telegram или WhatsApp. Рассказываете, чем занимаетесь и что нужно. Можно голосовым."
+      },
+      {
+        "num": "02",
+        "name": "Считаем",
+        "text": "Присылаем, что сделаем, за какой срок и сколько это стоит. Работу начинаем после того, как вы согласны."
+      },
+      {
+        "num": "03",
+        "name": "Собираем",
+        "text": "Показываем дизайн и промежуточные версии. Правки обсуждаем по ходу, а не в конце."
+      },
+      {
+        "num": "04",
+        "name": "Запускаем",
+        "text": "Проверяем на телефонах и компьютерах, публикуем на вашем домене и передаём все доступы."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Вопросы",
+    "items": [
+      {
+        "q": "Сколько стоит сайт?",
+        "a": "Цену считаем индивидуально: всё зависит от объёма работы. Опишите задачу — посчитаем и пришлём до начала работы."
+      },
+      {
+        "q": "Сколько времени занимает?",
+        "a": "Лендинг — обычно пара недель. Сайт с каталогом или ботом — дольше. Точный срок называем вместе с ценой."
+      },
+      {
+        "q": "Можно переделать мой старый сайт?",
+        "a": "Да. Сначала смотрим, что уже работает, и оставляем это. Меняем то, что мешает."
+      },
+      {
+        "q": "Что нужно от меня?",
+        "a": "Пара слов о бизнесе и ссылка на сайт, если он есть. Логотип, фото и тексты — если есть. Если нет, подскажем, где взять."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Вы на орбите",
+    "text": "Осталось написать. Расскажите о задаче — ответим в течение дня.",
+    "cta": "Написать в Telegram",
+    "briefLabel": "Хочу обсудить:",
+    "briefOptions": [
+      "Новый сайт",
+      "Редизайн",
+      "Telegram-бот"
+    ],
+    "briefMessage": "Здравствуйте! Хочу обсудить: {choice}. ",
+    "cards": {
+      "whatsapp": {
+        "name": "WhatsApp",
+        "text": "+7 993 535-86-96",
+        "href": "https://wa.me/79935358696"
+      },
+      "instagram": {
+        "name": "Instagram*",
+        "text": "@verto_studio.ru",
+        "href": "https://www.instagram.com/verto_studio.ru/"
+      },
+      "channel": {
+        "name": "Telegram-канал",
+        "text": "Новые работы и заметки",
+        "href": "https://t.me/VertoStudio_ru"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Сайты и Telegram-боты для бизнеса",
+    "privacy": "Политика конфиденциальности",
+    "terms": "Условия",
+    "copyright": "© 2026 Verto Studio",
+    "toTop": "На старт ↑",
+    "emojiCredit": "Анимированные эмодзи: Noto Emoji Animation, Google, CC BY 4.0",
+    "motionOff": "Остановить анимацию",
+    "motionOn": "Включить анимацию",
+    "metaNote": "* Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой в России."
+  },
+  "altimeter": {
+    "label": "Высота",
+    "unit": "км",
+    "orbit": "Орбита",
+    "maxKm": 400
+  },
+  "ui": {
+    "home": "Verto Studio — на главную",
+    "lang": "Язык",
+    "rocketWarmup": "Прогреть двигатели",
+    "sections": "Разделы страницы",
+    "start": "Старт",
+    "newTab": "откроется в новой вкладке",
+    "filterLabel": "Фильтр работ",
+    "faqTitle": "Вопросы",
+    "rocketName": "VERTO-1"
+  }
+}

@@ -1,0 +1,74 @@
+/* Verto Studio — токены (ТЗ, раздел 4). Компоненты используют только семантический блок. */
+:root {
+  /* Фон: космос */
+  --space-950: #05070D;
+  --space-900: #0A0F1C;
+  --space-800: #121A2B;
+  --space-700: #1C2740;
+  --space-600: #2A3654;
+
+  /* Текст: звёздный свет */
+  --star-50:  #EEF1F6;  /* 17.8:1 на 950 */
+  --star-300: #A6AFC0;  /* 9.1:1 */
+  --star-500: #7E889C;  /* 5.6:1 (на 800 — 4.9:1) */
+
+  /* Акцент: зажигание */
+  --ignition-300: #FFB38F;
+  --ignition-400: #FF8A55;  /* 8.6:1 на 950 */
+  --ignition-500: #FF6B2C;  /* 7.1:1 на 950 */
+  --ignition-600: #E5531A;
+  --ignition-glow: rgb(255 107 44 / 0.18);
+
+  /* Семантика */
+  --bg: var(--space-950);
+  --bg-raised: var(--space-900);
+  --surface: var(--space-800);
+  --line: var(--space-700);
+  --line-strong: var(--space-600);
+  --text: var(--star-50);
+  --text-dim: var(--star-300);
+  --text-mute: var(--star-500);
+  --accent: var(--ignition-500);
+  --accent-hover: var(--ignition-400);
+  --accent-press: var(--ignition-600);
+  --on-accent: var(--space-950); /* белый на оранжевом = 2.8:1 — запрещено */
+  --shadow-tint: rgb(2 4 10 / 0.6);
+
+  /* Шрифты */
+  --font-display: 'Unbounded', 'Golos Text', system-ui, sans-serif;
+  --font-text: 'Golos Text', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Типографическая шкала */
+  --fs-hero: clamp(3.5rem, 12vw, 11rem);
+  --fs-h2: clamp(2.25rem, 6vw, 5rem);
+  --fs-h3: clamp(1.25rem, 1.6vw, 1.5rem);
+  --fs-body: clamp(1.0625rem, 0.3vw + 1rem, 1.125rem);
+  --fs-small: 0.9375rem;
+  --fs-mono: 0.8125rem;
+
+  /* Отступы и сетка */
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --container: 90rem;
+  --section-y: clamp(5rem, 12vw, 10rem);
+  --header-h: 64px;
+
+  /* Скругления */
+  --r-pill: 999px;
+  --r-panel: 4px;
+  --r-card: 16px;
+  --r-media: 12px;
+
+  /* Слои */
+  --z-canvas: 0;
+  --z-content: 1;
+  --z-altimeter: 20;
+  --z-header: 30;
+  --z-menu: 40;
+  --z-preloader: 50;
+  --z-skip: 60;
+}
+
+@media (min-width: 1024px) {
+  :root { --header-h: 72px; }
+}

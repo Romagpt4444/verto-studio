@@ -1,0 +1,225 @@
+/* Verto Studio — база: сброс, типографика, общие элементы. */
+@layer reset, base, layout, components, sections, motion, utilities;
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  img, svg, video, canvas, picture { display: block; max-width: 100%; }
+  img { height: auto; }
+  input, button, textarea, select { font: inherit; color: inherit; }
+  button { background: none; border: 0; padding: 0; cursor: pointer; }
+  a { color: inherit; }
+  ul[role='list'], ol[role='list'] { list-style: none; padding: 0; }
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  [hidden] { display: none !important; }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background: var(--bg);
+    scroll-padding-top: calc(var(--header-h) + 16px);
+    scrollbar-color: var(--line-strong) var(--bg);
+    interpolate-size: allow-keywords;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html:not(.lenis) { scroll-behavior: smooth; }
+  }
+
+  body {
+    min-height: 100svh;
+    font-family: var(--font-text);
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    color: var(--text);
+    background:
+      radial-gradient(120% 70% at 80% -10%, color-mix(in oklch, var(--space-800) 70%, transparent), transparent 60%),
+      linear-gradient(in oklch to bottom, var(--space-950), #020306 85%);
+    background-attachment: fixed;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p, li, dd { text-wrap: pretty; }
+
+  ::selection { background: var(--accent); color: var(--on-accent); }
+  ::placeholder { color: var(--text-mute); }
+  input, textarea { caret-color: var(--accent); }
+
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; border: 2px solid var(--bg); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-mute); }
+
+  a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+}
+
+@layer layout {
+  .shell {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(1rem, 2vw, 2rem);
+  }
+
+  main { position: relative; z-index: var(--z-content); }
+
+  .section { position: relative; padding-block: var(--section-y); }
+
+  .section-title {
+    font-size: var(--fs-h2);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+}
+
+@layer components {
+  /* Пропуск к содержанию */
+  .skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: var(--z-skip);
+    padding: 12px 18px;
+    border-radius: var(--r-pill);
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+    text-decoration: none;
+    transform: translateY(-160%);
+    transition: transform var(--dur-ui) var(--ease-out);
+  }
+  .skip-link:focus-visible { transform: none; }
+
+  /* Моноширинная приборная подпись */
+  .mono {
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .accent { color: var(--accent); }
+
+  /* Кнопки */
+  .btn {
+    --btn-h: 56px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    min-height: var(--btn-h);
+    padding: 0 1.6em;
+    border-radius: var(--r-pill);
+    font-family: var(--font-text);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    transition:
+      transform var(--dur-press) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn svg { width: 1.25em; height: 1.25em; flex: none; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--on-accent);
+    box-shadow: 0 10px 30px -12px rgb(255 107 44 / 0.55);
+  }
+  .btn-primary:active { background: var(--accent-press); }
+
+  .btn-ghost {
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-ghost::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--text);
+    transform: translateY(101%);
+    transition: transform var(--dur-ui) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-ghost:hover { color: var(--bg); border-color: var(--text); }
+    .btn-ghost:hover::before { transform: none; }
+  }
+
+  /* Ссылка с подчёркиванием, растущим слева направо */
+  .link-line {
+    position: relative;
+    text-decoration: none;
+    color: var(--text);
+    padding-bottom: 2px;
+  }
+  .link-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--dur-ui) var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .link-line:hover::after { transform: scaleX(1); }
+  }
+  .link-line:focus-visible::after { transform: scaleX(1); }
+
+  .sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .icon { width: 1.25em; height: 1.25em; flex: none; fill: currentColor; }
+}
