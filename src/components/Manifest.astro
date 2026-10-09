@@ -1,0 +1,40 @@
+---
+import type { Dict } from '../i18n';
+interface Props { t: Dict }
+const { t } = Astro.props;
+---
+<section id="create" class="section create" aria-labelledby="create-title" data-section>
+  <div class="shell create-grid">
+    <article class="passport" data-passport>
+      <header class="passport-head">
+        <h2 id="create-title" class="passport-title">{t.create.title}</h2>
+        <div class="passport-rule" aria-hidden="true"></div>
+        <p class="passport-label mono">{t.create.label}</p>
+      </header>
+      <ul role="list" class="passport-rows">
+        {t.create.rows.map((r) => (
+          <li class="passport-row" data-passport-row>
+            <div>
+              <h3 class="passport-name">{r.name}</h3>
+              <p class="passport-text">{r.text}</p>
+            </div>
+            <span class="passport-value mono" data-count={parseInt(r.value, 10)} data-suffix="%">{r.value}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="passport-foot mono">
+        <span>{t.create.footnote}</span>
+        <span class="sticker-slot" data-sticker="1f525" data-sticker-size="28" aria-hidden="true"></span>
+      </p>
+    </article>
+
+    <ul role="list" class="facts">
+      {t.create.counters.map((c) => (
+        <li class="fact">
+          <span class="fact-num" data-count={c.value}>{c.value}</span>
+          <span class="fact-label">{c.label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

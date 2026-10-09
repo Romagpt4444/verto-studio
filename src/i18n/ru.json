@@ -467,6 +467,12 @@
     "newTab": "откроется в новой вкладке",
     "filterLabel": "Фильтр работ",
     "faqTitle": "Вопросы",
-    "rocketName": "VERTO-1"
+    "rocketName": "VERTO-1",
+    "mainNav": "Основная навигация",
+    "langRu": "Русский",
+    "langEn": "English",
+    "menu": "Меню",
+    "contacts": "Контакты",
+    "legal": "Документы"
   }
 }

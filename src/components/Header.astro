@@ -1,0 +1,62 @@
+---
+import Icon from './Icon.astro';
+import LangSwitch from './LangSwitch.astro';
+import { type Lang, type Dict, homePath } from '../i18n';
+interface Props { lang: Lang; t: Dict }
+const { lang, t } = Astro.props;
+const links = [
+  { href: '#create', label: t.nav.create },
+  { href: '#stack', label: t.nav.stack },
+  { href: '#works', label: t.nav.works },
+  { href: '#contact', label: t.nav.contact },
+];
+---
+<header class="site-header" data-header>
+  <div class="shell header-inner">
+    <a class="brand" href={`${homePath(lang)}#start`} aria-label={t.ui.home}>
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M6 7 L 16 26 L 26 7" /></svg>
+      </span>
+      <span class="brand-name">{t.hero.title}</span>
+    </a>
+    <nav class="site-nav" aria-label={t.ui.mainNav}>
+      <ul role="list">
+        {links.map((l) => <li><a class="link-line" href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <LangSwitch lang={lang} t={t} class="header-lang" />
+      <a class="btn btn-primary btn-sm header-cta" href={t.contacts.telegram} target="_blank" rel="noopener noreferrer">
+        <Icon name="tg" />
+        <span class="header-cta-text">{t.nav.cta}</span>
+        <span class="sr-only">({t.ui.newTab})</span>
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label={t.nav.menuOpen}
+        data-label-open={t.nav.menuOpen}
+        data-label-close={t.nav.menuClose}
+        data-menu-toggle
+      >
+        <span class="menu-bars" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-menu hidden>
+  <nav class="shell mobile-menu-inner" aria-label={t.ui.menu}>
+    <ul role="list" class="mobile-links">
+      {links.map((l, i) => <li style={`--i:${i}`}><a href={l.href} data-menu-link>{l.label}</a></li>)}
+    </ul>
+    <div class="mobile-menu-foot">
+      <LangSwitch lang={lang} t={t} />
+      <a class="btn btn-primary" href={t.contacts.telegram} target="_blank" rel="noopener noreferrer" data-menu-link>
+        <Icon name="tg" /><span>{t.nav.cta}</span><span class="sr-only">({t.ui.newTab})</span>
+      </a>
+    </div>
+  </nav>
+</div>

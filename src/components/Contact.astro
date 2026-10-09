@@ -1,0 +1,61 @@
+---
+import Icon from './Icon.astro';
+import type { Dict } from '../i18n';
+interface Props { t: Dict }
+const { t } = Astro.props;
+const cards = [
+  { key: 'whatsapp', icon: 'wa', ...t.contact.cards.whatsapp },
+  { key: 'instagram', icon: 'ig', ...t.contact.cards.instagram },
+  { key: 'channel', icon: 'ch', ...t.contact.cards.channel },
+] as const;
+---
+<section id="contact" class="section contact" aria-labelledby="contact-title" data-section>
+  <div class="shell contact-grid">
+    <div class="contact-main">
+      <h2 id="contact-title" class="contact-title" data-split>
+        {t.contact.title}
+        <span class="sticker-slot contact-sticker" data-sticker="1f44b" data-sticker-size="64" aria-hidden="true"></span>
+      </h2>
+      <p class="contact-text">{t.contact.text}</p>
+
+      <div class="brief">
+        <p class="brief-label mono" id="brief-label">{t.contact.briefLabel}</p>
+        <div class="brief-chips" role="group" aria-labelledby="brief-label">
+          {t.contact.briefOptions.map((o) => (
+            <button class="chip" type="button" aria-pressed="false" data-brief={o}>{o}</button>
+          ))}
+        </div>
+      </div>
+
+      <a
+        class="btn btn-primary btn-xl"
+        href={t.contacts.telegram}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-brief-link
+        data-brief-base={t.contacts.telegram}
+        data-brief-template={t.contact.briefMessage}
+        data-magnetic
+      >
+        <Icon name="tg" />
+        <span>{t.contact.cta}</span>
+        <span class="sr-only">({t.ui.newTab})</span>
+      </a>
+    </div>
+
+    <ul role="list" class="contact-cards">
+      {cards.map((c) => (
+        <li>
+          <a class="contact-card" href={c.href} target="_blank" rel="noopener noreferrer">
+            <Icon name={c.icon} class="cc-icon" />
+            <span class="cc-name">{c.name}</span>
+            <span class="cc-text">{c.text}</span>
+            <Icon name="arrowUR" class="cc-arrow" />
+            <span class="sr-only">({t.ui.newTab})</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="meta-note">{t.footer.metaNote}</p>
+  </div>
+</section>

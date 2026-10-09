@@ -467,6 +467,12 @@
     "newTab": "opens in a new tab",
     "filterLabel": "Filter work",
     "faqTitle": "Questions",
-    "rocketName": "VERTO-1"
+    "rocketName": "VERTO-1",
+    "mainNav": "Main navigation",
+    "langRu": "Русский",
+    "langEn": "English",
+    "menu": "Menu",
+    "contacts": "Contacts",
+    "legal": "Legal"
   }
 }

@@ -1,0 +1,26 @@
+---
+import type { Dict } from '../i18n';
+interface Props { t: Dict }
+const { t } = Astro.props;
+---
+<section id="stack" class="section stack" aria-labelledby="stack-title" data-section>
+  <div class="shell stack-pin" data-stack-pin>
+    <header class="stack-head">
+      <h2 id="stack-title" class="section-title" data-split>{t.stack.title}</h2>
+      <p class="stack-sub">{t.stack.subtitle}</p>
+    </header>
+    <ol role="list" class="stages" data-stages>
+      {t.stack.groups.map((g) => (
+        <li class="stage" data-stage data-part={g.rocketPart}>
+          <div class="stage-id">
+            <span class="stage-num mono">{g.num}</span>
+            <h3 class="stage-name">{g.name}</h3>
+          </div>
+          <ul role="list" class="tags">
+            {g.tags.map((tag) => <li class="tag">{tag}</li>)}
+          </ul>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+import Icon from './Icon.astro';
+import RocketSvg from './RocketSvg.astro';
+import type { Dict } from '../i18n';
+interface Props { t: Dict }
+const { t } = Astro.props;
+const [w1, w2] = t.hero.title.split(' ');
+const letters = (w: string, offset: number) =>
+  [...w].map((ch, i) => ({ ch, i: i + offset }));
+---
+<section id="start" class="hero" aria-labelledby="hero-title" data-section>
+  <div class="shell hero-grid">
+    <div class="hero-copy">
+      <figure class="hero-quote">
+        <span class="hero-quote-mark" aria-hidden="true">“</span>
+        <blockquote><p>{t.hero.quote}</p></blockquote>
+        <figcaption>{t.hero.quoteAuthor}</figcaption>
+      </figure>
+
+      <h1 id="hero-title" class="hero-title" data-hero-title>
+        <span class="sr-only">{t.hero.title}</span>
+        <span class="hero-word" aria-hidden="true">{letters(w1, 0).map((l) => <span class="ch-mask"><span class="ch" style={`--ci:${l.i}`}>{l.ch}</span></span>)}</span>
+        <span class="hero-word hero-word--shift" aria-hidden="true">{letters(w2, w1.length).map((l) => <span class="ch-mask"><span class="ch" style={`--ci:${l.i}`}>{l.ch}</span></span>)}</span>
+      </h1>
+
+      <p class="hero-offer">{t.hero.offer}</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href={t.contacts.telegram} target="_blank" rel="noopener noreferrer" data-magnetic>
+          <Icon name="tg" />
+          <span>{t.hero.cta}</span>
+          <span class="sr-only">({t.ui.newTab})</span>
+        </a>
+        <ul role="list" class="hero-secondary">
+          <li><a class="link-line" href={t.contacts.whatsapp} target="_blank" rel="noopener noreferrer">{t.hero.secondary.whatsapp}<span class="sr-only"> ({t.ui.newTab})</span></a></li>
+          <li><a class="link-line" href={t.contacts.instagram} target="_blank" rel="noopener noreferrer">{t.hero.secondary.instagram}<span class="sr-only"> ({t.ui.newTab})</span></a></li>
+          <li><a class="link-line" href={t.contacts.channel} target="_blank" rel="noopener noreferrer">{t.hero.secondary.channel}<span class="sr-only"> ({t.ui.newTab})</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hero-rocket" data-rocket-anchor="start">
+      <button class="rocket-hit" type="button" data-warmup aria-label={t.ui.rocketWarmup}>
+        <span class="rocket-poster" data-rocket-poster>
+          <RocketSvg id="hero" class="hero-rocket-svg" />
+        </span>
+      </button>
+      <p class="rocket-hint mono" data-rocket-hint>
+        <span class="sticker-slot" data-sticker="1f680" data-sticker-size="40" aria-hidden="true"></span>
+        <span>{t.hero.rocketHint}</span>
+      </p>
+    </div>
+
+    <a class="scroll-cue mono" href="#create">
+      <span>{t.hero.scroll}</span>
+      <span class="scroll-cue-line" aria-hidden="true"></span>
+    </a>
+  </div>
+</section>

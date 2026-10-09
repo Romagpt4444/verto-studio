@@ -1,0 +1,40 @@
+---
+import Icon from './Icon.astro';
+import type { Dict } from '../i18n';
+interface Props { t: Dict }
+const { t } = Astro.props;
+---
+<footer class="site-footer">
+  <div class="shell">
+    <p class="footer-giant" aria-hidden="true">{t.hero.title}</p>
+    <div class="footer-grid">
+      <p class="footer-tagline">{t.footer.tagline}</p>
+      <nav aria-label={t.ui.contacts}>
+        <ul role="list" class="footer-links">
+          <li><a class="link-line" href={t.contacts.telegram} target="_blank" rel="noopener noreferrer">{t.contacts.telegramHandle}<span class="sr-only"> ({t.ui.newTab})</span></a></li>
+          <li><a class="link-line" href={t.contacts.channel} target="_blank" rel="noopener noreferrer">{t.contact.cards.channel.name}<span class="sr-only"> ({t.ui.newTab})</span></a></li>
+          <li><a class="link-line" href={t.contacts.whatsapp} target="_blank" rel="noopener noreferrer">{t.hero.secondary.whatsapp}<span class="sr-only"> ({t.ui.newTab})</span></a></li>
+          <li><a class="link-line" href={t.contacts.instagram} target="_blank" rel="noopener noreferrer">{t.contact.cards.instagram.name}<span class="sr-only"> ({t.ui.newTab})</span></a></li>
+        </ul>
+      </nav>
+      <nav aria-label={t.ui.legal}>
+        <ul role="list" class="footer-links">
+          <li><a class="link-line" href="/privacy.html">{t.footer.privacy}</a></li>
+          <li><a class="link-line" href="/terms.html">{t.footer.terms}</a></li>
+        </ul>
+      </nav>
+      <div class="footer-controls">
+        <a class="btn btn-ghost btn-sm" href="#start" data-to-top>{t.footer.toTop}</a>
+        <button class="btn btn-ghost btn-sm motion-toggle" type="button" aria-pressed="false" data-motion-toggle data-label-off={t.footer.motionOff} data-label-on={t.footer.motionOn}>
+          <Icon name="pause" class="mt-pause" /><Icon name="play" class="mt-play" />
+          <span data-motion-label>{t.footer.motionOff}</span>
+        </button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>{t.footer.copyright}</span>
+      <a class="link-line" href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer license">{t.footer.emojiCredit}<span class="sr-only"> ({t.ui.newTab})</span></a>
+    </div>
+    <p class="meta-note">{t.footer.metaNote}</p>
+  </div>
+</footer>

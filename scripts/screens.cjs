@@ -23,7 +23,7 @@ const sizes = [[375, 667], [768, 1024], [1440, 900]];
       page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') errors.push(`${route}@${w} ${m.type()}: ${m.text()}`); });
       await page.goto(base + route, { waitUntil: 'networkidle' });
       await page.evaluate(() => document.fonts.ready);
-      await page.waitForTimeout(2600);
+      await page.waitForTimeout(Number(process.env.WAIT || 4300));
       const name = `${(route.replace(/\W+/g, '-') || 'ru').replace(/-$/, '')}-${w}${reduced ? '-reduced' : ''}.png`;
       await page.screenshot({ path: path.join(out, name), fullPage: full });
       const sw = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);

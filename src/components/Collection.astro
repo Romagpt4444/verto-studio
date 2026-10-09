@@ -1,0 +1,50 @@
+---
+import Icon from './Icon.astro';
+import ProjectCard from './ProjectCard.astro';
+import { type Dict, fmt } from '../i18n';
+interface Props { t: Dict }
+const { t } = Astro.props;
+const items = t.works.items;
+const count = (k: string) => (k === 'all' ? items.length : items.filter((i) => i.type === k).length);
+const filters = ['all', 'case', 'product', 'concept'] as const;
+---
+<section id="works" class="section works" aria-labelledby="works-title" data-section>
+  <div class="shell works-head">
+    <div class="works-intro">
+      <h2 id="works-title" class="section-title" data-split>{t.works.title}</h2>
+      <p class="works-sub">{t.works.subtitle}</p>
+    </div>
+    <div class="filter" role="group" aria-label={t.ui.filterLabel} data-filter-group>
+      <span class="filter-pill" aria-hidden="true" data-filter-pill></span>
+      {filters.map((f) => (
+        <button class="filter-tab" type="button" data-filter={f} aria-pressed={f === 'all' ? 'true' : 'false'}>
+          <span>{t.works.filters[f]}</span>
+          <span class="filter-count mono">{count(f)}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+  <p class="sr-only" aria-live="polite" data-works-live data-template={t.works.countLive}></p>
+
+  <div class="works-stage" data-works-stage>
+    <div class="shell works-meta mono" aria-hidden="true">
+      <span><span data-works-index>01</span> / <span data-works-total>{String(items.length).padStart(2, '0')}</span></span>
+      <span class="works-progress"><span data-works-progress></span></span>
+    </div>
+    <div class="works-viewport" data-works-viewport>
+      <ul role="list" class="works-track" data-works-track>
+        {items.map((item, i) => <ProjectCard item={item} index={i} t={t} />)}
+        <li class="card card--invite" data-card data-kind="invite">
+          <article class="card-inner invite-inner" aria-labelledby="work-invite">
+            <span class="sticker-slot card-sticker" data-sticker="1f680" data-sticker-size="88" aria-hidden="true"></span>
+            <h3 class="invite-title" id="work-invite">{t.works.invite.title}</h3>
+            <p class="card-text">{t.works.invite.text}</p>
+            <a class="btn btn-primary" href={t.contacts.telegram} target="_blank" rel="noopener noreferrer">
+              <Icon name="tg" /><span>{t.works.invite.cta}</span><span class="sr-only">({t.ui.newTab})</span>
+            </a>
+          </article>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

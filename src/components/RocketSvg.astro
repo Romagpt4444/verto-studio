@@ -1,0 +1,23 @@
+---
+// Силуэт ракеты VERTO-1: прелоадер и заглушка до загрузки 3D.
+interface Props { class?: string; id?: string }
+const { class: cls = '', id = 'r' } = Astro.props;
+---
+<svg class={`rocket-svg ${cls}`} viewBox="0 0 120 300" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id={`${id}-body`}>
+      <path d="M60 8 C 78 30 86 62 86 96 L 86 226 L 34 226 L 34 96 C 34 62 42 30 60 8 Z" />
+    </clipPath>
+  </defs>
+  <path class="rs-fin" d="M34 170 L 12 228 L 12 256 L 34 238 Z" />
+  <path class="rs-fin" d="M86 170 L 108 228 L 108 256 L 86 238 Z" />
+  <path class="rs-nozzle" d="M44 226 L 76 226 L 82 258 L 38 258 Z" />
+  <path class="rs-body" d="M60 8 C 78 30 86 62 86 96 L 86 226 L 34 226 L 34 96 C 34 62 42 30 60 8 Z" />
+  <g clip-path={`url(#${id}-body)`}>
+    <rect class="rs-band" x="30" y="146" width="60" height="6" />
+    <rect class="rs-band" x="30" y="198" width="60" height="6" />
+    <rect class="rs-fuel" x="30" y="8" width="60" height="218" />
+  </g>
+  <circle class="rs-window" cx="60" cy="108" r="13" />
+  <path class="rs-v" d="M53.5 102 L 60 116 L 66.5 102" />
+</svg>

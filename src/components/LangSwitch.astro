@@ -1,0 +1,9 @@
+---
+import type { Lang, Dict } from '../i18n';
+interface Props { lang: Lang; t: Dict; class?: string }
+const { lang, t, class: cls = '' } = Astro.props;
+---
+<div class={`lang-switch ${cls}`} role="group" aria-label={t.ui.lang} data-lang-switch>
+  <a href="/" hreflang="ru" lang="ru" aria-label={t.ui.langRu} aria-current={lang === 'ru' ? 'true' : undefined} data-lang-link>RU</a>
+  <a href="/en/" hreflang="en" lang="en" aria-label={t.ui.langEn} aria-current={lang === 'en' ? 'true' : undefined} data-lang-link>EN</a>
+</div>

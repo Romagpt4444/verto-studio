@@ -1,0 +1,23 @@
+---
+// Иконки Phosphor (MIT), встраиваются в HTML при сборке.
+import tg from '@phosphor-icons/core/assets/fill/telegram-logo-fill.svg?raw';
+import wa from '@phosphor-icons/core/assets/regular/whatsapp-logo.svg?raw';
+import ig from '@phosphor-icons/core/assets/regular/instagram-logo.svg?raw';
+import ch from '@phosphor-icons/core/assets/regular/megaphone-simple.svg?raw';
+import arrowUR from '@phosphor-icons/core/assets/regular/arrow-up-right.svg?raw';
+import arrowDown from '@phosphor-icons/core/assets/regular/arrow-down.svg?raw';
+import arrowUp from '@phosphor-icons/core/assets/regular/arrow-up.svg?raw';
+import list from '@phosphor-icons/core/assets/regular/list.svg?raw';
+import x from '@phosphor-icons/core/assets/regular/x.svg?raw';
+import plus from '@phosphor-icons/core/assets/regular/plus.svg?raw';
+import pause from '@phosphor-icons/core/assets/regular/pause.svg?raw';
+import play from '@phosphor-icons/core/assets/regular/play.svg?raw';
+import rocket from '@phosphor-icons/core/assets/fill/rocket-launch-fill.svg?raw';
+
+const icons = { tg, wa, ig, ch, arrowUR, arrowDown, arrowUp, list, x, plus, pause, play, rocket } as const;
+export type IconName = keyof typeof icons;
+interface Props { name: IconName; class?: string }
+const { name, class: cls = '' } = Astro.props;
+const svg = icons[name].replace('<svg ', `<svg class="icon ${cls}" aria-hidden="true" focusable="false" `);
+---
+<Fragment set:html={svg} />

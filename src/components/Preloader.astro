@@ -1,0 +1,15 @@
+---
+import RocketSvg from './RocketSvg.astro';
+import type { Dict } from '../i18n';
+interface Props { t: Dict }
+const { t } = Astro.props;
+---
+<div class="preloader" data-preloader aria-hidden="true">
+  <div class="pre-stage">
+    <RocketSvg id="pre" class="pre-rocket" />
+    <p class="pre-label mono">
+      <span>{t.preloader}</span>
+      <span class="pre-pct"><span data-pre-pct>0</span>%</span>
+    </p>
+  </div>
+</div>

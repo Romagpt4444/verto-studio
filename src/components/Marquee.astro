@@ -1,0 +1,24 @@
+---
+import type { Dict } from '../i18n';
+interface Props { t: Dict }
+const { t } = Astro.props;
+const items = t.marquee;
+---
+<div class="marquee-zone" data-marquee-zone>
+  <div class="marquee marquee--main" data-marquee>
+    <div class="marquee-track" data-marquee-track>
+      <ul role="list" class="marquee-set">
+        {items.map((it) => <li>{it}<span class="marquee-dot" aria-hidden="true">●</span></li>)}
+      </ul>
+      <ul role="list" class="marquee-set" aria-hidden="true">
+        {items.map((it) => <li>{it}<span class="marquee-dot">●</span></li>)}
+      </ul>
+    </div>
+  </div>
+  <div class="marquee marquee--ghost" aria-hidden="true" data-marquee data-marquee-dir="1">
+    <div class="marquee-track" data-marquee-track>
+      <ul role="list" class="marquee-set">{items.map((it) => <li>{it}<span class="marquee-dot">●</span></li>)}</ul>
+      <ul role="list" class="marquee-set">{items.map((it) => <li>{it}<span class="marquee-dot">●</span></li>)}</ul>
+    </div>
+  </div>
+</div>

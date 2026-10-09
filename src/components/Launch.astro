@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import type { Dict } from '../i18n';
+interface Props { t: Dict }
+const { t } = Astro.props;
+---
+<section id="launch" class="section launch" aria-labelledby="launch-title" data-section>
+  <div class="shell">
+    <h2 id="launch-title" class="section-title" data-split>{t.launch.title}</h2>
+    <div class="trajectory" data-trajectory>
+      <svg class="trajectory-svg trajectory-svg--h" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+        <path class="trajectory-base" d="M10 150 C 320 150, 520 120, 760 70 S 1080 12, 1190 10" />
+        <path class="trajectory-line" d="M10 150 C 320 150, 520 120, 760 70 S 1080 12, 1190 10" pathLength="1" data-trajectory-line />
+      </svg>
+      <span class="trajectory-craft" aria-hidden="true" data-trajectory-craft>
+        <Icon name="rocket" />
+      </span>
+      <ol role="list" class="steps">
+        {t.launch.steps.map((s) => (
+          <li class="step" data-step>
+            <span class="step-num mono">{s.num}</span>
+            <h3 class="step-name">{s.name}</h3>
+            <p class="step-text">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

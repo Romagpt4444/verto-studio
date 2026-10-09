@@ -1,0 +1,34 @@
+---
+import type { Dict } from '../i18n';
+interface Props { t: Dict }
+const { t } = Astro.props;
+const ticks = [
+  { href: '#start', label: t.ui.start },
+  { href: '#create', label: t.nav.create },
+  { href: '#stack', label: t.nav.stack },
+  { href: '#works', label: t.nav.works },
+  { href: '#launch', label: t.launch.title },
+  { href: '#contact', label: t.altimeter.orbit },
+];
+---
+<nav class="altimeter" aria-label={t.ui.sections} data-altimeter>
+  <p class="alt-label mono" aria-hidden="true">{t.altimeter.label}</p>
+  <div class="alt-scale">
+    <div class="alt-rail" aria-hidden="true"><span class="alt-fill" data-alt-fill></span></div>
+    <ol role="list" class="alt-ticks">
+      {ticks.map((tk, i) => (
+        <li style={`--pos:${i / (ticks.length - 1)}`} data-alt-tick={tk.href.slice(1)}>
+          <a href={tk.href}><span class="alt-tip mono">{tk.label}</span></a>
+        </li>
+      ))}
+    </ol>
+  </div>
+  <p class="alt-value mono" aria-hidden="true">
+    <span data-alt-km>000</span>&nbsp;{t.altimeter.unit}
+    <span class="alt-orbit" data-alt-orbit>{t.altimeter.orbit}</span>
+  </p>
+</nav>
+<div class="alt-mobile" aria-hidden="true">
+  <span class="alt-mobile-fill" data-alt-fill></span>
+  <span class="alt-badge mono"><span data-alt-km>0</span>&nbsp;{t.altimeter.unit}</span>
+</div>
