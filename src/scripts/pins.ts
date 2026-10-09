@@ -73,6 +73,19 @@ export function initPins() {
       },
     });
 
+    // Клавиатура: фокус на карточке за краем экрана — прокручиваем страницу так, чтобы карточка была видна
+    const onFocus = (e: FocusEvent) => {
+      const st = tween.scrollTrigger;
+      const card = (e.target as HTMLElement).closest<HTMLElement>('[data-card]');
+      if (!st || !card) return;
+      const d = dist();
+      if (!d) return;
+      const target = Math.min(1, Math.max(0, (card.offsetLeft - innerWidth * 0.08) / d));
+      const top = st.start + (st.end - st.start) * target;
+      if (Math.abs(scrollY - top) > 4) window.scrollTo({ top, behavior: 'instant' as ScrollBehavior });
+    };
+    track.addEventListener('focusin', onFocus);
+
     // первая карточка «раскрывается» из уменьшенной при входе в блок
     const first = track.querySelector<HTMLElement>('[data-card]');
     const grow = first
@@ -80,6 +93,7 @@ export function initPins() {
       : null;
 
     return () => {
+      track.removeEventListener('focusin', onFocus);
       tween.scrollTrigger?.kill();
       tween.kill();
       grow?.scrollTrigger?.kill();

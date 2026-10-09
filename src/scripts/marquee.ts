@@ -11,6 +11,11 @@ export function initMarquee(getVelocity: () => number) {
     return { band, track, dir, x: 0, w: 0, paused: false };
   });
   const measure = () => states.forEach((s) => { s.w = s.track.scrollWidth / 2; });
+  // вне экрана лента не двигается
+  let onScreen = true;
+  const zone = bands[0]?.closest<HTMLElement>('[data-marquee-zone]');
+  const io = zone ? new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; }, { rootMargin: '100px' }) : null;
+  if (zone) io?.observe(zone);
   measure();
 
   const base = 60; // px/с
@@ -27,6 +32,7 @@ export function initMarquee(getVelocity: () => number) {
   });
 
   const tick = (_t: number, dt: number) => {
+    if (!onScreen) return;
     const v = getVelocity();
     setBoost(1 + Math.min(3, Math.abs(v) / 900));
     if (v < -120) flipUntil = performance.now() + 1000;
@@ -46,6 +52,7 @@ export function initMarquee(getVelocity: () => number) {
 
   return () => {
     gsap.ticker.remove(tick);
+    io?.disconnect();
     removeEventListener('resize', measure);
     states.forEach((s) => { s.track.style.transform = ''; });
   };

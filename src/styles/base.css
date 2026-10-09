@@ -52,6 +52,7 @@
     text-wrap: balance;
   }
   p, li, dd { text-wrap: pretty; }
+  h1, h2, h3, h4, p, li, dd, figcaption, blockquote { overflow-wrap: break-word; }
 
   ::selection { background: var(--accent); color: var(--on-accent); }
   ::placeholder { color: var(--text-mute); }
@@ -141,8 +142,9 @@
     font-family: var(--font-text);
     font-weight: 600;
     font-size: 1rem;
-    line-height: 1;
-    white-space: nowrap;
+    line-height: 1.15;
+    text-align: center;
+    padding-block: 0.55em;
     text-decoration: none;
     transition:
       transform var(--dur-press) var(--ease-out),

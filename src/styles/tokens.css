@@ -40,8 +40,8 @@
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
   /* Типографическая шкала */
-  --fs-hero: clamp(3.5rem, 12vw, 11rem);
-  --fs-h2: clamp(2.25rem, 6vw, 5rem);
+  --fs-hero: clamp(min(3.5rem, 14vw), 12vw, 11rem);
+  --fs-h2: clamp(min(2.25rem, 10vw), 6vw, 5rem);
   --fs-h3: clamp(1.25rem, 1.6vw, 1.5rem);
   --fs-body: clamp(1.0625rem, 0.3vw + 1rem, 1.125rem);
   --fs-small: 0.9375rem;
