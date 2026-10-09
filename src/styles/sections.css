@@ -780,7 +780,7 @@
   .works[data-horizontal] { padding-top: calc(var(--header-h) + 16px); padding-bottom: 24px; min-height: 100svh; }
   .works[data-horizontal] .works-head { margin-bottom: 18px; }
   .works[data-horizontal] .section-title { font-size: clamp(2.25rem, 4.6vw, 4rem); }
-  .works[data-horizontal] .works-viewport { overflow: clip; overflow-clip-margin: 40px; }
+  .works[data-horizontal] .works-viewport { overflow-x: clip; overflow-y: visible; }
   .works[data-horizontal] .works-track {
     display: flex;
     width: max-content;
