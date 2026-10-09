@@ -22,7 +22,8 @@ const bootHash = createHash('sha256').update(boot).digest('base64');
 
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'sha256-${bootHash}'`,
+  // в dev Astro вставляет свои inline-скрипты (HMR, панель) — разрешаем их только локально
+  import.meta.env.DEV ? "script-src 'self' 'unsafe-inline'" : `script-src 'self' 'sha256-${bootHash}'`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",

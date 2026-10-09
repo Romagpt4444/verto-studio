@@ -408,6 +408,20 @@
   }
   .rocket-poster { position: absolute; inset: 0; display: grid; place-items: center; transition: opacity 400ms var(--ease-out); }
   html.webgl-ready .rocket-poster { opacity: 0; }
+  .rocket-poster picture { display: contents; }
+  .rocket-poster img { position: absolute; top: 0; left: 50%; height: 100%; width: auto; max-width: none; transform: translateX(-50%); }
+  /* без WebGL: прогрев — короткая CSS-тряска постера */
+  .rocket-hit[data-warm] .rocket-poster { animation: poster-warm 1.1s var(--ease-out); }
+  @keyframes poster-warm {
+    0%, 100% { transform: none; }
+    10% { transform: translateX(-3px) rotate(-0.6deg); }
+    20% { transform: translateX(3px) rotate(0.6deg); }
+    30% { transform: translateX(-2px); }
+    40% { transform: translateX(2px); }
+    55% { transform: translateX(-1px); }
+  }
+  html.motion-off .rocket-hint { display: none; }
+  html.motion-off .rocket-hit { pointer-events: none; cursor: default; }
   .hero-rocket-svg { height: 100%; width: auto; max-width: 100%; filter: drop-shadow(0 24px 40px rgb(255 107 44 / 0.18)); }
   .hero-rocket-svg .rs-body { fill: #D9DEE7; }
   .hero-rocket-svg .rs-fin { fill: var(--space-600); }
