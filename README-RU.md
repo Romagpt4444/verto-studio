@@ -47,16 +47,16 @@ node scripts/fps.cjs                  # FPS при прокрутке
 
 ## Публикация
 
-GitHub Pages, репозиторий `Romagpt4444/verto-studio`, домен `vertostudio.ru` (файл `public/CNAME`).
+Сайт: `https://vertostudio.ru/` — репозиторий `Romagpt4444/verto-studio`, ветка `main`, GitHub Pages с источником **GitHub Actions** (включено 10.10.2026), домен из `public/CNAME`.
 
-1. В настройках репозитория: Settings → Pages → Source: **GitHub Actions** (один раз; без этого Pages продолжит раздавать корень репозитория, а не `dist/`).
-2. Слить ветку `redesign/rocket` в `main` (после «ок» владельца).
-3. Запустить воркфлоу **Deploy to GitHub Pages** (Actions → Run workflow). Чтобы публиковать автоматически при каждом пуше в `main`, добавить в `.github/workflows/deploy.yml` триггер `push: branches: [main]`.
+Каждый пуш в `main` запускает воркфлоу `.github/workflows/deploy.yml`: `npm ci` → `npm run build` → `python3 scripts/site_qa.py` → публикация `dist/`. Если проверка падает, сайт не обновляется. Pull request в `main` только собирает и проверяет, ничего не публикует. Вручную: Actions → Deploy to GitHub Pages → Run workflow.
+
+Обновление: проверенная ветка сливается в `main` (fast-forward), пуш делает деплой. Пример: `git push upstream redesign/rocket:main`, где `upstream` — `Romagpt4444/verto-studio`.
 
 ## Откат
 
 - Быстрый: `git revert <коммит слияния>` в `main` и снова запустить воркфлоу.
-- Полный: ветка `backup/pre-rocket` — состояние до редизайна; копия папки — `../Verto-Studio-backup-2026-10-09`. Если откатываться на старый статический сайт, вернуть источник Pages на «Deploy from a branch → main / root».
+- Полный: ветка `backup/pre-rocket` — состояние до редизайна; копия папки — `../Verto-Studio-backup-2026-10-09`. Чтобы вернуть старый сайт: `git push upstream <коммит до редизайна>:main` (например, `bb2dc10`... сверить с `backup/pre-rocket`) — воркфлоу опубликует старую версию из корня только если она собирается; иначе переключить Pages на «Deploy from a branch → main / root».
 
 ## Лицензии
 
