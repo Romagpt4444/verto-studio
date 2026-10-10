@@ -27,11 +27,16 @@ export function initChoreography(scene: RocketScene) {
   const planetArc = document.querySelector<HTMLElement>('[data-planet]');
   let master = gsap.timeline({ paused: true });
   const follow = { t: 0 };
-  const timeTo = gsap.quickTo(follow, 't', { duration: 1, ease: 'power3.out', onUpdate: () => master.time(Math.min(master.duration(), follow.t)) });
+  // догоняние прокрутки: 1 с на десктопе (как scrub: 1), 0.6 с на телефоне — после «броска» пальцем
+  // ракета не отстаёт и не доезжает рывком
+  const followDur = innerWidth >= 1024 ? 1 : 0.6;
+  const timeTo = gsap.quickTo(follow, 't', { duration: followDur, ease: 'power3.out', onUpdate: () => master.time(Math.min(master.duration(), follow.t)) });
 
   const build = () => {
-    const vw = innerWidth;
+    // vh — для позиций прокрутки; VW/VH — стабильный размер слоя ракеты (100lvh): по ним ставим ракету на экране
     const vh = innerHeight;
+    const { w: VW, h: VH } = scene.view();
+    const vw = VW;
     const desktop = vw >= 1024;
     const max = ScrollTrigger.maxScroll(window);
     const at = (px: number) => Math.max(0, Math.min(max, px));
@@ -55,18 +60,20 @@ export function initChoreography(scene: RocketScene) {
       x: hero.x, y: hero.y, h: hero.h, yaw: 0, pitch: 0, roll: 0, thrust: 0, opacity: 1, stars: 0, orbits: 1,
       pad: 0, steam: 1, sway: 1, sep1: 0, sep2: 0, planet: 0,
     };
+    // Телефон: ракета — фон за текстом. Одна высота (0.44) на всё «Что создаём» → «Стек»,
+    // без качелей вверх-вниз; прозрачность — затемнение до цвета фона (см. scene.ts, uFade).
     const side = desktop
-      ? { x: vw * 0.73, y: vh * 0.52, h: vh * 0.72, opacity: 1 }
-      : { x: vw * 0.5, y: vh * 0.5, h: vh * 0.7, opacity: 0.35 };
+      ? { x: vw * 0.73, y: VH * 0.52, h: VH * 0.72, opacity: 1 }
+      : { x: vw * 0.5, y: VH * 0.44, h: VH * 0.62, opacity: 0.34 };
     const stackPos = desktop
-      ? { x: vw * 0.8, y: vh * 0.54, h: vh * 0.74, opacity: 1 }
-      : { x: vw * 0.62, y: vh * 0.5, h: vh * 0.66, opacity: 0.3 };
+      ? { x: vw * 0.8, y: VH * 0.54, h: VH * 0.74, opacity: 1 }
+      : { x: vw * 0.58, y: VH * 0.44, h: VH * 0.62, opacity: 0.3 };
     const far = desktop
-      ? { x: vw * 0.88, y: vh * 0.17, h: vh * 0.17, opacity: 0.5 }
-      : { x: vw * 0.84, y: vh * 0.2, h: vh * 0.2, opacity: 0.45 };
+      ? { x: vw * 0.88, y: VH * 0.17, h: VH * 0.17, opacity: 0.5 }
+      : { x: vw * 0.84, y: VH * 0.2, h: VH * 0.2, opacity: 0.45 };
     const planet = desktop
-      ? { planetX: vw * 0.76, planetY: vh * 0.5, planetR: vh * 0.075 }
-      : { planetX: vw * 0.5, planetY: vh * 0.3, planetR: vh * 0.05 };
+      ? { planetX: vw * 0.76, planetY: VH * 0.5, planetR: VH * 0.075 }
+      : { planetX: vw * 0.5, planetY: VH * 0.3, planetR: VH * 0.05 };
 
     master.kill();
     master = gsap.timeline({ paused: true, defaults: { ease: 'none' } });
@@ -79,9 +86,10 @@ export function initChoreography(scene: RocketScene) {
       master.to(s, { ...side, duration: d1, ease: 'power1.inOut' }, 0)
         .to(s, { roll: -6, duration: d1 * 0.5, ease: 'sine.inOut' }, d1 * 0.2);
     } else {
-      // на телефоне ракета над текстом: сначала уходит вверх и становится фоном, потом занимает место
-      master.to(s, { y: hero.y - vh * 0.22, opacity: side.opacity, duration: d1 * 0.45, ease: 'power2.in' }, 0)
-        .to(s, { x: side.x, y: side.y, h: side.h, duration: d1 * 0.55, ease: 'power1.inOut' }, d1 * 0.45);
+      // на телефоне: сначала уходит в фон (затемнение), затем одним плавным движением
+      // занимает своё место — без подъёма и обратного спуска
+      master.to(s, { opacity: side.opacity, duration: d1 * 0.35, ease: 'power1.out' }, 0)
+        .to(s, { x: side.x, y: side.y, h: side.h, duration: d1, ease: 'sine.inOut' }, 0);
     }
 
     // 2. Что создаём: поворот на 90° бортом (видна надпись VERTO-1), тяга 0.4
@@ -90,7 +98,7 @@ export function initChoreography(scene: RocketScene) {
 
     // 3. Бегущая строка: пролёт по диагонали сквозь ленту
     const d3 = Math.max(1, pMarqEnd - pMarq);
-    master.to(s, { x: desktop ? vw * 0.18 : vw * 0.3, y: vh * 0.38, roll: 38, yaw: -40, thrust: 0.85, stars: 1.6, duration: d3, ease: 'power1.inOut' }, pMarq);
+    master.to(s, { x: desktop ? vw * 0.18 : vw * 0.36, y: desktop ? VH * 0.38 : side.y, roll: desktop ? 38 : 24, yaw: -40, thrust: 0.85, stars: 1.6, duration: d3, ease: 'power1.inOut' }, pMarq);
 
     // 4. Стек: ракета справа, подсветка частей (по событию), в конце отделяется нижняя ступень
     const toStack = Math.max(1, pStack - pMarqEnd);
@@ -111,7 +119,7 @@ export function initChoreography(scene: RocketScene) {
 
     // 6. Как работаем: отделяется stage2, ракета горизонтально, внизу дуга планеты
     const dL = Math.max(1, Math.min(pFaq, pContact) - pLaunch);
-    master.to(s, { x: desktop ? vw * 0.66 : vw * 0.55, y: vh * 0.24, h: desktop ? vh * 0.42 : vh * 0.32, opacity: desktop ? 0.95 : 0.4, roll: -90, yaw: 0, thrust: 0.6, stars: 0.8, orbits: 0.4, duration: dL * 0.6, ease: 'power2.inOut' }, pLaunch)
+    master.to(s, { x: desktop ? vw * 0.66 : vw * 0.55, y: VH * 0.24, h: desktop ? VH * 0.42 : VH * 0.32, opacity: desktop ? 0.95 : 0.4, roll: -90, yaw: 0, thrust: 0.6, stars: 0.8, orbits: 0.4, duration: dL * 0.6, ease: 'power2.inOut' }, pLaunch)
       .to(s, { sep2: 1, duration: dL * 0.35, ease: 'power1.in' }, pLaunch + dL * 0.35);
     if (planetArc) {
       master.fromTo(planetArc, { opacity: 0, yPercent: 8 }, { opacity: 1, yPercent: 0, duration: dL * 0.6, ease: 'power2.out' }, pLaunch)
@@ -123,16 +131,21 @@ export function initChoreography(scene: RocketScene) {
     const dIn = Math.min(dC * 0.4, vh * 0.5);
     master.to(s, {
       ...planet, planet: 1, thrust: 0.2, stars: 0.3, orbits: 0, pitch: 0, yaw: 0,
-      opacity: desktop ? 1 : 0.55, h: desktop ? vh * 0.3 : vh * 0.18,
-      orbitRx: desktop ? vw * 0.15 : vw * 0.34, orbitRy: desktop ? vh * 0.13 : vh * 0.06,
+      opacity: desktop ? 1 : 0.55, h: desktop ? VH * 0.3 : VH * 0.18,
+      orbitRx: desktop ? vw * 0.15 : vw * 0.34, orbitRy: desktop ? VH * 0.13 : VH * 0.06,
       orbitK: 1, duration: dIn, ease: 'power2.out',
     }, pContact)
       .fromTo(s, { orbitA: -Math.PI * 0.85 }, { orbitA: Math.PI * 1.15, duration: dC, ease: 'none', immediateRender: false }, pContact);
 
     // длительность таймлайна = вся прокрутка
     master.set({}, {}, max);
-    master.time(Math.min(max, scrollY));
-    follow.t = scrollY;
+    // Новый таймлайн стоит в 0: если прокрутка тоже 0, GSAP не отрисует стартовый кадр (время
+    // «не изменилось»), и ракета осталась бы в случайном положении — например, после повторного
+    // включения анимации. Поэтому ставим стартовое состояние явно, затем переходим к прокрутке.
+    Object.assign(s, START);
+    const t = Math.min(max, scrollY);
+    if (t > 0) master.time(t);
+    follow.t = t;
   };
 
   build();

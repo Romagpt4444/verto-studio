@@ -55,23 +55,71 @@ export function panelTexture(rows: number, seed = 1) {
   return tex(c);
 }
 
-/** Надпись «VERTO-1» — читается снизу вверх, на прозрачном фоне. */
-export function nameTexture(text: string) {
+/** Вертикальная надпись на борту (читается снизу вверх) на прозрачном фоне; шрифт подгоняется по длине. */
+export function nameTexture(text: string, opts: { stripe?: boolean; color?: string } = {}) {
   const [c, g] = canvas(256, 1024);
   g.clearRect(0, 0, 256, 1024);
+  let size = 168;
+  g.font = `800 ${size}px Unbounded, "Golos Text", sans-serif`;
+  const w = g.measureText(text).width;
+  if (w > 960) size = Math.floor((size * 960) / w);
   g.save();
-  g.translate(128, 512);
+  g.translate(118, 512);
   g.rotate(-Math.PI / 2);
-  g.fillStyle = '#121A2B';
-  g.font = '800 168px Unbounded, "Golos Text", sans-serif';
+  g.fillStyle = opts.color ?? '#121A2B';
+  g.font = `800 ${size}px Unbounded, "Golos Text", sans-serif`;
   g.textAlign = 'center';
   g.textBaseline = 'middle';
   g.fillText(text, 0, 6);
   g.restore();
-  // оранжевая полоса рядом с надписью
-  g.fillStyle = '#FF6B2C';
-  g.fillRect(212, 96, 16, 832);
+  if (opts.stripe !== false) {
+    // оранжевая полоса рядом с надписью
+    g.fillStyle = '#FF6B2C';
+    g.fillRect(212, 96, 16, 832);
+  }
   return tex(c);
+}
+
+/**
+ * Пояс с бегущей строкой услуг вокруг корпуса. Вся строка — в текстуре шириной 4096,
+ * за один оборот видно ~perRev символов; сдвиг offset.x анимируется в сцене.
+ */
+export function bandTexture(items: string[], perRev = 26) {
+  // высота подобрана под пояс 0.24 при ~26 символах на оборот (знаки занимают ~половину высоты)
+  const H = 88;
+  const [m, mg] = canvas(16, 16);
+  void m;
+  const sep = '  ●  ';
+  const line = items.join(sep) + sep;
+  let size = 64;
+  mg.font = `800 ${size}px Unbounded, "Golos Text", sans-serif`;
+  const W = 4096;
+  const width = mg.measureText(line).width;
+  size = Math.max(28, Math.floor(size * (W / width)));
+  const [c, g] = canvas(W, H);
+  g.fillStyle = '#0A0F1C';
+  g.fillRect(0, 0, W, H);
+  // тонкие светлые кромки пояса
+  g.fillStyle = 'rgba(238, 241, 246, 0.22)';
+  g.fillRect(0, 5, W, 2);
+  g.fillRect(0, H - 7, W, 2);
+  g.font = `800 ${size}px Unbounded, "Golos Text", sans-serif`;
+  g.textBaseline = 'middle';
+  // растягиваем строку ровно на ширину текстуры, чтобы шов не был виден
+  const real = g.measureText(line).width;
+  g.save();
+  g.scale(W / real, 1);
+  let x = 0;
+  for (const part of line.split(/(●)/)) {
+    g.fillStyle = part === '●' ? '#FF6B2C' : '#EEF1F6';
+    g.fillText(part, x, H / 2 + 3);
+    x += g.measureText(part).width;
+  }
+  g.restore();
+  const t = tex(c);
+  t.wrapS = THREE.RepeatWrapping;
+  t.repeat.x = Math.min(1, perRev / [...line].length);
+  return t;
 }
 
 /** Иллюминатор: тёмное стекло, блик и оранжевая V. */

@@ -1,7 +1,7 @@
 // Ракета VERTO-1: процедурная модель (LatheGeometry + Extrude), ступени — отдельные группы.
 // Единицы: высота корпуса 6.25. Ось Y — вверх, иллюминатор смотрит в +Z, надпись — в +X.
 import * as THREE from 'three';
-import { nameTexture, panelTexture, windowTexture } from './textures';
+import { bandTexture, nameTexture, panelTexture, windowTexture } from './textures';
 
 export const ROCKET_HEIGHT = 6.25;
 export const ROCKET_PIVOT = 3.0; // центр вращения по высоте
@@ -14,12 +14,14 @@ export interface RocketModel {
   parts: Record<'capsule' | 'stage3' | 'stage2' | 'stage1', THREE.Group>;
   nozzles: Record<'stage1' | 'stage2' | 'stage3', THREE.Object3D>;
   highlights: Record<PartName, THREE.Mesh>;
+  /** Пояс с бегущей строкой услуг: сцена сдвигает texture.offset.x. */
+  band: THREE.Texture;
   /** Нижняя точка (y в координатах root) текущей нижней ступени: туда крепится пламя. */
   baseY: Record<'stage1' | 'stage2' | 'stage3', number>;
   dispose: () => void;
 }
 
-export function createRocket(opts: { segments: number; name: string }): RocketModel {
+export function createRocket(opts: { segments: number; name: string; title: string; band: string[] }): RocketModel {
   const seg = opts.segments;
   const disposables: Array<{ dispose: () => void }> = [];
   const keep = <T extends { dispose: () => void }>(x: T) => { disposables.push(x); return x; };
@@ -33,7 +35,8 @@ export function createRocket(opts: { segments: number; name: string }): RocketMo
   })));
   const ringMat = keep(new THREE.MeshStandardMaterial({ color: 0xff6b2c, metalness: 0.25, roughness: 0.42 }));
   const finMat = keep(new THREE.MeshStandardMaterial({ color: 0x1c2740, metalness: 0.45, roughness: 0.5 }));
-  const darkMat = keep(new THREE.MeshStandardMaterial({ color: 0x2a3654, metalness: 0.85, roughness: 0.32, side: THREE.DoubleSide }));
+  const darkMat = keep(new THREE.MeshStandardMaterial({ color: 0x2a3654, metalness: 0.85, roughness: 0.32, side: THREE.DoubleSide, emissive: 0xff6b2c, emissiveIntensity: 0 }));
+  const tipMat = keep(new THREE.MeshStandardMaterial({ color: 0xff6b2c, metalness: 0.35, roughness: 0.38 }));
   const capMat = keep(new THREE.MeshStandardMaterial({ color: 0x121a2b, metalness: 0.5, roughness: 0.6 }));
   const glowMat = keep(new THREE.MeshBasicMaterial({ color: 0xff6b2c, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide }));
 
@@ -78,8 +81,15 @@ export function createRocket(opts: { segments: number; name: string }): RocketMo
   finShape.moveTo(0, 0.36); finShape.lineTo(0, 1.25); finShape.lineTo(0.48, 0.62); finShape.lineTo(0.5, 0.12); finShape.lineTo(0.44, 0.06); finShape.lineTo(0, 0.36);
   const finGeo = keep(new THREE.ExtrudeGeometry(finShape, { depth: 0.045, bevelEnabled: true, bevelThickness: 0.012, bevelSize: 0.012, bevelSegments: 2, curveSegments: 4 }));
   finGeo.translate(0, 0, -0.0225);
+  // оранжевая кромка по внешнему краю стабилизатора
+  const edgeLen = Math.hypot(0.02, 0.5);
+  const edgeGeo = keep(new THREE.CylinderGeometry(0.014, 0.014, edgeLen, 8));
   for (let i = 0; i < 4; i++) {
     const f = new THREE.Mesh(finGeo, finMat);
+    const edge = new THREE.Mesh(edgeGeo, ringMat);
+    edge.position.set(0.497, 0.37, 0);
+    edge.rotation.z = Math.atan2(0.02, 0.5);
+    f.add(edge);
     const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
     f.position.set(Math.cos(a) * (R - 0.01), 0, Math.sin(a) * (R - 0.01));
     f.rotation.y = -a;
@@ -96,12 +106,30 @@ export function createRocket(opts: { segments: number; name: string }): RocketMo
   const name = new THREE.Mesh(nameGeo, nameMat);
   name.position.y = 2.9;
   stage2.add(name);
+  // спереди (+Z) — «VERTO STUDIO», читается снизу вверх, как надписи на настоящих ракетах
+  const titleMat = keep(new THREE.MeshStandardMaterial({ map: keep(nameTexture(opts.title, { stripe: false })), transparent: true, metalness: 0.2, roughness: 0.5, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }));
+  const titleGeo = keep(new THREE.CylinderGeometry(R + 0.003, R + 0.003, 1.32, 24, 1, true, -0.42, 0.84));
+  const title = new THREE.Mesh(titleGeo, titleMat);
+  title.position.y = 2.9;
+  stage2.add(title);
 
   // ── Ступень 3: лёгкое сужение к капсуле ──
   const stage3 = new THREE.Group(); stage3.name = 'stage3';
   stage3.add(lathe([[R, 3.6], [0.49, 4.2], [0.48, 4.6]], panelMats[2]));
   stage3.add(ring(3.64), cap(R, 3.6, false), cap(0.48, 4.6, true));
   const nozzle3 = nozzle(3.6, 0.65); stage3.add(nozzle3);
+  // тёмный пояс с бегущей по кругу строкой услуг
+  const band = keep(bandTexture(opts.band));
+  const bandMat = keep(new THREE.MeshStandardMaterial({ map: band, metalness: 0.3, roughness: 0.45 }));
+  // шов текстуры — сзади (thetaStart = π) и закрыт оранжевой «застёжкой», текст выходит из-под неё
+  const bandGeo = keep(new THREE.CylinderGeometry(0.4948, 0.4972, 0.24, seg, 1, true, Math.PI, Math.PI * 2));
+  const bandMesh = new THREE.Mesh(bandGeo, bandMat);
+  bandMesh.position.y = 3.98;
+  stage3.add(bandMesh);
+  const clasp = new THREE.Mesh(keep(new THREE.BoxGeometry(0.075, 0.27, 0.03)), ringMat);
+  clasp.position.set(0, 3.98, -0.5);
+  stage3.add(clasp);
+  stage3.add(ring(3.855, 0.016, 0.5005), ring(4.105, 0.016, 0.4985));
 
   // ── Капсула: оживальный обтекатель, иллюминатор с V ──
   const capsule = new THREE.Group(); capsule.name = 'capsule';
@@ -109,7 +137,10 @@ export function createRocket(opts: { segments: number; name: string }): RocketMo
   const N = 28;
   const noseR = (t: number) => 0.48 * Math.pow(Math.cos((t * Math.PI) / 2), 0.72);
   for (let i = 0; i <= N; i++) { const t = i / N; nosePts.push([Math.max(0.0001, noseR(t)), 4.6 + 1.65 * t]); }
-  capsule.add(lathe(nosePts, panelMats[2]));
+  // обтекатель белый, самый кончик — оранжевый
+  const TIP = 24;
+  capsule.add(lathe(nosePts.slice(0, TIP + 1), panelMats[2]));
+  capsule.add(lathe(nosePts.slice(TIP), tipMat));
   capsule.add(ring(4.64), cap(0.48, 4.6, false));
   // иллюминатор по нормали к поверхности
   const wy = 5.05; const wt = (wy - 4.6) / 1.65;
@@ -143,6 +174,7 @@ export function createRocket(opts: { segments: number; name: string }): RocketMo
     parts: { capsule, stage3, stage2, stage1 },
     nozzles: { stage1: nozzle1, stage2: nozzle2, stage3: nozzle3 },
     highlights,
+    band,
     baseY: { stage1: 0.0, stage2: 2.2 - 0.26, stage3: 3.6 - 0.22 },
     dispose: () => disposables.forEach((d) => d.dispose()),
   };

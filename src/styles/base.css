@@ -34,10 +34,8 @@
     font-size: var(--fs-body);
     line-height: 1.55;
     color: var(--text);
-    background:
-      radial-gradient(120% 70% at 80% -10%, color-mix(in oklch, var(--space-800) 70%, transparent), transparent 60%),
-      linear-gradient(in oklch to bottom, var(--space-950), #020306 85%);
-    background-attachment: fixed;
+    /* градиент космоса — на фиксированном слое .space (дешевле, чем background-attachment: fixed) */
+    background: var(--bg);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

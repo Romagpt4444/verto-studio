@@ -9,11 +9,15 @@ const fs = require('fs');
   // Снимаем в том же окне и ракурсе, что и hero на десктопе, затем вырезаем область постера.
   const p = await b.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
   await p.goto('http://localhost:4321/');
+  await p.waitForTimeout(1500); await p.mouse.move(200, 200);
   await p.waitForFunction(() => window.__rocket, null, { timeout: 20000 });
   await p.waitForTimeout(1200);
+  // наклон за мышью гасим и ждём, пока ракета встанет ровно
+  await p.evaluate(() => window.__rocket.setPointerTilt(false));
+  await p.waitForTimeout(1800);
   const { dataUrl, box } = await p.evaluate(() => {
     const r = window.__rocket;
-    r.setPointerTilt(false);
+    document.querySelector('.rocket-hint')?.removeAttribute('data-hidden');
     Object.assign(r.state, { yaw: 0, pitch: 0, roll: 0, thrust: 0, sway: 0, orbits: 0, steam: 0, pad: 0, stars: 0, opacity: 1 });
     const img = document.querySelector('.rocket-poster img').getBoundingClientRect();
     r.renderOnce();

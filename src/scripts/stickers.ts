@@ -3,7 +3,8 @@
 import type { AnimationItem } from 'lottie-web';
 import { $$, mq } from './env';
 
-const MAX_PLAYING = 4;
+// На телефоне одновременно играют 2 стикера (видеочип слабее), на десктопе — 4 (ТЗ 11)
+const maxPlaying = () => (mq.desktop.matches ? 4 : 2);
 type Lottie = typeof import('lottie-web/build/player/lottie_light').default;
 
 export function initStickers() {
@@ -20,7 +21,7 @@ export function initStickers() {
 
   const schedule = () => {
     // играют максимум 4 самых видимых
-    const ranked = [...ratio.entries()].filter(([, r]) => r > 0).sort((a, b) => b[1] - a[1]).slice(0, MAX_PLAYING).map(([el]) => el);
+    const ranked = [...ratio.entries()].filter(([, r]) => r > 0).sort((a, b) => b[1] - a[1]).slice(0, maxPlaying()).map(([el]) => el);
     // играющий стикер показываем векторным, на паузе — статичный кадр (первый кадр анимации бывает пустым)
     anims.forEach((a, el) => {
       const ready = el.dataset.ready === '1';

@@ -13,6 +13,8 @@ import { initStickers } from './stickers';
 import { initShimmer, initSpotlight } from './polish';
 
 gsap.registerPlugin(ScrollTrigger);
+// Телефон: появление/скрытие адресной строки не должно пересчитывать все триггеры (рывки)
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 export const EASE = 'expo.out'; // ближайшая к cubic-bezier(0.23, 1, 0.32, 1)
 

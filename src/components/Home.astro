@@ -25,7 +25,7 @@ const t = getDict(lang);
     <div class="space-stars"></div>
     <div class="space-planet" data-planet></div>
   </div>
-  <div class="rocket-layer" aria-hidden="true" data-rocket-layer data-rocket-name={t.ui.rocketName}></div>
+  <div class="rocket-layer" aria-hidden="true" data-rocket-layer data-rocket-name={t.ui.rocketName} data-rocket-title={t.hero.title} data-rocket-band={t.marquee.slice(0, 9).join('|')}></div>
   <Header lang={lang} t={t} />
   <Altimeter t={t} />
   <main id="content" tabindex="-1">
