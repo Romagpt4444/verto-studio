@@ -104,7 +104,6 @@ export function initMotion(): MotionApi {
       });
     };
     reveal($$('.stack-sub, .works-sub, .works-head .filter, .contact-text, .brief, .contact-main > .btn, .contact-cards li, .faq-item, .footer-grid > *'));
-    reveal($$('.fact'));
     reveal($$('.step'));
 
     // ── Бортовой паспорт: панель раскрывается сверху вниз, строки лесенкой, проценты считают ──
@@ -119,12 +118,6 @@ export function initMotion(): MotionApi {
         .add(() => values.forEach((v) => countUp(v)), 0.35)
         .fromTo('.passport-foot', { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.7);
     }
-
-    // ── Счётчики фактов ──
-    $$<HTMLElement>('.fact-num').forEach((el) => {
-      el.textContent = '0';
-      ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => countUp(el) });
-    });
 
     // ── Ступени стека: строки по очереди, теги лесенкой (≤ 12 анимированных на строку) ──
     $$<HTMLElement>('[data-stage]').forEach((stage) => {

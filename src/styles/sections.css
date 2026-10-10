@@ -847,8 +847,8 @@
     top: -22px;
     right: -14px;
     z-index: 2;
-    width: 88px;
-    height: 88px;
+    width: 96px;
+    height: 96px;
     transform: rotate(6deg);
   }
   .card-body { display: flex; flex-direction: column; gap: 10px; flex: 1; padding: 18px 20px 20px; }
@@ -1081,16 +1081,18 @@
     border-top: 1px solid var(--line);
     background: linear-gradient(in oklch to bottom, rgb(5 7 13 / 0.6), var(--bg) 40%);
   }
+  .site-footer .shell { container-type: inline-size; }
   .footer-giant {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(2.4rem, 9.2vw, 11.5rem);
-    line-height: 0.85;
-    letter-spacing: -0.04em;
+    /* «VERTO STUDIO» ≈ 10.5em шириной: всегда целиком в ширину контейнера */
+    font-size: calc(100cqi / 10.9);
+    line-height: 0.9;
+    letter-spacing: 0;
     text-align: center;
     white-space: nowrap;
-    color: transparent;
-    -webkit-text-stroke: 1px rgb(126 136 156 / 0.45);
+    /* сплошная приглушённая заливка: у контура (text-stroke) видны внутренние линии глифов */
+    color: rgb(42 54 84 / 0.6);
     user-select: none;
     overflow: clip;
   }
@@ -1139,7 +1141,23 @@
   .sticker-slot > .lottie { opacity: 0; }
   .sticker-slot[data-live] > .lottie { opacity: 1; }
   .sticker-slot[data-live] > img { opacity: 0; }
-  .card-sticker { filter: drop-shadow(0 8px 14px rgb(2 4 10 / 0.55)); transition: transform 400ms var(--ease-out); }
+  /* Монохромные «премиальные» стикеры (как во втором референсе): без цвета, с контрастом
+     и тёмным контуром по силуэту; на карточках — на чёрной плашке. */
+  .sticker-slot > img,
+  .sticker-slot > .lottie {
+    filter:
+      grayscale(1) contrast(1.25) brightness(0.94)
+      drop-shadow(0 0 1px rgb(5 7 13 / 0.95)) drop-shadow(0 2px 4px rgb(2 4 10 / 0.7));
+  }
+  .card-sticker {
+    padding: 12px;
+    border-radius: 22px;
+    background: radial-gradient(120% 120% at 30% 20%, var(--space-800), var(--space-950) 70%);
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 14px 28px -10px rgb(2 4 10 / 0.8), inset 0 1px 0 rgb(238 241 246 / 0.06);
+  }
+  .card-sticker > img, .card-sticker > .lottie { inset: 12px; width: calc(100% - 24px); height: calc(100% - 24px); }
+  .card-sticker { transition: transform 400ms var(--ease-out); }
   .card-sticker[data-bounce] { animation: sticker-bounce 600ms cubic-bezier(0.34, 1.56, 0.64, 1); }
   @keyframes sticker-bounce {
     0% { transform: rotate(6deg) scale(1); }
@@ -1226,4 +1244,8 @@
     .altimeter { right: max(clamp(12px, 1.6vw, 28px), env(safe-area-inset-right)); }
   }
   .mobile-menu-inner { padding-bottom: max(40px, env(safe-area-inset-bottom)); }
+}
+
+@layer sections {
+  @media (max-width: 639.98px) { .card-sticker { right: -6px; width: 84px; height: 84px; } }
 }

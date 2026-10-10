@@ -9,6 +9,7 @@ const typeLabel = t.works.types[item.type as keyof typeof t.works.types];
 ---
 <li class="card" data-card data-kind={item.type}>
   <article class="card-inner" aria-labelledby={`work-${item.id}`}>
+    <Sticker emoji={item.sticker} size={96} class="card-sticker" />
     <div class="card-media">
       <img
         src={`/works/${item.id}-640.webp`}
@@ -21,7 +22,6 @@ const typeLabel = t.works.types[item.type as keyof typeof t.works.types];
         decoding="async"
       />
       <span class="card-num" aria-hidden="true">{num}</span>
-      <Sticker emoji={item.sticker} size={88} class="card-sticker" />
     </div>
     <div class="card-body">
       <p class="card-type mono">{typeLabel}</p>

@@ -28,14 +28,5 @@ const { t } = Astro.props;
         <Sticker cp="1f525" size={24} />
       </p>
     </article>
-
-    <ul role="list" class="facts">
-      {t.create.counters.map((c) => (
-        <li class="fact">
-          <span class="fact-num" data-count={c.value}>{c.value}</span>
-          <span class="fact-label">{c.label}</span>
-        </li>
-      ))}
-    </ul>
   </div>
 </section>

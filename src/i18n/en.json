@@ -63,21 +63,7 @@
         "value": "100%"
       }
     ],
-    "footnote": "* No templates, no filler. G-forces within normal limits.",
-    "counters": [
-      {
-        "value": 11,
-        "label": "works in the portfolio"
-      },
-      {
-        "value": 3,
-        "label": "products of our own"
-      },
-      {
-        "value": 2,
-        "label": "client case studies"
-      }
-    ]
+    "footnote": "* No templates, no filler. G-forces within normal limits."
   },
   "marquee": [
     "WEBSITES",
@@ -447,7 +433,6 @@
     "terms": "Terms (RU)",
     "copyright": "© 2026 Verto Studio",
     "toTop": "Back to launch ↑",
-    "emojiCredit": "Animated emoji: Noto Emoji Animation by Google, CC BY 4.0",
     "motionOff": "Pause animation",
     "motionOn": "Play animation",
     "metaNote": "* Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой в России. / Instagram is owned by Meta, which is designated an extremist organization and banned in Russia."

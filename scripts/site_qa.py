@@ -205,7 +205,7 @@ def check_home(lang: str, fails: list[str]) -> None:
         fails.append(f"{rel}: нет текстов из i18n ({len(missing)}): " + "; ".join(missing[:6]))
 
     # Обязательное в подвале
-    for must in (t["footer"]["emojiCredit"], "creativecommons.org/licenses/by/4.0", t["footer"]["metaNote"].split(" / ")[0]):
+    for must in (t["footer"]["metaNote"].split(" / ")[0],):
         if must not in visible:
             fails.append(f"{rel}: нет обязательного текста/ссылки: {must[:60]}")
     for link in (t["contacts"]["telegram"], t["contacts"]["whatsapp"], t["contacts"]["instagram"], t["contacts"]["channel"]):
@@ -237,6 +237,9 @@ def main() -> int:
         if f"url={target}" not in txt or 'rel="canonical"' not in txt or f'href="{target}"' not in txt:
             fails.append(f"{name}: редирект не на {target} или нет canonical/ссылки")
 
+    terms = (DIST / "terms.html").read_text(encoding="utf-8")
+    if "Noto Emoji Animation" not in terms or "creativecommons.org/licenses/by/4.0" not in terms:
+        fails.append("terms.html: нет атрибуции Noto Emoji Animation (CC BY 4.0)")
     if (DIST / "CNAME").read_text(encoding="utf-8").strip() != "vertostudio.ru":
         fails.append("CNAME изменился")
     robots = (DIST / "robots.txt").read_text(encoding="utf-8")
