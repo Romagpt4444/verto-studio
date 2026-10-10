@@ -795,7 +795,13 @@
   .works[data-horizontal] { padding-top: calc(var(--header-h) + 16px); padding-bottom: 24px; min-height: 100svh; }
   .works[data-horizontal] .works-head { margin-bottom: 18px; }
   .works[data-horizontal] .section-title { font-size: clamp(2.25rem, 4.6vw, 4rem); }
-  .works[data-horizontal] .works-viewport { overflow-x: clip; overflow-y: visible; }
+  .works[data-horizontal] .works-viewport {
+    overflow-x: clip;
+    overflow-y: visible;
+    /* лента растворяется перед шкалой высоты, чтобы цифры шкалы не наезжали на карточки */
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 150px), transparent calc(100% - 70px));
+    mask-image: linear-gradient(to right, #000 calc(100% - 150px), transparent calc(100% - 70px));
+  }
   .works[data-horizontal] .works-track {
     display: flex;
     width: max-content;
@@ -1153,13 +1159,11 @@
   .sticker-slot > .lottie { opacity: 0; }
   .sticker-slot[data-live] > .lottie { opacity: 1; }
   .sticker-slot[data-live] > img { opacity: 0; }
-  /* Монохромные «премиальные» стикеры (как во втором референсе): без цвета, с контрастом
-     и тёмным контуром по силуэту; на карточках — на чёрной плашке. */
+  /* Цветные анимированные стикеры: родные цвета Noto, чуть насыщеннее, с мягкой тенью;
+     на карточках — на тёмной плашке, на которой цвет читается ярче. */
   .sticker-slot > img,
   .sticker-slot > .lottie {
-    filter:
-      grayscale(1) contrast(1.25) brightness(0.94)
-      drop-shadow(0 0 1px rgb(5 7 13 / 0.95)) drop-shadow(0 2px 4px rgb(2 4 10 / 0.7));
+    filter: saturate(1.12) drop-shadow(0 4px 8px rgb(2 4 10 / 0.55));
   }
   .card-sticker {
     padding: 12px;
@@ -1263,9 +1267,9 @@
 }
 
 @layer components {
-  /* Телефон: тот же монохром, но без теней-контуров — они перерисовываются каждый кадр анимации */
+  /* Телефон: без фильтров — тень перерисовывалась бы каждый кадр анимации */
   @media (max-width: 1023.98px) {
     .sticker-slot > img,
-    .sticker-slot > .lottie { filter: grayscale(1) contrast(1.25) brightness(0.94); }
+    .sticker-slot > .lottie { filter: none; }
   }
 }
