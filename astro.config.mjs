@@ -15,6 +15,7 @@ const legacyPages = [
   '/projects/apex-detailing/',
   '/projects/forma-estate/',
   '/projects/auren-dental/',
+  '/projects/ivory-dental/',
   '/projects/nord-cabin/',
   '/projects/noir-golf/',
   '/privacy.html',
