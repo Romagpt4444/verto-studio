@@ -317,6 +317,20 @@
         "linkNote": null
       },
       {
+        "id": "ivory",
+        "type": "concept",
+        "title": "IVORY",
+        "text": "Эстетическая стоматология: 3D-зуб и пять этапов лечения. Интерактивная демо-концепция.",
+        "tags": [
+          "Медицина",
+          "Сайт"
+        ],
+        "link": "/projects/ivory-dental/",
+        "site": null,
+        "sticker": "🔥",
+        "linkNote": null
+      },
+      {
         "id": "nord",
         "type": "concept",
         "title": "NORD Cabin",

@@ -317,6 +317,20 @@
         "linkNote": "(RU)"
       },
       {
+        "id": "ivory",
+        "type": "concept",
+        "title": "IVORY",
+        "text": "Aesthetic dentistry: a 3D tooth and five treatment stages. Interactive demo concept.",
+        "tags": [
+          "Healthcare",
+          "Website"
+        ],
+        "link": "/projects/ivory-dental/",
+        "site": null,
+        "sticker": "🔥",
+        "linkNote": "(RU)"
+      },
+      {
         "id": "nord",
         "type": "concept",
         "title": "NORD Cabin",

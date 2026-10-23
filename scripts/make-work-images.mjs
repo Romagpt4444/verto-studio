@@ -14,6 +14,7 @@ const src = {
   apex: [A + 'portfolio/apex-preview-v2.jpg', 'centre'],
   forma: [A + 'portfolio/forma-preview-v2.jpg', 'centre'],
   auren: [A + 'portfolio/auren-dental-preview-v2.jpg', 'centre'],
+  ivory: ['public/projects/ivory-dental/og.jpg', 'centre'],
   nord: [A + 'portfolio/nord-cabin-preview.jpg', 'centre'],
   noir: [A + 'portfolio/noir-golf-preview.jpg', 'centre'],
 };
