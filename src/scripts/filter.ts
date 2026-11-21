@@ -23,8 +23,8 @@ export function initFilter(onChange?: () => void) {
     tabs.forEach((t) => t.setAttribute('aria-pressed', String(t.dataset.filter === kind)));
     let n = 0;
     cards.forEach((c) => {
-      const show = kind === 'all' || c.dataset.kind === kind;
-      c.hidden = !show;
+      const show = c.dataset.kind === kind;
+      c.toggleAttribute('data-filtered-out', !show);
       if (show) n++;
     });
     if (live) live.textContent = (live.dataset.template ?? '{n}').replace('{n}', String(n));
@@ -34,7 +34,7 @@ export function initFilter(onChange?: () => void) {
   };
 
   tabs.forEach((t) => t.addEventListener('click', () => {
-    apply(t.dataset.filter ?? 'all');
+    if (t.dataset.filter) apply(t.dataset.filter);
     t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   }));
   addEventListener('resize', placePill, { passive: true });

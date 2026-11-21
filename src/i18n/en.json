@@ -173,9 +173,8 @@
     "title": "Our collection",
     "subtitle": "Websites and bots you can open and scroll through right now.",
     "filters": {
-      "all": "All",
-      "case": "Case studies",
-      "product": "Products",
+      "case": "Completed projects",
+      "product": "Telegram bots",
       "concept": "Concepts"
     },
     "types": {
@@ -184,6 +183,7 @@
       "concept": "Concept"
     },
     "open": "Open",
+    "openCase": "Open case study",
     "site": "Website ↗",
     "countLive": "Works: {n}",
     "items": [
@@ -215,6 +215,35 @@
         "link": "/cases/master-tyres.html",
         "site": "https://mastertyres-msk.ru/",
         "sticker": "🛞",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "nash-garant",
+        "type": "case",
+        "title": "GarantAuto",
+        "text": "Auto repair website with a service catalogue and a content editor.",
+        "tags": [
+          "Service site",
+          "Content editor"
+        ],
+        "link": "/cases/nash-garant/",
+        "site": null,
+        "sticker": "🚗",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "tati-activewear",
+        "type": "case",
+        "title": "TÁTI Activewear",
+        "text": "Activewear catalogue demo with video, product details and a shopping cart.",
+        "tags": [
+          "Catalogue",
+          "Video showcase",
+          "Cart"
+        ],
+        "link": "/cases/tati-activewear/",
+        "site": null,
+        "sticker": "🎯",
         "linkNote": "(RU)"
       },
       {
@@ -258,6 +287,20 @@
         "link": "/projects/otklik/",
         "site": null,
         "sticker": "💬",
+        "linkNote": "(RU)"
+      },
+      {
+        "id": "ivory",
+        "type": "concept",
+        "title": "IVORY",
+        "text": "Aesthetic dentistry: a 3D tooth and five treatment stages. Interactive demo concept.",
+        "tags": [
+          "Healthcare",
+          "Website"
+        ],
+        "link": "/projects/ivory-dental/",
+        "site": null,
+        "sticker": "🔥",
         "linkNote": "(RU)"
       },
       {
@@ -314,20 +357,6 @@
         "link": "/projects/auren-dental/",
         "site": null,
         "sticker": "🦷",
-        "linkNote": "(RU)"
-      },
-      {
-        "id": "ivory",
-        "type": "concept",
-        "title": "IVORY",
-        "text": "Aesthetic dentistry: a 3D tooth and five treatment stages. Interactive demo concept.",
-        "tags": [
-          "Healthcare",
-          "Website"
-        ],
-        "link": "/projects/ivory-dental/",
-        "site": null,
-        "sticker": "🔥",
         "linkNote": "(RU)"
       },
       {

@@ -1,0 +1,99 @@
+---
+import '../../styles/fonts.css';
+import '../../styles/tokens.css';
+import '../../styles/base.css';
+import { getDict } from '../../i18n';
+
+export function getStaticPaths() {
+  const projects = [
+    {
+      slug: 'nash-garant',
+      status: 'Сайт автосервиса',
+      sections: [
+        { title: 'Путь к записи', text: 'На сайте собраны услуги автосервиса, фотографии техцентра и блок с адресом и контактами. Клиент может проверить, подходит ли ему услуга, и связаться с сервисом.' },
+        { title: 'Обновление контента', text: 'В панели управления можно менять тексты, цены и фотографии. Редактор сохраняет черновик и выгружает файл с обновлениями для публикации.' },
+      ],
+    },
+    {
+      slug: 'tati-activewear',
+      status: 'Демо-каталог',
+      sections: [
+        { title: 'Одежда в движении', text: 'Фото и короткие видео знакомят с коллекцией. В карточках можно посмотреть кадры модели и выбрать цвет, если он есть в нескольких вариантах.' },
+        { title: 'Запрос по модели', text: 'Покупатель может собрать вещи в корзину и подготовить сообщение со списком выбранных моделей. Демо сохраняет корзину в браузере.' },
+      ],
+    },
+  ];
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const work = getDict('ru').works.items.find((item) => item.id === project.slug)!;
+const canonical = new URL(work.link, Astro.site);
+const title = work.title + ' — проект Verto Studio';
+const cover = '/works/' + work.id;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#05070D" />
+    <meta name="description" content={work.text} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Verto Studio" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={work.text} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(cover + '-1280.webp', Astro.site)} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="shell case-nav">
+      <a class="wordmark" href="/">Verto Studio</a>
+      <a href="/#works">К портфолио</a>
+    </header>
+    <main class="shell case-layout">
+      <hgroup>
+        <p class="mono case-label">{project.status}</p>
+        <h1>{work.title}</h1>
+        <p>{work.text}</p>
+      </hgroup>
+      <img
+        class="case-cover"
+        src={cover + '-640.webp'}
+        srcset={cover + '-640.webp 640w, ' + cover + '-1280.webp 1280w'}
+        sizes="(min-width: 1280px) 1100px, 92vw"
+        width="1280"
+        height="800"
+        alt=""
+      />
+      <div class="case-sections">
+        {project.sections.map(({title, text}) => (
+          <section>
+            <h2>{title}</h2>
+            <p>{text}</p>
+          </section>
+        ))}
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  .case-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.5rem; border-bottom: 1px solid var(--line); }
+  .case-nav a:last-child { color: var(--text-dim); text-decoration: underline; text-underline-offset: 0.3em; }
+  .case-layout { max-width: 75rem; padding-block: clamp(3rem, 8vw, 7rem); }
+  hgroup { display: grid; gap: 1rem; max-width: 65ch; }
+  .case-label { color: var(--accent-hover); }
+  h1 { font: 700 clamp(1.9rem, 6vw, 5rem)/1.08 var(--font-display); overflow-wrap: anywhere; }
+  hgroup p:last-child, .case-sections p { color: var(--text-dim); }
+  .case-cover { display: block; width: 100%; height: auto; margin-block: clamp(1.5rem, 5vw, 4rem); border: 1px solid var(--line); border-radius: var(--r-card); }
+  .case-sections { display: grid; gap: 1.5rem; }
+  .case-sections section { display: grid; gap: .75rem; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  .case-sections h2 { font-size: clamp(1.2rem, 2.5vw, 1.75rem); }
+  @media (min-width: 740px) { .case-sections { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem; } }
+</style>

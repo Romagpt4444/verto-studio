@@ -2,12 +2,13 @@
 import Sticker from './Sticker.astro';
 import Icon from './Icon.astro';
 import ProjectCard from './ProjectCard.astro';
-import { type Dict, fmt } from '../i18n';
+import type { Dict } from '../i18n';
 interface Props { t: Dict }
 const { t } = Astro.props;
 const items = t.works.items;
-const count = (k: string) => (k === 'all' ? items.length : items.filter((i) => i.type === k).length);
-const filters = ['all', 'case', 'product', 'concept'] as const;
+const filters = ['case', 'product', 'concept'] as const;
+const defaultFilter = filters[0];
+const count = (kind: (typeof filters)[number]) => items.filter((item) => item.type === kind).length;
 ---
 <section id="works" class="section works" aria-labelledby="works-title" data-section>
   <div class="shell works-head">
@@ -18,7 +19,7 @@ const filters = ['all', 'case', 'product', 'concept'] as const;
     <div class="filter" role="group" aria-label={t.ui.filterLabel} data-filter-group>
       <span class="filter-pill" aria-hidden="true" data-filter-pill></span>
       {filters.map((f) => (
-        <button class="filter-tab" type="button" data-filter={f} aria-pressed={f === 'all' ? 'true' : 'false'}>
+        <button class="filter-tab" type="button" data-filter={f} aria-pressed={f === defaultFilter ? 'true' : 'false'}>
           <span>{t.works.filters[f]}</span>
           <span class="filter-count mono">{count(f)}</span>
         </button>
@@ -29,12 +30,12 @@ const filters = ['all', 'case', 'product', 'concept'] as const;
 
   <div class="works-stage" data-works-stage>
     <div class="shell works-meta mono" aria-hidden="true">
-      <span><span data-works-index>01</span> / <span data-works-total>{String(items.length).padStart(2, '0')}</span></span>
+      <span><span data-works-index>01</span> / <span data-works-total>{String(count(defaultFilter) + 1).padStart(2, '0')}</span></span>
       <span class="works-progress"><span data-works-progress></span></span>
     </div>
     <div class="works-viewport" data-works-viewport>
       <ul role="list" class="works-track" data-works-track>
-        {items.map((item, i) => <ProjectCard item={item} index={i} t={t} />)}
+        {items.map((item, i) => <ProjectCard item={item} index={i} t={t} hidden={item.type !== defaultFilter} />)}
         <li class="card card--invite" data-card data-kind="invite">
           <article class="card-inner invite-inner" aria-labelledby="work-invite">
             <Sticker cp="1f680" size={88} class="card-sticker" />

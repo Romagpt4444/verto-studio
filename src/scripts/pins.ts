@@ -48,7 +48,7 @@ export function initPins() {
     const bar = $<HTMLElement>('[data-works-progress]');
     if (!works || !track) return;
     works.setAttribute('data-horizontal', '');
-    const cards = () => $$<HTMLElement>('[data-card]:not([hidden])', track);
+    const cards = () => $$<HTMLElement>('[data-card]:not([data-filtered-out])', track);
     const dist = () => Math.max(0, track.scrollWidth - innerWidth);
     gsap.set($$('[data-card]', track), { opacity: 1, y: 0 });
 

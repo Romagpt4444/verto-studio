@@ -173,9 +173,8 @@
     "title": "Наша коллекция",
     "subtitle": "Сайты и боты, которые можно открыть и пролистать прямо сейчас.",
     "filters": {
-      "all": "Все",
-      "case": "Кейсы",
-      "product": "Продукты",
+      "case": "Выполненные проекты",
+      "product": "Telegram-боты",
       "concept": "Концепции"
     },
     "types": {
@@ -184,6 +183,7 @@
       "concept": "Концепция"
     },
     "open": "Открыть",
+    "openCase": "Открыть кейс",
     "site": "Сайт ↗",
     "countLive": "Работ: {n}",
     "items": [
@@ -215,6 +215,35 @@
         "link": "/cases/master-tyres.html",
         "site": "https://mastertyres-msk.ru/",
         "sticker": "🛞",
+        "linkNote": null
+      },
+      {
+        "id": "nash-garant",
+        "type": "case",
+        "title": "ГарантАвто",
+        "text": "Сайт автосервиса с каталогом услуг и панелью для обновления контента.",
+        "tags": [
+          "Сайт услуг",
+          "Панель управления"
+        ],
+        "link": "/cases/nash-garant/",
+        "site": null,
+        "sticker": "🚗",
+        "linkNote": null
+      },
+      {
+        "id": "tati-activewear",
+        "type": "case",
+        "title": "TÁTI Activewear",
+        "text": "Демо каталога спортивной одежды с видео, карточками моделей и корзиной.",
+        "tags": [
+          "Каталог",
+          "Видеовитрина",
+          "Корзина"
+        ],
+        "link": "/cases/tati-activewear/",
+        "site": null,
+        "sticker": "🎯",
         "linkNote": null
       },
       {
@@ -258,6 +287,20 @@
         "link": "/projects/otklik/",
         "site": null,
         "sticker": "💬",
+        "linkNote": null
+      },
+      {
+        "id": "ivory",
+        "type": "concept",
+        "title": "IVORY",
+        "text": "Эстетическая стоматология: 3D-зуб и пять этапов лечения. Интерактивная демо-концепция.",
+        "tags": [
+          "Медицина",
+          "Сайт"
+        ],
+        "link": "/projects/ivory-dental/",
+        "site": null,
+        "sticker": "🔥",
         "linkNote": null
       },
       {
@@ -314,20 +357,6 @@
         "link": "/projects/auren-dental/",
         "site": null,
         "sticker": "🦷",
-        "linkNote": null
-      },
-      {
-        "id": "ivory",
-        "type": "concept",
-        "title": "IVORY",
-        "text": "Эстетическая стоматология: 3D-зуб и пять этапов лечения. Интерактивная демо-концепция.",
-        "tags": [
-          "Медицина",
-          "Сайт"
-        ],
-        "link": "/projects/ivory-dental/",
-        "site": null,
-        "sticker": "🔥",
         "linkNote": null
       },
       {

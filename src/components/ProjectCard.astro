@@ -2,12 +2,12 @@
 import Sticker from './Sticker.astro';
 import type { Dict } from '../i18n';
 type Item = Dict['works']['items'][number];
-interface Props { item: Item; index: number; t: Dict }
-const { item, index, t } = Astro.props;
+interface Props { item: Item; index: number; t: Dict; hidden: boolean }
+const { item, index, t, hidden } = Astro.props;
 const num = String(index + 1).padStart(2, '0');
 const typeLabel = t.works.types[item.type as keyof typeof t.works.types];
 ---
-<li class="card" data-card data-kind={item.type}>
+<li class="card" data-card data-kind={item.type} data-filtered-out={hidden ? "" : undefined}>
   <article class="card-inner" aria-labelledby={`work-${item.id}`}>
     <Sticker emoji={item.sticker} size={96} class="card-sticker" />
     <div class="card-media">
@@ -32,7 +32,7 @@ const typeLabel = t.works.types[item.type as keyof typeof t.works.types];
       </ul>
       <div class="card-actions">
         <a class="btn btn-ghost btn-sm" href={item.link}>
-          <span>{t.works.open}</span>
+          <span>{item.type === 'case' ? t.works.openCase : t.works.open}</span>
           {item.linkNote && <span class="card-note">{item.linkNote}</span>}
           <span class="sr-only">: {item.title}</span>
         </a>

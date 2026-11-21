@@ -723,6 +723,7 @@
     border-radius: 28px;
     background: rgb(10 15 28 / 0.7);
   }
+  html:not(.js) .works-head .filter { display: none; }
   .filter-tab {
     position: relative;
     z-index: 1;
@@ -740,13 +741,8 @@
   .filter-count { font-size: 11px; opacity: 0.75; }
   @media (max-width: 639.98px) {
     .works-head .filter {
-      flex-wrap: nowrap;
       max-width: 100%;
-      overflow-x: auto;
-      scrollbar-width: none;
-      overscroll-behavior-x: contain;
     }
-    .works-head .filter::-webkit-scrollbar { display: none; }
     .filter-tab { flex: none; padding: 0 12px; }
   }
   .filter-tab[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
@@ -813,7 +809,7 @@
   .works[data-horizontal] .card { width: clamp(300px, min(29vw, calc((100svh - 520px) * 1.6)), 430px); flex: none; }
 
   .card { position: relative; }
-  .card[hidden] { display: none; }
+  html.js .card[data-filtered-out] { display: none; }
   .card-inner {
     position: relative;
     height: 100%;
